@@ -127,6 +127,80 @@ const facLabel = (name, lang) => {
   return e[{ uz: 0, en: 1, ru: 2, ar: 3 }[lang]] || name;
 };
 
+/* Faculty (Turkish) -> filter field category */
+const FAC_FIELD = {
+  "Tıp": "medicine", "Diş Hekimliği": "dentistry", "Eczacılık": "pharmacy",
+  "Hemşirelik": "medicine", "Fizyoterapi ve Rehabilitasyon": "medicine",
+  "Beslenme ve Diyetetik": "medicine", "Veterinerlik": "medicine",
+  "Moleküler Biyoloji ve Genetik": "medicine", "Psikoloji": "social",
+  "Bilgisayar Mühendisliği": "it", "Yazılım Mühendisliği": "it", "Yapay Zeka Mühendisliği": "it",
+  "Elektrik-Elektronik Mühendisliği": "engineering", "Makine Mühendisliği": "engineering",
+  "Mekatronik Mühendisliği": "engineering", "Endüstri Mühendisliği": "engineering",
+  "İnşaat Mühendisliği": "engineering", "Biyomedikal Mühendisliği": "engineering",
+  "Havacılık ve Uzay Mühendisliği": "engineering", "Pilotaj": "engineering",
+  "Mimarlık": "arts", "İç Mimarlık": "arts", "Şehir ve Bölge Planlama": "social",
+  "İşletme": "business", "İktisat": "business", "Maliye": "business",
+  "Bankacılık ve Finans": "business", "Muhasebe ve Finansal Yönetim": "business",
+  "Uluslararası Ticaret ve Lojistik": "business", "Turizm İşletmeciliği": "business",
+  "Uluslararası İlişkiler": "social", "Siyaset Bilimi ve Kamu Yönetimi": "social",
+  "Hukuk": "law", "Sosyoloji": "social", "Halkla İlişkiler ve Tanıtım": "social",
+  "Gazetecilik": "social", "Radyo Televizyon ve Sinema": "arts", "Yeni Medya ve İletişim": "social",
+  "Grafik Tasarım": "arts", "İletişim ve Tasarım": "arts", "Endüstriyel Tasarım": "arts",
+  "Moda ve Tekstil Tasarımı": "arts", "Güzel Sanatlar": "arts", "Müzik": "arts",
+  "Gastronomi ve Mutfak Sanatları": "arts",
+  "Mütercim-Tercümanlık (İngilizce)": "social", "İngiliz Dili ve Edebiyatı": "social",
+  "Türk Dili ve Edebiyatı": "social", "Arap Dili ve Edebiyatı": "social",
+  "Rehberlik ve Psikolojik Danışmanlık": "social", "Okul Öncesi Öğretmenliği": "social",
+  "İlahiyat": "islamic", "İslami İlimler": "islamic",
+  "Matematik": "social", "İstatistik": "social", "Kimya": "social", "Fizik": "social", "Biyoloji": "social",
+};
+
+const deriveFields = (facs) => [...new Set((facs || []).map(f => FAC_FIELD[f]).filter(Boolean))];
+
+/* Built-in university database (name, city, common faculties) for the admin autocomplete */
+const UNI_DB = [
+  { name: "İstanbul Üniversitesi", city: "İstanbul", faculties: ["Tıp", "Hukuk", "İşletme", "Eczacılık"] },
+  { name: "İstanbul Teknik Üniversitesi (İTÜ)", city: "İstanbul", faculties: ["Bilgisayar Mühendisliği", "Makine Mühendisliği", "İnşaat Mühendisliği", "Mimarlık"] },
+  { name: "Boğaziçi Üniversitesi", city: "İstanbul", faculties: ["Bilgisayar Mühendisliği", "Elektrik-Elektronik Mühendisliği", "İşletme", "İktisat"] },
+  { name: "Orta Doğu Teknik Üniversitesi (ODTÜ)", city: "Ankara", faculties: ["Bilgisayar Mühendisliği", "Makine Mühendisliği", "Mimarlık", "İşletme"] },
+  { name: "Ankara Üniversitesi", city: "Ankara", faculties: ["Tıp", "Hukuk", "İlahiyat", "Siyaset Bilimi ve Kamu Yönetimi"] },
+  { name: "Hacettepe Üniversitesi", city: "Ankara", faculties: ["Tıp", "Diş Hekimliği", "Eczacılık", "Hemşirelik"] },
+  { name: "Ege Üniversitesi", city: "İzmir", faculties: ["Tıp", "Eczacılık", "Bilgisayar Mühendisliği", "İşletme"] },
+  { name: "Dokuz Eylül Üniversitesi", city: "İzmir", faculties: ["Tıp", "Hukuk", "İşletme", "Mimarlık"] },
+  { name: "Gazi Üniversitesi", city: "Ankara", faculties: ["Tıp", "Diş Hekimliği", "Hukuk", "Makine Mühendisliği"] },
+  { name: "Marmara Üniversitesi", city: "İstanbul", faculties: ["Tıp", "Hukuk", "İşletme", "İlahiyat"] },
+  { name: "Yıldız Teknik Üniversitesi", city: "İstanbul", faculties: ["Bilgisayar Mühendisliği", "İnşaat Mühendisliği", "Elektrik-Elektronik Mühendisliği", "Mimarlık"] },
+  { name: "Koç Üniversitesi", city: "İstanbul", faculties: ["Tıp", "Bilgisayar Mühendisliği", "İşletme", "Hukuk"] },
+  { name: "Sabancı Üniversitesi", city: "İstanbul", faculties: ["Bilgisayar Mühendisliği", "Elektrik-Elektronik Mühendisliği", "İşletme", "Endüstri Mühendisliği"] },
+  { name: "Bilkent Üniversitesi", city: "Ankara", faculties: ["Bilgisayar Mühendisliği", "Elektrik-Elektronik Mühendisliği", "İşletme", "Mimarlık"] },
+  { name: "İstanbul Aydın Üniversitesi", city: "İstanbul", faculties: ["Tıp", "Bilgisayar Mühendisliği", "İşletme", "Uluslararası İlişkiler"] },
+  { name: "İstanbul Medipol Üniversitesi", city: "İstanbul", faculties: ["Tıp", "Diş Hekimliği", "Eczacılık", "Hemşirelik"] },
+  { name: "Bahçeşehir Üniversitesi (BAU)", city: "İstanbul", faculties: ["Hukuk", "Grafik Tasarım", "Yazılım Mühendisliği", "İşletme"] },
+  { name: "Üsküdar Üniversitesi", city: "İstanbul", faculties: ["Psikoloji", "Hemşirelik", "Yazılım Mühendisliği", "Fizyoterapi ve Rehabilitasyon"] },
+  { name: "Fatih Sultan Mehmet Vakıf Üniversitesi", city: "İstanbul", faculties: ["İslami İlimler", "Hukuk", "Mimarlık", "Türk Dili ve Edebiyatı"] },
+  { name: "Özyeğin Üniversitesi", city: "İstanbul", faculties: ["Bilgisayar Mühendisliği", "İşletme", "Hukuk", "Mimarlık"] },
+  { name: "Yeditepe Üniversitesi", city: "İstanbul", faculties: ["Tıp", "Diş Hekimliği", "Hukuk", "İşletme"] },
+  { name: "İstanbul Bilgi Üniversitesi", city: "İstanbul", faculties: ["Hukuk", "İşletme", "Grafik Tasarım", "Bilgisayar Mühendisliği"] },
+  { name: "Acıbadem Üniversitesi", city: "İstanbul", faculties: ["Tıp", "Hemşirelik", "Eczacılık", "Fizyoterapi ve Rehabilitasyon"] },
+  { name: "İstinye Üniversitesi", city: "İstanbul", faculties: ["Tıp", "Diş Hekimliği", "Eczacılık", "Hemşirelik"] },
+  { name: "Beykoz Üniversitesi", city: "İstanbul", faculties: ["İşletme", "Uluslararası Ticaret ve Lojistik", "Gastronomi ve Mutfak Sanatları", "Yazılım Mühendisliği"] },
+  { name: "Atılım Üniversitesi", city: "Ankara", faculties: ["Bilgisayar Mühendisliği", "Hukuk", "İşletme", "Mimarlık"] },
+  { name: "Çankaya Üniversitesi", city: "Ankara", faculties: ["Bilgisayar Mühendisliği", "Hukuk", "İşletme", "Mimarlık"] },
+  { name: "TOBB Ekonomi ve Teknoloji Üniversitesi", city: "Ankara", faculties: ["Bilgisayar Mühendisliği", "İşletme", "İktisat", "Hukuk"] },
+  { name: "Selçuk Üniversitesi", city: "Konya", faculties: ["Tıp", "Hukuk", "İlahiyat", "Veterinerlik"] },
+  { name: "Necmettin Erbakan Üniversitesi", city: "Konya", faculties: ["Tıp", "İlahiyat", "Hemşirelik", "Hukuk"] },
+  { name: "Karadeniz Teknik Üniversitesi (KTÜ)", city: "Trabzon", faculties: ["Tıp", "Bilgisayar Mühendisliği", "İnşaat Mühendisliği", "İşletme"] },
+  { name: "Atatürk Üniversitesi", city: "Erzurum", faculties: ["Tıp", "Diş Hekimliği", "Hukuk", "İlahiyat"] },
+  { name: "Çukurova Üniversitesi", city: "Adana", faculties: ["Tıp", "Eczacılık", "İşletme", "Bilgisayar Mühendisliği"] },
+  { name: "Akdeniz Üniversitesi", city: "Antalya", faculties: ["Tıp", "Hukuk", "Turizm İşletmeciliği", "İşletme"] },
+  { name: "Sakarya Üniversitesi", city: "Sakarya", faculties: ["Bilgisayar Mühendisliği", "İşletme", "Hukuk", "İlahiyat"] },
+  { name: "Eskişehir Osmangazi Üniversitesi", city: "Eskişehir", faculties: ["Tıp", "Bilgisayar Mühendisliği", "İşletme", "Makine Mühendisliği"] },
+  { name: "Bursa Uludağ Üniversitesi", city: "Bursa", faculties: ["Tıp", "Hukuk", "İşletme", "İlahiyat"] },
+  { name: "Gaziantep Üniversitesi", city: "Gaziantep", faculties: ["Tıp", "Bilgisayar Mühendisliği", "İşletme", "Hukuk"] },
+  { name: "İzmir Ekonomi Üniversitesi", city: "İzmir", faculties: ["Bilgisayar Mühendisliği", "İşletme", "Hukuk", "Endüstriyel Tasarım"] },
+  { name: "Yaşar Üniversitesi", city: "İzmir", faculties: ["İşletme", "Hukuk", "Mimarlık", "Bilgisayar Mühendisliği"] },
+];
+
 /* ------------------------------------------------------------------ */
 /*  TRANSLATIONS                                                       */
 /* ------------------------------------------------------------------ */
@@ -159,7 +233,7 @@ const T = {
     contact: { title: "Biz bilan bog‘laning", sub: "Savolingiz bormi? Bepul konsultatsiya uchun yozing.", name: "Ismingiz", email: "Email", phone: "Telefon", msg: "Xabaringiz", send: "Yuborish", ok: "Rahmat! Arizangiz qabul qilindi. Tez orada bog‘lanamiz.", infoTitle: "Aloqa ma’lumotlari", addressLabel: "Manzil", hours: "Ish vaqti" },
     docs: { eyebrow: "Hujjatlar & Hazırlık", title: "Turk tilini bilmasangiz ham o‘qiysiz", sub: "Til muammosi to‘siq emas — biz tayyorlovdan diplomgacha yo‘ldamiz.", docsTitle: "Kerakli hujjatlar", docs: ["Pasport", "Maktab attestati yoki kollej diplomi"], prepTitle: "1 yillik tayyorlov (hazırlık)", prepText: "Tilni bilmaydiganlar uchun 1 yillik tayyorlov bor. Yo‘nalish tiliga qarab turkcha yoki inglizcha tayyorlov o‘qiysiz — tayyorlov tili siz tanlagan dastur tiliga mos belgilanadi." },
     footer: { tagline: "Turkiyada o‘qish — Savura EDU bilan oson.", quick: "Tezkor havolalar", rights: "Barcha huquqlar himoyalangan." },
-    admin: { login: "Admin kirish", pass: "Parol", enter: "Kirish", wrong: "Parol noto‘g‘ri", hint: "Davom etish uchun parolni kiriting", title: "Boshqaruv paneli", tabU: "Universitetlar", tabI: "Arizalar", tabS: "Sozlamalar", logout: "Chiqish", add: "Universitet qo‘shish", edit: "Tahrirlash", save: "Saqlash", cancel: "Bekor qilish", fName: "Universitet nomi", fCity: "Shahar", fImg: "Universitet rasmi", upload: "Rasm yuklash", remove: "Rasmni o‘chirish", imgHint: "JPG/PNG — avtomatik kichraytiriladi", fDesc: "Tavsif", fFields: "Yo‘nalishlar (filtr uchun)", fFeatured: "Bosh sahifada ko‘rsatish", saved: "Saqlandi", confirm: "Rostdan o‘chirilsinmi?", noI: "Hozircha arizalar yo‘q.", iName: "Ism", iContact: "Aloqa", iMsg: "Xabar", iDate: "Sana", shared: "Eslatma: ma’lumotlar saytda barcha tashrif buyuruvchilarga ko‘rinadi.", facTitle: "Fakultetlar (narxi, manzili, qabul)", addFac: "Fakultet qo‘shish", facName: "Fakultet nomi", facPrice: "Yillik narx", facSchol: "5 yil burs (jami)", facLoc: "Manzil", facAdm: "Qabul holati", facLang: "Ta'lim tili", coTitle: "Kompaniya ma’lumotlari", coPhone: "Telefon raqam", coEmail: "Email", coAddr: "Manzil", coHours: "Ish vaqti", coIg: "Instagram havolasi", coTg: "Telegram havolasi", saveCo: "Sozlamalarni saqlash" },
+    admin: { login: "Admin kirish", pass: "Parol", enter: "Kirish", wrong: "Parol noto‘g‘ri", hint: "Davom etish uchun parolni kiriting", title: "Boshqaruv paneli", tabU: "Universitetlar", tabI: "Arizalar", tabS: "Sozlamalar", logout: "Chiqish", add: "Universitet qo‘shish", edit: "Tahrirlash", save: "Saqlash", cancel: "Bekor qilish", fName: "Universitet nomi", fCity: "Shahar", fImg: "Universitet rasmi", upload: "Rasm yuklash", remove: "Rasmni o‘chirish", imgHint: "JPG/PNG — avtomatik kichraytiriladi", fDesc: "Tavsif", fFields: "Yo‘nalishlar (filtr uchun)", fFeatured: "Bosh sahifada ko‘rsatish", saved: "Saqlandi", confirm: "Rostdan o‘chirilsinmi?", noI: "Hozircha arizalar yo‘q.", iName: "Ism", iContact: "Aloqa", iMsg: "Xabar", iDate: "Sana", shared: "Eslatma: ma’lumotlar saytda barcha tashrif buyuruvchilarga ko‘rinadi.", facTitle: "Fakultetlar (narxi, manzili, qabul)", addFac: "Fakultet qo‘shish", facName: "Fakultet nomi", facPrice: "Yillik narx", facSchol: "5 yil burs (jami)", facLoc: "Manzil", facAdm: "Qabul holati", facLang: "Ta'lim tili", uniHint: "Ro'yxatdan tanlasangiz shahri va fakultetlari avtomatik to'ladi", coTitle: "Kompaniya ma’lumotlari", coPhone: "Telefon raqam", coEmail: "Email", coAddr: "Manzil", coHours: "Ish vaqti", coIg: "Instagram havolasi", coTg: "Telegram havolasi", saveCo: "Sozlamalarni saqlash" },
   },
 
   tr: {
@@ -190,7 +264,7 @@ const T = {
     contact: { title: "Bize ulaşın", sub: "Sorunuz mu var? Ücretsiz danışmanlık için yazın.", name: "Adınız", email: "E-posta", phone: "Telefon", msg: "Mesajınız", send: "Gönder", ok: "Teşekkürler! Başvurunuz alındı. En kısa sürede dönüş yapacağız.", infoTitle: "İletişim bilgileri", addressLabel: "Adres", hours: "Çalışma saatleri" },
     docs: { eyebrow: "Belgeler & Hazırlık", title: "Türkçe bilmesen de okuyabilirsin", sub: "Dil bir engel değil — hazırlıktan diplomaya kadar yanındayız.", docsTitle: "Gerekli belgeler", docs: ["Pasaport", "Lise diploması (attestat) veya kolej diploması"], prepTitle: "1 yıllık hazırlık programı", prepText: "Dil bilmeyen öğrenciler için 1 yıllık hazırlık vardır. Bölümün diline göre Türkçe veya İngilizce hazırlık okursun — hazırlık dili seçtiğin programın diline göre belirlenir." },
     footer: { tagline: "Türkiye'de okumak — Savura EDU ile kolay.", quick: "Hızlı bağlantılar", rights: "Tüm hakları saklıdır." },
-    admin: { login: "Yönetici girişi", pass: "Şifre", enter: "Giriş", wrong: "Şifre yanlış", hint: "Devam etmek için şifrenizi girin", title: "Yönetim paneli", tabU: "Üniversiteler", tabI: "Başvurular", tabS: "Ayarlar", logout: "Çıkış", add: "Üniversite ekle", edit: "Düzenle", save: "Kaydet", cancel: "İptal", fName: "Üniversite adı", fCity: "Şehir", fImg: "Üniversite görseli", upload: "Görsel yükle", remove: "Görseli kaldır", imgHint: "JPG/PNG — otomatik küçültülür", fDesc: "Açıklama", fFields: "Bölümler (filtre için)", fFeatured: "Ana sayfada göster", saved: "Kaydedildi", confirm: "Gerçekten silinsin mi?", noI: "Henüz başvuru yok.", iName: "Ad", iContact: "İletişim", iMsg: "Mesaj", iDate: "Tarih", shared: "Not: veriler sitede tüm ziyaretçilere görünür.", facTitle: "Fakülteler (ücret, konum, kayıt)", addFac: "Fakülte ekle", facName: "Fakülte adı", facPrice: "Yıllık ücret", facSchol: "5 yıl burs (toplam)", facLoc: "Konum", facAdm: "Kayıt durumu", facLang: "Eğitim dili", coTitle: "Şirket bilgileri", coPhone: "Telefon", coEmail: "E-posta", coAddr: "Adres", coHours: "Çalışma saatleri", coIg: "Instagram bağlantısı", coTg: "Telegram bağlantısı", saveCo: "Ayarları kaydet" },
+    admin: { login: "Yönetici girişi", pass: "Şifre", enter: "Giriş", wrong: "Şifre yanlış", hint: "Devam etmek için şifrenizi girin", title: "Yönetim paneli", tabU: "Üniversiteler", tabI: "Başvurular", tabS: "Ayarlar", logout: "Çıkış", add: "Üniversite ekle", edit: "Düzenle", save: "Kaydet", cancel: "İptal", fName: "Üniversite adı", fCity: "Şehir", fImg: "Üniversite görseli", upload: "Görsel yükle", remove: "Görseli kaldır", imgHint: "JPG/PNG — otomatik küçültülür", fDesc: "Açıklama", fFields: "Bölümler (filtre için)", fFeatured: "Ana sayfada göster", saved: "Kaydedildi", confirm: "Gerçekten silinsin mi?", noI: "Henüz başvuru yok.", iName: "Ad", iContact: "İletişim", iMsg: "Mesaj", iDate: "Tarih", shared: "Not: veriler sitede tüm ziyaretçilere görünür.", facTitle: "Fakülteler (ücret, konum, kayıt)", addFac: "Fakülte ekle", facName: "Fakülte adı", facPrice: "Yıllık ücret", facSchol: "5 yıl burs (toplam)", facLoc: "Konum", facAdm: "Kayıt durumu", facLang: "Eğitim dili", uniHint: "Listeden seçerseniz şehir ve fakülteler otomatik dolar", coTitle: "Şirket bilgileri", coPhone: "Telefon", coEmail: "E-posta", coAddr: "Adres", coHours: "Çalışma saatleri", coIg: "Instagram bağlantısı", coTg: "Telegram bağlantısı", saveCo: "Ayarları kaydet" },
   },
 
   en: {
@@ -221,7 +295,7 @@ const T = {
     contact: { title: "Contact us", sub: "Have a question? Write to us for a free consultation.", name: "Your name", email: "Email", phone: "Phone", msg: "Your message", send: "Send", ok: "Thank you! Your request has been received. We'll be in touch shortly.", infoTitle: "Contact details", addressLabel: "Address", hours: "Working hours" },
     docs: { eyebrow: "Documents & Prep", title: "Study even without Turkish", sub: "Language is no barrier — we guide you from prep to diploma.", docsTitle: "Required documents", docs: ["Passport", "High-school certificate (attestat) or college diploma"], prepTitle: "1-year preparatory program", prepText: "There is a 1-year prep program for students who don't speak the language. Depending on the program's language you take Turkish or English prep — the prep language follows the language of the program you choose." },
     footer: { tagline: "Studying in Turkey — made easy with Savura EDU.", quick: "Quick links", rights: "All rights reserved." },
-    admin: { login: "Admin login", pass: "Password", enter: "Log in", wrong: "Wrong password", hint: "Enter your password to continue", title: "Dashboard", tabU: "Universities", tabI: "Inquiries", tabS: "Settings", logout: "Log out", add: "Add university", edit: "Edit", save: "Save", cancel: "Cancel", fName: "University name", fCity: "City", fImg: "University image", upload: "Upload image", remove: "Remove image", imgHint: "JPG/PNG — auto-resized", fDesc: "Description", fFields: "Programs (for filter)", fFeatured: "Show on homepage", saved: "Saved", confirm: "Delete for real?", noI: "No inquiries yet.", iName: "Name", iContact: "Contact", iMsg: "Message", iDate: "Date", shared: "Note: data is visible to all site visitors.", facTitle: "Faculties (price, location, admission)", addFac: "Add faculty", facName: "Faculty name", facPrice: "Annual price", facSchol: "5-yr scholarship (total)", facLoc: "Location", facAdm: "Admission status", facLang: "Language", coTitle: "Company details", coPhone: "Phone number", coEmail: "Email", coAddr: "Address", coHours: "Working hours", coIg: "Instagram link", coTg: "Telegram link", saveCo: "Save settings" },
+    admin: { login: "Admin login", pass: "Password", enter: "Log in", wrong: "Wrong password", hint: "Enter your password to continue", title: "Dashboard", tabU: "Universities", tabI: "Inquiries", tabS: "Settings", logout: "Log out", add: "Add university", edit: "Edit", save: "Save", cancel: "Cancel", fName: "University name", fCity: "City", fImg: "University image", upload: "Upload image", remove: "Remove image", imgHint: "JPG/PNG — auto-resized", fDesc: "Description", fFields: "Programs (for filter)", fFeatured: "Show on homepage", saved: "Saved", confirm: "Delete for real?", noI: "No inquiries yet.", iName: "Name", iContact: "Contact", iMsg: "Message", iDate: "Date", shared: "Note: data is visible to all site visitors.", facTitle: "Faculties (price, location, admission)", addFac: "Add faculty", facName: "Faculty name", facPrice: "Annual price", facSchol: "5-yr scholarship (total)", facLoc: "Location", facAdm: "Admission status", facLang: "Language", uniHint: "Pick from the list to auto-fill city and faculties", coTitle: "Company details", coPhone: "Phone number", coEmail: "Email", coAddr: "Address", coHours: "Working hours", coIg: "Instagram link", coTg: "Telegram link", saveCo: "Save settings" },
   },
 
   ru: {
@@ -252,7 +326,7 @@ const T = {
     contact: { title: "Связаться с нами", sub: "Есть вопрос? Напишите нам для бесплатной консультации.", name: "Ваше имя", email: "Email", phone: "Телефон", msg: "Ваше сообщение", send: "Отправить", ok: "Спасибо! Ваша заявка принята. Мы скоро свяжемся с вами.", infoTitle: "Контактные данные", addressLabel: "Адрес", hours: "Часы работы" },
     docs: { eyebrow: "Документы и подготовка", title: "Учитесь, даже не зная турецкого", sub: "Язык — не преграда: мы рядом от подготовки до диплома.", docsTitle: "Необходимые документы", docs: ["Загранпаспорт", "Аттестат школы или диплом колледжа"], prepTitle: "Годичная подготовка (hazırlık)", prepText: "Для студентов без знания языка есть годичная подготовка. В зависимости от языка программы вы проходите турецкую или английскую подготовку — язык подготовки соответствует языку выбранной программы." },
     footer: { tagline: "Учёба в Турции — легко с Savura EDU.", quick: "Быстрые ссылки", rights: "Все права защищены." },
-    admin: { login: "Вход для админа", pass: "Пароль", enter: "Войти", wrong: "Неверный пароль", hint: "Введите пароль для продолжения", title: "Панель управления", tabU: "Университеты", tabI: "Заявки", tabS: "Настройки", logout: "Выйти", add: "Добавить университет", edit: "Изменить", save: "Сохранить", cancel: "Отмена", fName: "Название университета", fCity: "Город", fImg: "Изображение университета", upload: "Загрузить фото", remove: "Удалить фото", imgHint: "JPG/PNG — авто-сжатие", fDesc: "Описание", fFields: "Направления (для фильтра)", fFeatured: "Показывать на главной", saved: "Сохранено", confirm: "Точно удалить?", noI: "Заявок пока нет.", iName: "Имя", iContact: "Контакт", iMsg: "Сообщение", iDate: "Дата", shared: "Примечание: данные видны всем посетителям сайта.", facTitle: "Факультеты (цена, адрес, приём)", addFac: "Добавить факультет", facName: "Название факультета", facPrice: "Цена в год", facSchol: "5-летний грант (всего)", facLoc: "Адрес", facAdm: "Статус приёма", facLang: "Язык обучения", coTitle: "Данные компании", coPhone: "Номер телефона", coEmail: "Email", coAddr: "Адрес", coHours: "Часы работы", coIg: "Ссылка Instagram", coTg: "Ссылка Telegram", saveCo: "Сохранить настройки" },
+    admin: { login: "Вход для админа", pass: "Пароль", enter: "Войти", wrong: "Неверный пароль", hint: "Введите пароль для продолжения", title: "Панель управления", tabU: "Университеты", tabI: "Заявки", tabS: "Настройки", logout: "Выйти", add: "Добавить университет", edit: "Изменить", save: "Сохранить", cancel: "Отмена", fName: "Название университета", fCity: "Город", fImg: "Изображение университета", upload: "Загрузить фото", remove: "Удалить фото", imgHint: "JPG/PNG — авто-сжатие", fDesc: "Описание", fFields: "Направления (для фильтра)", fFeatured: "Показывать на главной", saved: "Сохранено", confirm: "Точно удалить?", noI: "Заявок пока нет.", iName: "Имя", iContact: "Контакт", iMsg: "Сообщение", iDate: "Дата", shared: "Примечание: данные видны всем посетителям сайта.", facTitle: "Факультеты (цена, адрес, приём)", addFac: "Добавить факультет", facName: "Название факультета", facPrice: "Цена в год", facSchol: "5-летний грант (всего)", facLoc: "Адрес", facAdm: "Статус приёма", facLang: "Язык обучения", uniHint: "Выберите из списка — город и факультеты заполнятся автоматически", coTitle: "Данные компании", coPhone: "Номер телефона", coEmail: "Email", coAddr: "Адрес", coHours: "Часы работы", coIg: "Ссылка Instagram", coTg: "Ссылка Telegram", saveCo: "Сохранить настройки" },
   },
 
   ar: {
@@ -283,7 +357,7 @@ const T = {
     contact: { title: "تواصل معنا", sub: "لديك سؤال؟ راسلنا للحصول على استشارة مجانية.", name: "اسمك", email: "البريد الإلكتروني", phone: "الهاتف", msg: "رسالتك", send: "إرسال", ok: "شكرًا! تم استلام طلبك وسنتواصل معك قريبًا.", infoTitle: "بيانات التواصل", addressLabel: "العنوان", hours: "ساعات العمل" },
     docs: { eyebrow: "المستندات والتحضير", title: "ادرس حتى لو كنت لا تعرف التركية", sub: "اللغة ليست عائقًا — نرافقك من التحضير حتى التخرج.", docsTitle: "المستندات المطلوبة", docs: ["جواز السفر", "شهادة الثانوية (الأتيستات) أو دبلوم الكلية"], prepTitle: "برنامج تحضيري لمدة سنة", prepText: "يوجد برنامج تحضيري لمدة سنة للطلاب الذين لا يجيدون اللغة. وحسب لغة البرنامج تدرس تحضيريًا تركيًا أو إنجليزيًا — وتُحدَّد لغة التحضير وفق لغة البرنامج الذي تختاره." },
     footer: { tagline: "الدراسة في تركيا — سهلة مع سفورة للتعليم.", quick: "روابط سريعة", rights: "جميع الحقوق محفوظة." },
-    admin: { login: "دخول المشرف", pass: "كلمة المرور", enter: "دخول", wrong: "كلمة المرور خاطئة", hint: "أدخل كلمة المرور للمتابعة", title: "لوحة التحكم", tabU: "الجامعات", tabI: "الطلبات", tabS: "الإعدادات", logout: "خروج", add: "إضافة جامعة", edit: "تعديل", save: "حفظ", cancel: "إلغاء", fName: "اسم الجامعة", fCity: "المدينة", fImg: "صورة الجامعة", upload: "رفع صورة", remove: "إزالة الصورة", imgHint: "JPG/PNG — يُصغّر تلقائيًا", fDesc: "الوصف", fFields: "التخصصات (للتصفية)", fFeatured: "العرض في الصفحة الرئيسية", saved: "تم الحفظ", confirm: "هل تريد الحذف فعلًا؟", noI: "لا توجد طلبات بعد.", iName: "الاسم", iContact: "التواصل", iMsg: "الرسالة", iDate: "التاريخ", shared: "ملاحظة: البيانات مرئية لكل زوار الموقع.", facTitle: "الكليات (السعر، الموقع، القبول)", addFac: "إضافة كلية", facName: "اسم الكلية", facPrice: "السعر السنوي", facSchol: "منحة 5 سنوات (الإجمالي)", facLoc: "الموقع", facAdm: "حالة القبول", facLang: "لغة الدراسة", coTitle: "بيانات الشركة", coPhone: "رقم الهاتف", coEmail: "البريد الإلكتروني", coAddr: "العنوان", coHours: "ساعات العمل", coIg: "رابط إنستغرام", coTg: "رابط تيليجرام", saveCo: "حفظ الإعدادات" },
+    admin: { login: "دخول المشرف", pass: "كلمة المرور", enter: "دخول", wrong: "كلمة المرور خاطئة", hint: "أدخل كلمة المرور للمتابعة", title: "لوحة التحكم", tabU: "الجامعات", tabI: "الطلبات", tabS: "الإعدادات", logout: "خروج", add: "إضافة جامعة", edit: "تعديل", save: "حفظ", cancel: "إلغاء", fName: "اسم الجامعة", fCity: "المدينة", fImg: "صورة الجامعة", upload: "رفع صورة", remove: "إزالة الصورة", imgHint: "JPG/PNG — يُصغّر تلقائيًا", fDesc: "الوصف", fFields: "التخصصات (للتصفية)", fFeatured: "العرض في الصفحة الرئيسية", saved: "تم الحفظ", confirm: "هل تريد الحذف فعلًا؟", noI: "لا توجد طلبات بعد.", iName: "الاسم", iContact: "التواصل", iMsg: "الرسالة", iDate: "التاريخ", shared: "ملاحظة: البيانات مرئية لكل زوار الموقع.", facTitle: "الكليات (السعر، الموقع، القبول)", addFac: "إضافة كلية", facName: "اسم الكلية", facPrice: "السعر السنوي", facSchol: "منحة 5 سنوات (الإجمالي)", facLoc: "الموقع", facAdm: "حالة القبول", facLang: "لغة الدراسة", uniHint: "اختر من القائمة ليُملأ المدينة والكليات تلقائيًا", coTitle: "بيانات الشركة", coPhone: "رقم الهاتف", coEmail: "البريد الإلكتروني", coAddr: "العنوان", coHours: "ساعات العمل", coIg: "رابط إنستغرام", coTg: "رابط تيليجرام", saveCo: "حفظ الإعدادات" },
   },
 };
 
@@ -582,8 +656,10 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 .facgrid input{border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:.9rem;font-family:inherit;outline:none;background:var(--bg);width:100%}
 .facgrid input:focus{border-color:var(--teal);background:#fff}
 .combo{position:relative}
-.combo input{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px 40px 9px 11px;font-size:.92rem;font-family:inherit;outline:none;background:var(--bg);color:var(--ink)}
+.combo input{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:.92rem;font-family:inherit;outline:none;background:var(--bg);color:var(--ink)}
 .combo input:focus{border-color:var(--teal);background:#fff}
+.facedit > .combo input{padding-right:40px}
+.combo-item small{color:var(--ink-soft)}
 .combo-pop{position:absolute;top:calc(100% + 4px);inset-inline:0;z-index:40;background:#fff;border:1px solid var(--line);border-radius:11px;box-shadow:0 20px 44px -18px rgba(14,42,44,.4);padding:5px;max-height:230px;overflow:auto}
 .combo-item{display:block;width:100%;text-align:start;background:none;border:none;padding:9px 11px;border-radius:8px;font-size:.9rem;font-family:inherit;color:var(--ink)}
 .combo-item:hover{background:var(--bg2)}
@@ -1186,6 +1262,39 @@ function FacultyNameInput({ value, onChange, placeholder }) {
   );
 }
 
+function UniNameInput({ value, onText, onPick, placeholder }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  useEffect(() => {
+    const h = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener("mousedown", h);
+    return () => document.removeEventListener("mousedown", h);
+  }, []);
+  const q = (value || "").trim().toLowerCase();
+  const list = (q
+    ? UNI_DB.filter(u => u.name.toLowerCase().includes(q))
+      .sort((a, b) => (a.name.toLowerCase().startsWith(q) ? 0 : 1) - (b.name.toLowerCase().startsWith(q) ? 0 : 1))
+    : UNI_DB
+  ).slice(0, 12);
+  return (
+    <div className="combo" ref={ref}>
+      <input value={value} placeholder={placeholder}
+        onChange={e => { onText(e.target.value); setOpen(true); }}
+        onFocus={() => setOpen(true)} />
+      {open && list.length > 0 && (
+        <div className="combo-pop">
+          {list.map(u => (
+            <button type="button" key={u.name} className="combo-item"
+              onMouseDown={(e) => { e.preventDefault(); onPick(u); setOpen(false); }}>
+              <span style={{ fontWeight: 700 }}>{u.name}</span> <small>· {u.city}</small>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
   const [authed, setAuthed] = useState(false);
   const [pw, setPw] = useState("");
@@ -1224,11 +1333,17 @@ function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
 
   // faculties helpers
   const addFac = () => setEditing(p => ({ ...p, faculties: [...(p.faculties || []), { name: "", language: "tr", price: "", price5: "", location: "", admission: "open" }] }));
+  const pickUni = (u) => setEditing(p => ({
+    ...p,
+    name: u.name,
+    city: u.city,
+    fields: deriveFields(u.faculties),
+    faculties: u.faculties.map(fn => ({ name: fn, language: "tr", price: "", price5: "", location: u.city, admission: "open" })),
+  }));
   const updFac = (i, k, v) => setEditing(p => ({ ...p, faculties: p.faculties.map((f, idx) => idx === i ? { ...f, [k]: v } : f) }));
   const rmFac = (i) => setEditing(p => ({ ...p, faculties: p.faculties.filter((_, idx) => idx !== i) }));
 
-  const tryLogin = async () => {
-    const h = await sha256Hex(pw);
+  const tryLogin = async () => {    const h = await sha256Hex(pw);
     if (h === PASSWORD_HASH) { setAuthed(true); setErr(false); } else setErr(true);
   };
 
@@ -1330,7 +1445,13 @@ function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
         <div className="amodal" onClick={(e) => { if (e.target.className === "amodal") setEditing(null); }}>
           <div className="aform">
             <h3>{editing.id ? t.admin.edit : t.admin.add}</h3>
-            <div className="field" style={{ marginBottom: 14 }}><label>{t.admin.fName}</label><input value={editing.name} onChange={e => setEditing({ ...editing, name: e.target.value })} /></div>
+            <div className="field" style={{ marginBottom: 14 }}>
+              <label>{t.admin.fName}</label>
+              <UniNameInput value={editing.name} placeholder={t.admin.fName}
+                onText={(v) => setEditing({ ...editing, name: v })}
+                onPick={pickUni} />
+              <div style={{ fontSize: ".78rem", color: "var(--ink-soft)", marginTop: 6 }}>{t.admin.uniHint}</div>
+            </div>
             <div className="field" style={{ marginBottom: 14 }}><label>{t.admin.fCity}</label><input value={editing.city} onChange={e => setEditing({ ...editing, city: e.target.value })} /></div>
 
             <div className="field" style={{ marginBottom: 14 }}>

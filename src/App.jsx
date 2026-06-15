@@ -243,9 +243,10 @@ const T = {
       { t: "G‘amxo‘rlik", d: "Siz Turkiyada o‘zingizni yolg‘iz his qilmaysiz." } ] },
     contact: { title: "Biz bilan bog‘laning", sub: "Savolingiz bormi? Bepul konsultatsiya uchun yozing.", name: "Ismingiz", email: "Email", phone: "Telefon", msg: "Xabaringiz", send: "Yuborish", ok: "Rahmat! Arizangiz qabul qilindi. Tez orada bog‘lanamiz.", infoTitle: "Aloqa ma’lumotlari", addressLabel: "Manzil", hours: "Ish vaqti" },
     docs: { eyebrow: "Hujjatlar & Hazırlık", title: "Turk tilini bilmasangiz ham o‘qiysiz", sub: "Til muammosi to‘siq emas — biz tayyorlovdan diplomgacha yo‘ldamiz.", docsTitle: "Kerakli hujjatlar", docs: ["Pasport", "Maktab attestati yoki kollej diplomi"], prepTitle: "1 yillik tayyorlov (hazırlık)", prepText: "Tilni bilmaydiganlar uchun 1 yillik tayyorlov bor. Yo‘nalish tiliga qarab turkcha yoki inglizcha tayyorlov o‘qiysiz — tayyorlov tili siz tanlagan dastur tiliga mos belgilanadi." },
+    benefits: { eyebrow: "Imkoniyatlar", title: "O‘qish — bu faqat boshlanishi", sub: "Turkiyada talabalik nafaqat diplom, balki yashash, ishlash va Yevropaga yo‘l ochadi.", items: [ { t: "Yashash ruxsatnomasi", d: "Universitetga qabul qilinganingizdan so‘ng Turkiyada qonuniy yashash uchun ruxsatnoma (ikamet) olasiz." }, { t: "O‘qib, ishlab pul topish", d: "Darsdan bo‘sh vaqtingizda ishlashingiz mumkin — kontrakt va yashash xarajatlaringizni bemalol qoplaydigan daromad topasiz." }, { t: "Work & Travel", d: "Yozgi ta’tilda Yevropa davlatlariga Work and Travel dasturi bilan borib, ishlab dam olasiz." }, { t: "Erasmus+ almashinuvi", d: "Erasmus dasturi orqali o‘qishingizning bir qismini Yevropa Ittifoqi universitetlarida davom ettirasiz." } ] },
     proc: { nav: "Hujjatlar va qabul", title: "Kerakli hujjatlar va qabul jarayoni", sub: "Bosqichingizni tanlang va kerakli hujjatlar ro‘yxatini ko‘ring. Hujjatlarni to‘g‘ri va sifatli tayyorlash grant olish imkonini oshiradi.", levelsTitle: "Bosqich bo‘yicha hujjatlar", bachelor: "Bakalavr", master: "Magistratura", doctorate: "Doktorantura", docs: { bachelor: ["Pasport (qizil, yashil yoki ID karta) — PDF", "9-sinf shahodatnomasi asl nusxasi — PDF", "11-sinf shahodatnomasi yoki kollej/litsey diplomi va ilovasi (asl) — PDF. Hali o‘qiyotgan bo‘lsangiz — joriy baholar hujjati", "Niyat (motivatsiya) xati", "1–2 o‘qituvchi/murabbiydan tavsiyanoma", "Yutuqlar: sertifikat, diplom, medal va h.k. (mavjud bo‘lsa)", "TÖMER til sertifikati (mavjud bo‘lsa)"], master: ["Pasport — PDF", "Maktab/kollej/litsey diplomi va ilovasi — PDF", "Bakalavr diplomi va ilovasi (asl) — PDF. Hali o‘qiyotgan bo‘lsangiz — reyting daftarchasi", "Niyat (motivatsiya) xati", "Ilmiy ish mavzusi va kirish qismi (grant uchun muhim)", "1–2 o‘qituvchi/ilmiy rahbardan tavsiyanoma", "Yutuqlar: sertifikat, diplom, maqolalar (mavjud bo‘lsa)", "TÖMER til sertifikati (mavjud bo‘lsa)"], doctorate: ["Pasport — PDF", "Maktab/kollej/litsey diplomi va ilovasi — PDF", "Bakalavr va magistr diplomi va ilovasi (asl) — PDF. Hali o‘qiyotgan bo‘lsangiz — reyting daftarchasi", "Niyat (motivatsiya) xati", "Ilmiy ish mavzusi va kirish qismi (doktorantura uchun shart)", "Ilmiy ishga 1–2 o‘qituvchi/rahbardan tavsiyanoma", "Yutuqlar: sertifikat, diplom, medal, maqolalar (mavjud bo‘lsa)", "TÖMER til sertifikati (mavjud bo‘lsa)"] }, extrasTitle: "Majburiy qo‘shimcha hujjatlar", motivation: { t: "Niyat (motivatsiya) xati", d: "Nega Turkiyani va shu yo‘nalishni tanlaganingiz, bitirgandan keyingi maqsadlaringiz. Taxminan 500 so‘z, professional va aniq.", points: ["O‘zingizni qisqa tanishtiring", "Asosiy maqsadingiz", "Erishgan yutuqlaringiz", "Nega Turkiya va nega bu soha", "Topshirayotgan universitetingiz haqida", "Grant evaziga nima qila olasiz"] }, reference: { t: "Tavsiyanoma (reference letter)", d: "O‘qish joyingizdagi o‘qituvchidan. Ilmiy unvoni yuqori bo‘lgani (fan nomzodi, professor) afzal. O‘qituvchining faol elektron pochtasi ko‘rsatilishi shart." }, stagesTitle: "Qabul jarayoni", stages: [{ t: "1-bosqich: hujjatlarni ko‘rib chiqish", d: "Hujjatlar, maqsad va qiziqishlar mutaxassislar tomonidan o‘rganiladi. Muvaffaqiyatlilar suhbatga o‘tadi (ba’zan matematika/mantiq testi bo‘lishi mumkin)." }, { t: "2-bosqich: suhbat", d: "O‘rtacha 15–20 daqiqa. Asosan Turkiyada o‘qish maqsadi va tanlangan yo‘nalish haqida savollar." }, { t: "3-bosqich: tanlov", d: "Komissiya suhbat natijalarini baholaydi va grant yutganlar ro‘yxati tuziladi." }] },
     footer: { tagline: "Turkiyada o‘qish — Savura EDU bilan oson.", quick: "Tezkor havolalar", rights: "Barcha huquqlar himoyalangan." },
-    admin: { login: "Admin kirish", pass: "Parol", enter: "Kirish", wrong: "Parol noto‘g‘ri", hint: "Davom etish uchun parolni kiriting", title: "Boshqaruv paneli", tabU: "Universitetlar", tabI: "Arizalar", tabS: "Sozlamalar", logout: "Chiqish", add: "Universitet qo‘shish", edit: "Tahrirlash", save: "Saqlash", cancel: "Bekor qilish", fName: "Universitet nomi", fCity: "Shahar", fImg: "Universitet rasmi", upload: "Rasm yuklash", remove: "Rasmni o‘chirish", imgHint: "JPG/PNG — avtomatik kichraytiriladi", fDesc: "Tavsif", fFields: "Yo‘nalishlar (filtr uchun)", fFeatured: "Bosh sahifada ko‘rsatish", saved: "Saqlandi", confirm: "Rostdan o‘chirilsinmi?", noI: "Hozircha arizalar yo‘q.", iName: "Ism", iContact: "Aloqa", iMsg: "Xabar", iDate: "Sana", shared: "Eslatma: ma’lumotlar saytda barcha tashrif buyuruvchilarga ko‘rinadi.", facTitle: "Fakultetlar (narxi, manzili, qabul)", addFac: "Fakultet qo‘shish", facName: "Fakultet nomi", facPrice: "Yillik narx", facSchol: "5 yil burs (jami)", facLoc: "Manzil", facAdm: "Qabul holati", facLang: "Ta'lim tili", uniHint: "Ro'yxatdan tanlasangiz shahri va fakultetlari avtomatik to'ladi", coTitle: "Kompaniya ma’lumotlari", coPhone: "Telefon raqam", coEmail: "Email", coAddr: "Manzil", coHours: "Ish vaqti", coIg: "Instagram havolasi", coTg: "Telegram havolasi", saveCo: "Sozlamalarni saqlash" },
+    admin: { login: "Admin kirish", pass: "Parol", enter: "Kirish", wrong: "Parol noto‘g‘ri", hint: "Davom etish uchun parolni kiriting", title: "Boshqaruv paneli", tabU: "Universitetlar", tabI: "Arizalar", tabS: "Sozlamalar", logout: "Chiqish", add: "Universitet qo‘shish", edit: "Tahrirlash", save: "Saqlash", cancel: "Bekor qilish", fName: "Universitet nomi", fCity: "Shahar", fImg: "Universitet rasmi", upload: "Rasm yuklash", remove: "Rasmni o‘chirish", imgHint: "JPG/PNG — avtomatik kichraytiriladi", fDesc: "Tavsif", fFields: "Yo‘nalishlar (filtr uchun)", fFeatured: "Bosh sahifada ko‘rsatish", saved: "Saqlandi", confirm: "Rostdan o‘chirilsinmi?", noI: "Hozircha arizalar yo‘q.", iName: "Ism", iContact: "Aloqa", iMsg: "Xabar", iDate: "Sana", shared: "Eslatma: ma’lumotlar saytda barcha tashrif buyuruvchilarga ko‘rinadi.", facTitle: "Fakultetlar (narxi, manzili, qabul)", addFac: "Fakultet qo‘shish", facName: "Fakultet nomi", facPrice: "Yillik narx", facSchol: "5 yil burs (jami)", facLoc: "Manzil", facAdm: "Qabul holati", facLang: "Ta'lim tili", uniHint: "Ro'yxatdan tanlasangiz shahri va fakultetlari avtomatik to'ladi", coTitle: "Kompaniya ma’lumotlari", coPhone: "Telefon raqam", coEmail: "Email", coAddr: "Manzil", coHours: "Ish vaqti", coIg: "Instagram havolasi", coTg: "Telegram havolasi", coPrice: "Boshlang‘ich narx ($)", saveCo: "Sozlamalarni saqlash" },
   },
 
   tr: {
@@ -275,9 +276,10 @@ const T = {
       { t: "Özen", d: "Türkiye'de kendinizi yalnız hissetmezsiniz." } ] },
     contact: { title: "Bize ulaşın", sub: "Sorunuz mu var? Ücretsiz danışmanlık için yazın.", name: "Adınız", email: "E-posta", phone: "Telefon", msg: "Mesajınız", send: "Gönder", ok: "Teşekkürler! Başvurunuz alındı. En kısa sürede dönüş yapacağız.", infoTitle: "İletişim bilgileri", addressLabel: "Adres", hours: "Çalışma saatleri" },
     docs: { eyebrow: "Belgeler & Hazırlık", title: "Türkçe bilmesen de okuyabilirsin", sub: "Dil bir engel değil — hazırlıktan diplomaya kadar yanındayız.", docsTitle: "Gerekli belgeler", docs: ["Pasaport", "Lise diploması (attestat) veya kolej diploması"], prepTitle: "1 yıllık hazırlık programı", prepText: "Dil bilmeyen öğrenciler için 1 yıllık hazırlık vardır. Bölümün diline göre Türkçe veya İngilizce hazırlık okursun — hazırlık dili seçtiğin programın diline göre belirlenir." },
+    benefits: { eyebrow: "Fırsatlar", title: "Okumak sadece başlangıç", sub: "Türkiye'de öğrencilik; diplomanın yanında yaşama, çalışma ve Avrupa'ya açılan bir kapıdır.", items: [ { t: "Oturma izni", d: "Üniversiteye kabul edildikten sonra Türkiye'de yasal kalmak için oturma izni (ikamet) alırsınız." }, { t: "Okurken çalışmak", d: "Boş zamanlarında çalışabilirsin — kontrat ve yaşam giderlerini rahatça karşılayacak gelir elde edebilirsin." }, { t: "Work & Travel", d: "Yaz tatilinde Work and Travel programıyla Avrupa ülkelerine gidip çalışabilir ve gezebilirsin." }, { t: "Erasmus+ değişimi", d: "Erasmus programıyla eğitiminin bir bölümünü Avrupa Birliği üniversitelerinde sürdürebilirsin." } ] },
     proc: { nav: "Belgeler ve kabul", title: "Gerekli belgeler ve kabul süreci", sub: "Seviyeni seç ve gerekli belgeleri gör. Belgeleri doğru ve eksiksiz hazırlamak burs şansını artırır.", levelsTitle: "Seviyeye göre belgeler", bachelor: "Lisans", master: "Yüksek lisans", doctorate: "Doktora", docs: { bachelor: ["Pasaport (kırmızı, yeşil veya kimlik) — PDF", "9. sınıf belgesi aslı — PDF", "Lise diploması veya kolej/lise diploması ve eki (asıl) — PDF. Hâlâ okuyorsanız — güncel not belgesi", "Niyet (motivasyon) mektubu", "1–2 öğretmen/danışmandan referans mektubu", "Başarılar: sertifika, diploma, madalya vb. (varsa)", "TÖMER dil sertifikası (varsa)"], master: ["Pasaport — PDF", "Lise/kolej diploması ve eki — PDF", "Lisans diploması ve eki (asıl) — PDF. Hâlâ okuyorsanız — not dökümü (transkript)", "Niyet (motivasyon) mektubu", "Araştırma konusu ve giriş bölümü (burs için önemli)", "1–2 öğretmen/danışmandan referans mektubu", "Başarılar: sertifika, diploma, makaleler (varsa)", "TÖMER dil sertifikası (varsa)"], doctorate: ["Pasaport — PDF", "Lise/kolej diploması ve eki — PDF", "Lisans ve yüksek lisans diploması ve eki (asıl) — PDF. Hâlâ okuyorsanız — transkript", "Niyet (motivasyon) mektubu", "Araştırma konusu ve giriş bölümü (doktora için şart)", "Araştırma için 1–2 öğretmen/danışmandan referans", "Başarılar: sertifika, diploma, madalya, makaleler (varsa)", "TÖMER dil sertifikası (varsa)"] }, extrasTitle: "Zorunlu ek belgeler", motivation: { t: "Niyet (motivasyon) mektubu", d: "Türkiye'yi ve bu bölümü neden seçtiğin, mezuniyet sonrası hedeflerin. Yaklaşık 500 kelime, profesyonel ve net.", points: ["Kendini kısaca tanıt", "Ana hedefin", "Başarıların", "Neden Türkiye ve neden bu alan", "Başvurduğun üniversite hakkında", "Burs karşılığında neler katabilirsin"] }, reference: { t: "Referans mektubu", d: "Okulundaki bir öğretmenden. Akademik unvanı yüksek olması (doktor, profesör) tercih edilir. Öğretmenin aktif e-posta adresi belirtilmelidir." }, stagesTitle: "Kabul süreci", stages: [{ t: "1. aşama: belge incelemesi", d: "Belgeler, hedefler ve ilgi alanları uzmanlarca incelenir. Başarılı olanlar mülakata geçer (bazen matematik/mantık testi olabilir)." }, { t: "2. aşama: mülakat", d: "Ortalama 15–20 dakika. Genelde Türkiye'de okuma amacı ve seçilen bölüm hakkında sorular." }, { t: "3. aşama: seçim", d: "Komisyon mülakat sonuçlarını değerlendirir ve burs kazananların listesi oluşturulur." }] },
     footer: { tagline: "Türkiye'de okumak — Savura EDU ile kolay.", quick: "Hızlı bağlantılar", rights: "Tüm hakları saklıdır." },
-    admin: { login: "Yönetici girişi", pass: "Şifre", enter: "Giriş", wrong: "Şifre yanlış", hint: "Devam etmek için şifrenizi girin", title: "Yönetim paneli", tabU: "Üniversiteler", tabI: "Başvurular", tabS: "Ayarlar", logout: "Çıkış", add: "Üniversite ekle", edit: "Düzenle", save: "Kaydet", cancel: "İptal", fName: "Üniversite adı", fCity: "Şehir", fImg: "Üniversite görseli", upload: "Görsel yükle", remove: "Görseli kaldır", imgHint: "JPG/PNG — otomatik küçültülür", fDesc: "Açıklama", fFields: "Bölümler (filtre için)", fFeatured: "Ana sayfada göster", saved: "Kaydedildi", confirm: "Gerçekten silinsin mi?", noI: "Henüz başvuru yok.", iName: "Ad", iContact: "İletişim", iMsg: "Mesaj", iDate: "Tarih", shared: "Not: veriler sitede tüm ziyaretçilere görünür.", facTitle: "Fakülteler (ücret, konum, kayıt)", addFac: "Fakülte ekle", facName: "Fakülte adı", facPrice: "Yıllık ücret", facSchol: "5 yıl burs (toplam)", facLoc: "Konum", facAdm: "Kayıt durumu", facLang: "Eğitim dili", uniHint: "Listeden seçerseniz şehir ve fakülteler otomatik dolar", coTitle: "Şirket bilgileri", coPhone: "Telefon", coEmail: "E-posta", coAddr: "Adres", coHours: "Çalışma saatleri", coIg: "Instagram bağlantısı", coTg: "Telegram bağlantısı", saveCo: "Ayarları kaydet" },
+    admin: { login: "Yönetici girişi", pass: "Şifre", enter: "Giriş", wrong: "Şifre yanlış", hint: "Devam etmek için şifrenizi girin", title: "Yönetim paneli", tabU: "Üniversiteler", tabI: "Başvurular", tabS: "Ayarlar", logout: "Çıkış", add: "Üniversite ekle", edit: "Düzenle", save: "Kaydet", cancel: "İptal", fName: "Üniversite adı", fCity: "Şehir", fImg: "Üniversite görseli", upload: "Görsel yükle", remove: "Görseli kaldır", imgHint: "JPG/PNG — otomatik küçültülür", fDesc: "Açıklama", fFields: "Bölümler (filtre için)", fFeatured: "Ana sayfada göster", saved: "Kaydedildi", confirm: "Gerçekten silinsin mi?", noI: "Henüz başvuru yok.", iName: "Ad", iContact: "İletişim", iMsg: "Mesaj", iDate: "Tarih", shared: "Not: veriler sitede tüm ziyaretçilere görünür.", facTitle: "Fakülteler (ücret, konum, kayıt)", addFac: "Fakülte ekle", facName: "Fakülte adı", facPrice: "Yıllık ücret", facSchol: "5 yıl burs (toplam)", facLoc: "Konum", facAdm: "Kayıt durumu", facLang: "Eğitim dili", uniHint: "Listeden seçerseniz şehir ve fakülteler otomatik dolar", coTitle: "Şirket bilgileri", coPhone: "Telefon", coEmail: "E-posta", coAddr: "Adres", coHours: "Çalışma saatleri", coIg: "Instagram bağlantısı", coTg: "Telegram bağlantısı", coPrice: "Başlangıç fiyatı ($)", saveCo: "Ayarları kaydet" },
   },
 
   en: {
@@ -307,9 +309,10 @@ const T = {
       { t: "Care", d: "You will never feel alone in Turkey." } ] },
     contact: { title: "Contact us", sub: "Have a question? Write to us for a free consultation.", name: "Your name", email: "Email", phone: "Phone", msg: "Your message", send: "Send", ok: "Thank you! Your request has been received. We'll be in touch shortly.", infoTitle: "Contact details", addressLabel: "Address", hours: "Working hours" },
     docs: { eyebrow: "Documents & Prep", title: "Study even without Turkish", sub: "Language is no barrier — we guide you from prep to diploma.", docsTitle: "Required documents", docs: ["Passport", "High-school certificate (attestat) or college diploma"], prepTitle: "1-year preparatory program", prepText: "There is a 1-year prep program for students who don't speak the language. Depending on the program's language you take Turkish or English prep — the prep language follows the language of the program you choose." },
+    benefits: { eyebrow: "Opportunities", title: "Studying is just the beginning", sub: "Student life in Turkey means more than a diploma — it opens the door to living, working and Europe.", items: [ { t: "Residence permit", d: "Once you are admitted, you receive a residence permit (ikamet) to live in Turkey legally." }, { t: "Work while you study", d: "You can work in your free time and comfortably earn enough to cover tuition and living costs." }, { t: "Work & Travel", d: "During summer holidays you can join Work and Travel programs in European countries to work and explore." }, { t: "Erasmus+ exchange", d: "Through Erasmus you can continue part of your studies at universities in the European Union." } ] },
     proc: { nav: "Documents & admission", title: "Required documents & admission process", sub: "Choose your level to see the documents. Preparing them correctly and completely increases your scholarship chances.", levelsTitle: "Documents by level", bachelor: "Bachelor's", master: "Master's", doctorate: "Doctorate", docs: { bachelor: ["Passport (any type or ID card) — PDF", "9th-grade certificate, original — PDF", "High-school certificate or college/lyceum diploma with transcript (original) — PDF. If still studying — current grade record", "Motivation letter", "Reference letter from 1–2 teachers/mentors", "Achievements: certificates, diplomas, medals, etc. (if any)", "TÖMER language certificate (if any)"], master: ["Passport — PDF", "High-school/college diploma with transcript — PDF", "Bachelor's diploma with transcript (original) — PDF. If still studying — transcript of records", "Motivation letter", "Research topic and introduction (important for the scholarship)", "Reference letter from 1–2 teachers/supervisors", "Achievements: certificates, diplomas, articles (if any)", "TÖMER language certificate (if any)"], doctorate: ["Passport — PDF", "High-school/college diploma with transcript — PDF", "Bachelor's and master's diplomas with transcripts (original) — PDF. If still studying — transcript", "Motivation letter", "Research topic and introduction (required for doctorate)", "Reference letter for research from 1–2 teachers/supervisors", "Achievements: certificates, diplomas, medals, articles (if any)", "TÖMER language certificate (if any)"] }, extrasTitle: "Mandatory extra documents", motivation: { t: "Motivation letter", d: "Why you chose Turkey and this field, and your goals after graduation. About 500 words, professional and clear.", points: ["Briefly introduce yourself", "Your main goal", "Your achievements", "Why Turkey and why this field", "About the university you apply to", "What you can give back for the scholarship"] }, reference: { t: "Reference letter", d: "From a teacher at your institution. A higher academic title (PhD, professor) is preferred. The teacher's active email must be included." }, stagesTitle: "Admission process", stages: [{ t: "Stage 1: document review", d: "Specialists review documents, goals and interests. Successful applicants move to the interview (sometimes a math/logic test)." }, { t: "Stage 2: interview", d: "About 15–20 minutes. Mostly about your goal of studying in Turkey and your chosen program." }, { t: "Stage 3: selection", d: "The committee evaluates interview results and the list of scholarship winners is formed." }] },
     footer: { tagline: "Studying in Turkey — made easy with Savura EDU.", quick: "Quick links", rights: "All rights reserved." },
-    admin: { login: "Admin login", pass: "Password", enter: "Log in", wrong: "Wrong password", hint: "Enter your password to continue", title: "Dashboard", tabU: "Universities", tabI: "Inquiries", tabS: "Settings", logout: "Log out", add: "Add university", edit: "Edit", save: "Save", cancel: "Cancel", fName: "University name", fCity: "City", fImg: "University image", upload: "Upload image", remove: "Remove image", imgHint: "JPG/PNG — auto-resized", fDesc: "Description", fFields: "Programs (for filter)", fFeatured: "Show on homepage", saved: "Saved", confirm: "Delete for real?", noI: "No inquiries yet.", iName: "Name", iContact: "Contact", iMsg: "Message", iDate: "Date", shared: "Note: data is visible to all site visitors.", facTitle: "Faculties (price, location, admission)", addFac: "Add faculty", facName: "Faculty name", facPrice: "Annual price", facSchol: "5-yr scholarship (total)", facLoc: "Location", facAdm: "Admission status", facLang: "Language", uniHint: "Pick from the list to auto-fill city and faculties", coTitle: "Company details", coPhone: "Phone number", coEmail: "Email", coAddr: "Address", coHours: "Working hours", coIg: "Instagram link", coTg: "Telegram link", saveCo: "Save settings" },
+    admin: { login: "Admin login", pass: "Password", enter: "Log in", wrong: "Wrong password", hint: "Enter your password to continue", title: "Dashboard", tabU: "Universities", tabI: "Inquiries", tabS: "Settings", logout: "Log out", add: "Add university", edit: "Edit", save: "Save", cancel: "Cancel", fName: "University name", fCity: "City", fImg: "University image", upload: "Upload image", remove: "Remove image", imgHint: "JPG/PNG — auto-resized", fDesc: "Description", fFields: "Programs (for filter)", fFeatured: "Show on homepage", saved: "Saved", confirm: "Delete for real?", noI: "No inquiries yet.", iName: "Name", iContact: "Contact", iMsg: "Message", iDate: "Date", shared: "Note: data is visible to all site visitors.", facTitle: "Faculties (price, location, admission)", addFac: "Add faculty", facName: "Faculty name", facPrice: "Annual price", facSchol: "5-yr scholarship (total)", facLoc: "Location", facAdm: "Admission status", facLang: "Language", uniHint: "Pick from the list to auto-fill city and faculties", coTitle: "Company details", coPhone: "Phone number", coEmail: "Email", coAddr: "Address", coHours: "Working hours", coIg: "Instagram link", coTg: "Telegram link", coPrice: "Starting price ($)", saveCo: "Save settings" },
   },
 
   ru: {
@@ -339,9 +342,10 @@ const T = {
       { t: "Забота", d: "В Турции вы не будете чувствовать себя одиноко." } ] },
     contact: { title: "Связаться с нами", sub: "Есть вопрос? Напишите нам для бесплатной консультации.", name: "Ваше имя", email: "Email", phone: "Телефон", msg: "Ваше сообщение", send: "Отправить", ok: "Спасибо! Ваша заявка принята. Мы скоро свяжемся с вами.", infoTitle: "Контактные данные", addressLabel: "Адрес", hours: "Часы работы" },
     docs: { eyebrow: "Документы и подготовка", title: "Учитесь, даже не зная турецкого", sub: "Язык — не преграда: мы рядом от подготовки до диплома.", docsTitle: "Необходимые документы", docs: ["Загранпаспорт", "Аттестат школы или диплом колледжа"], prepTitle: "Годичная подготовка (hazırlık)", prepText: "Для студентов без знания языка есть годичная подготовка. В зависимости от языка программы вы проходите турецкую или английскую подготовку — язык подготовки соответствует языку выбранной программы." },
+    benefits: { eyebrow: "Возможности", title: "Учёба — это только начало", sub: "Студенчество в Турции — это не только диплом, но и проживание, работа и путь в Европу.", items: [ { t: "Вид на жительство", d: "После зачисления вы получаете вид на жительство (икамет) для легального проживания в Турции." }, { t: "Учёба и работа", d: "В свободное время можно работать и спокойно зарабатывать на контракт и проживание." }, { t: "Work & Travel", d: "На летних каникулах можно поехать по программе Work and Travel в страны Европы — работать и путешествовать." }, { t: "Обмен Erasmus+", d: "По программе Erasmus часть обучения можно продолжить в университетах Евросоюза." } ] },
     proc: { nav: "Документы и поступление", title: "Необходимые документы и процесс поступления", sub: "Выберите уровень, чтобы увидеть документы. Правильная и полная подготовка повышает шансы на грант.", levelsTitle: "Документы по уровням", bachelor: "Бакалавриат", master: "Магистратура", doctorate: "Докторантура", docs: { bachelor: ["Паспорт (любой или ID-карта) — PDF", "Аттестат за 9 класс, оригинал — PDF", "Аттестат за 11 класс или диплом колледжа/лицея с приложением (оригинал) — PDF. Если ещё учитесь — справка с текущими оценками", "Мотивационное письмо", "Рекомендательное письмо от 1–2 преподавателей/наставников", "Достижения: сертификаты, дипломы, медали и т.д. (при наличии)", "Языковой сертификат TÖMER (при наличии)"], master: ["Паспорт — PDF", "Диплом школы/колледжа с приложением — PDF", "Диплом бакалавра с приложением (оригинал) — PDF. Если ещё учитесь — выписка оценок", "Мотивационное письмо", "Тема исследования и введение (важно для гранта)", "Рекомендательное письмо от 1–2 преподавателей/руководителей", "Достижения: сертификаты, дипломы, статьи (при наличии)", "Языковой сертификат TÖMER (при наличии)"], doctorate: ["Паспорт — PDF", "Диплом школы/колледжа с приложением — PDF", "Дипломы бакалавра и магистра с приложениями (оригинал) — PDF. Если ещё учитесь — выписка оценок", "Мотивационное письмо", "Тема исследования и введение (обязательно для докторантуры)", "Рекомендация для исследования от 1–2 преподавателей/руководителей", "Достижения: сертификаты, дипломы, медали, статьи (при наличии)", "Языковой сертификат TÖMER (при наличии)"] }, extrasTitle: "Обязательные дополнительные документы", motivation: { t: "Мотивационное письмо", d: "Почему вы выбрали Турцию и это направление, ваши цели после выпуска. Примерно 500 слов, профессионально и чётко.", points: ["Кратко представьтесь", "Ваша главная цель", "Ваши достижения", "Почему Турция и почему это направление", "Об университете, куда поступаете", "Что вы можете дать взамен гранта"] }, reference: { t: "Рекомендательное письмо", d: "От преподавателя вашего учебного заведения. Предпочтительно с высоким научным званием (кандидат наук, профессор). Должен быть указан активный email преподавателя." }, stagesTitle: "Процесс поступления", stages: [{ t: "Этап 1: проверка документов", d: "Специалисты изучают документы, цели и интересы. Успешные проходят на собеседование (иногда тест по математике/логике)." }, { t: "Этап 2: собеседование", d: "Около 15–20 минут. В основном о цели учёбы в Турции и выбранном направлении." }, { t: "Этап 3: отбор", d: "Комиссия оценивает результаты собеседования, формируется список получателей гранта." }] },
     footer: { tagline: "Учёба в Турции — легко с Savura EDU.", quick: "Быстрые ссылки", rights: "Все права защищены." },
-    admin: { login: "Вход для админа", pass: "Пароль", enter: "Войти", wrong: "Неверный пароль", hint: "Введите пароль для продолжения", title: "Панель управления", tabU: "Университеты", tabI: "Заявки", tabS: "Настройки", logout: "Выйти", add: "Добавить университет", edit: "Изменить", save: "Сохранить", cancel: "Отмена", fName: "Название университета", fCity: "Город", fImg: "Изображение университета", upload: "Загрузить фото", remove: "Удалить фото", imgHint: "JPG/PNG — авто-сжатие", fDesc: "Описание", fFields: "Направления (для фильтра)", fFeatured: "Показывать на главной", saved: "Сохранено", confirm: "Точно удалить?", noI: "Заявок пока нет.", iName: "Имя", iContact: "Контакт", iMsg: "Сообщение", iDate: "Дата", shared: "Примечание: данные видны всем посетителям сайта.", facTitle: "Факультеты (цена, адрес, приём)", addFac: "Добавить факультет", facName: "Название факультета", facPrice: "Цена в год", facSchol: "5-летний грант (всего)", facLoc: "Адрес", facAdm: "Статус приёма", facLang: "Язык обучения", uniHint: "Выберите из списка — город и факультеты заполнятся автоматически", coTitle: "Данные компании", coPhone: "Номер телефона", coEmail: "Email", coAddr: "Адрес", coHours: "Часы работы", coIg: "Ссылка Instagram", coTg: "Ссылка Telegram", saveCo: "Сохранить настройки" },
+    admin: { login: "Вход для админа", pass: "Пароль", enter: "Войти", wrong: "Неверный пароль", hint: "Введите пароль для продолжения", title: "Панель управления", tabU: "Университеты", tabI: "Заявки", tabS: "Настройки", logout: "Выйти", add: "Добавить университет", edit: "Изменить", save: "Сохранить", cancel: "Отмена", fName: "Название университета", fCity: "Город", fImg: "Изображение университета", upload: "Загрузить фото", remove: "Удалить фото", imgHint: "JPG/PNG — авто-сжатие", fDesc: "Описание", fFields: "Направления (для фильтра)", fFeatured: "Показывать на главной", saved: "Сохранено", confirm: "Точно удалить?", noI: "Заявок пока нет.", iName: "Имя", iContact: "Контакт", iMsg: "Сообщение", iDate: "Дата", shared: "Примечание: данные видны всем посетителям сайта.", facTitle: "Факультеты (цена, адрес, приём)", addFac: "Добавить факультет", facName: "Название факультета", facPrice: "Цена в год", facSchol: "5-летний грант (всего)", facLoc: "Адрес", facAdm: "Статус приёма", facLang: "Язык обучения", uniHint: "Выберите из списка — город и факультеты заполнятся автоматически", coTitle: "Данные компании", coPhone: "Номер телефона", coEmail: "Email", coAddr: "Адрес", coHours: "Часы работы", coIg: "Ссылка Instagram", coTg: "Ссылка Telegram", coPrice: "Начальная цена ($)", saveCo: "Сохранить настройки" },
   },
 
   ar: {
@@ -371,9 +375,10 @@ const T = {
       { t: "الاهتمام", d: "لن تشعر بالوحدة في تركيا." } ] },
     contact: { title: "تواصل معنا", sub: "لديك سؤال؟ راسلنا للحصول على استشارة مجانية.", name: "اسمك", email: "البريد الإلكتروني", phone: "الهاتف", msg: "رسالتك", send: "إرسال", ok: "شكرًا! تم استلام طلبك وسنتواصل معك قريبًا.", infoTitle: "بيانات التواصل", addressLabel: "العنوان", hours: "ساعات العمل" },
     docs: { eyebrow: "المستندات والتحضير", title: "ادرس حتى لو كنت لا تعرف التركية", sub: "اللغة ليست عائقًا — نرافقك من التحضير حتى التخرج.", docsTitle: "المستندات المطلوبة", docs: ["جواز السفر", "شهادة الثانوية (الأتيستات) أو دبلوم الكلية"], prepTitle: "برنامج تحضيري لمدة سنة", prepText: "يوجد برنامج تحضيري لمدة سنة للطلاب الذين لا يجيدون اللغة. وحسب لغة البرنامج تدرس تحضيريًا تركيًا أو إنجليزيًا — وتُحدَّد لغة التحضير وفق لغة البرنامج الذي تختاره." },
+    benefits: { eyebrow: "الفرص", title: "الدراسة مجرد البداية", sub: "الحياة الطلابية في تركيا ليست شهادة فحسب، بل باب للإقامة والعمل والوصول إلى أوروبا.", items: [ { t: "تصريح الإقامة", d: "بعد قبولك تحصل على تصريح إقامة (إقامت) للعيش في تركيا بشكل قانوني." }, { t: "الدراسة مع العمل", d: "يمكنك العمل في وقت فراغك وكسب ما يكفي لتغطية القسط ونفقات المعيشة بسهولة." }, { t: "Work & Travel", d: "في العطلة الصيفية يمكنك المشاركة في برنامج Work and Travel في الدول الأوروبية للعمل والسياحة." }, { t: "تبادل Erasmus+", d: "عبر برنامج إيراسموس يمكنك متابعة جزء من دراستك في جامعات الاتحاد الأوروبي." } ] },
     proc: { nav: "المستندات والقبول", title: "المستندات المطلوبة وعملية القبول", sub: "اختر المرحلة لرؤية المستندات. تجهيزها بشكل صحيح وكامل يزيد فرص الحصول على المنحة.", levelsTitle: "المستندات حسب المرحلة", bachelor: "البكالوريوس", master: "الماجستير", doctorate: "الدكتوراه", docs: { bachelor: ["جواز السفر (أو بطاقة الهوية) — PDF", "شهادة الصف التاسع الأصلية — PDF", "شهادة الثانوية أو دبلوم الكلية/الليسيه مع الملحق (الأصل) — PDF. إن كنت ما زلت تدرس — كشف الدرجات الحالي", "خطاب الدوافع (Motivation)", "خطاب توصية من 1–2 من المعلمين/المرشدين", "الإنجازات: شهادات، دبلومات، ميداليات... (إن وجدت)", "شهادة اللغة TÖMER (إن وجدت)"], master: ["جواز السفر — PDF", "دبلوم الثانوية/الكلية مع الملحق — PDF", "دبلوم البكالوريوس مع الملحق (الأصل) — PDF. إن كنت ما زلت تدرس — كشف الدرجات", "خطاب الدوافع", "موضوع البحث ومقدّمته (مهم للمنحة)", "خطاب توصية من 1–2 من المعلمين/المشرفين", "الإنجازات: شهادات، دبلومات، أبحاث (إن وجدت)", "شهادة اللغة TÖMER (إن وجدت)"], doctorate: ["جواز السفر — PDF", "دبلوم الثانوية/الكلية مع الملحق — PDF", "دبلوما البكالوريوس والماجستير مع الملاحق (الأصل) — PDF. إن كنت ما زلت تدرس — كشف الدرجات", "خطاب الدوافع", "موضوع البحث ومقدّمته (شرط للدكتوراه)", "خطاب توصية للبحث من 1–2 من المعلمين/المشرفين", "الإنجازات: شهادات، دبلومات، ميداليات، أبحاث (إن وجدت)", "شهادة اللغة TÖMER (إن وجدت)"] }, extrasTitle: "مستندات إضافية إلزامية", motivation: { t: "خطاب الدوافع", d: "لماذا اخترت تركيا وهذا التخصص، وأهدافك بعد التخرج. حوالي 500 كلمة، باحترافية ووضوح.", points: ["عرّف بنفسك باختصار", "هدفك الأساسي", "إنجازاتك", "لماذا تركيا ولماذا هذا المجال", "عن الجامعة التي تتقدّم إليها", "ماذا يمكن أن تقدّم مقابل المنحة"] }, reference: { t: "خطاب التوصية", d: "من معلّم في مؤسستك التعليمية. يُفضّل أن يكون بدرجة علمية عالية (دكتوراه، أستاذ). يجب ذكر بريد إلكتروني فعّال للمعلّم." }, stagesTitle: "عملية القبول", stages: [{ t: "المرحلة 1: مراجعة المستندات", d: "يراجع المختصّون المستندات والأهداف والاهتمامات. الناجحون ينتقلون إلى المقابلة (أحيانًا اختبار رياضيات/منطق)." }, { t: "المرحلة 2: المقابلة", d: "حوالي 15–20 دقيقة. غالبًا عن هدفك من الدراسة في تركيا والتخصص المختار." }, { t: "المرحلة 3: الاختيار", d: "تقيّم اللجنة نتائج المقابلة وتُعدّ قائمة الفائزين بالمنحة." }] },
     footer: { tagline: "الدراسة في تركيا — سهلة مع سفورة للتعليم.", quick: "روابط سريعة", rights: "جميع الحقوق محفوظة." },
-    admin: { login: "دخول المشرف", pass: "كلمة المرور", enter: "دخول", wrong: "كلمة المرور خاطئة", hint: "أدخل كلمة المرور للمتابعة", title: "لوحة التحكم", tabU: "الجامعات", tabI: "الطلبات", tabS: "الإعدادات", logout: "خروج", add: "إضافة جامعة", edit: "تعديل", save: "حفظ", cancel: "إلغاء", fName: "اسم الجامعة", fCity: "المدينة", fImg: "صورة الجامعة", upload: "رفع صورة", remove: "إزالة الصورة", imgHint: "JPG/PNG — يُصغّر تلقائيًا", fDesc: "الوصف", fFields: "التخصصات (للتصفية)", fFeatured: "العرض في الصفحة الرئيسية", saved: "تم الحفظ", confirm: "هل تريد الحذف فعلًا؟", noI: "لا توجد طلبات بعد.", iName: "الاسم", iContact: "التواصل", iMsg: "الرسالة", iDate: "التاريخ", shared: "ملاحظة: البيانات مرئية لكل زوار الموقع.", facTitle: "الكليات (السعر، الموقع، القبول)", addFac: "إضافة كلية", facName: "اسم الكلية", facPrice: "السعر السنوي", facSchol: "منحة 5 سنوات (الإجمالي)", facLoc: "الموقع", facAdm: "حالة القبول", facLang: "لغة الدراسة", uniHint: "اختر من القائمة ليُملأ المدينة والكليات تلقائيًا", coTitle: "بيانات الشركة", coPhone: "رقم الهاتف", coEmail: "البريد الإلكتروني", coAddr: "العنوان", coHours: "ساعات العمل", coIg: "رابط إنستغرام", coTg: "رابط تيليجرام", saveCo: "حفظ الإعدادات" },
+    admin: { login: "دخول المشرف", pass: "كلمة المرور", enter: "دخول", wrong: "كلمة المرور خاطئة", hint: "أدخل كلمة المرور للمتابعة", title: "لوحة التحكم", tabU: "الجامعات", tabI: "الطلبات", tabS: "الإعدادات", logout: "خروج", add: "إضافة جامعة", edit: "تعديل", save: "حفظ", cancel: "إلغاء", fName: "اسم الجامعة", fCity: "المدينة", fImg: "صورة الجامعة", upload: "رفع صورة", remove: "إزالة الصورة", imgHint: "JPG/PNG — يُصغّر تلقائيًا", fDesc: "الوصف", fFields: "التخصصات (للتصفية)", fFeatured: "العرض في الصفحة الرئيسية", saved: "تم الحفظ", confirm: "هل تريد الحذف فعلًا؟", noI: "لا توجد طلبات بعد.", iName: "الاسم", iContact: "التواصل", iMsg: "الرسالة", iDate: "التاريخ", shared: "ملاحظة: البيانات مرئية لكل زوار الموقع.", facTitle: "الكليات (السعر، الموقع، القبول)", addFac: "إضافة كلية", facName: "اسم الكلية", facPrice: "السعر السنوي", facSchol: "منحة 5 سنوات (الإجمالي)", facLoc: "الموقع", facAdm: "حالة القبول", facLang: "لغة الدراسة", uniHint: "اختر من القائمة ليُملأ المدينة والكليات تلقائيًا", coTitle: "بيانات الشركة", coPhone: "رقم الهاتف", coEmail: "البريد الإلكتروني", coAddr: "العنوان", coHours: "ساعات العمل", coIg: "رابط إنستغرام", coTg: "رابط تيليجرام", coPrice: "السعر الابتدائي ($)", saveCo: "حفظ الإعدادات" },
   },
 };
 
@@ -414,6 +419,7 @@ const DEFAULT_COMPANY = {
   hours: "Dush–Shan · 09:00–18:00",
   instagram: "https://instagram.com/savura.edu",
   telegram: "https://t.me/savura_edu",
+  priceFrom: "800",
 };
 
 /* ------------------------------------------------------------------ */
@@ -697,6 +703,7 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 
 const ADV_COLORS = ["linear-gradient(135deg,#0B8A8C,#13B0B2)", "linear-gradient(135deg,#FF5A5A,#E8453F)", "linear-gradient(135deg,#FFC233,#F5A623)", "linear-gradient(135deg,#13B0B2,#0A6E70)", "linear-gradient(135deg,#7C5CFF,#5B3FD6)", "linear-gradient(135deg,#FF8A3D,#F25F2A)"];
 const ADV_ICONS = [Award, Wallet, ShieldCheck, GraduationCap, Sparkles, Plane];
+const BEN_ICONS = [Building2, Wallet, Plane, Globe];
 
 function useReveal(dep) {
   useEffect(() => {
@@ -727,12 +734,13 @@ export default function App() {
   const [filter, setFilter] = useState("all");
   const [query, setQuery] = useState("");
   const [detail, setDetail] = useState(null);
+  const [applyCtx, setApplyCtx] = useState(null);
   const t = T[lang];
   const rtl = lang === "ar";
   const langRef = useRef(null);
   const tap = useRef({ n: 0, t: 0 });
 
-  useReveal(page);
+  useReveal(page + "|" + filter + "|" + query);
 
   useEffect(() => {
     (async () => {
@@ -847,14 +855,14 @@ export default function App() {
         </div>
       )}
 
-      {page === "home" && <Home t={t} go={go} goField={goField} unis={unis} fieldName={fieldName} openDetail={setDetail} />}
+      {page === "home" && <Home t={t} go={go} goField={goField} unis={unis} fieldName={fieldName} openDetail={setDetail} company={company} />}
       {page === "universities" && <Universities t={t} unis={unis} filter={filter} setFilter={setFilter} query={query} setQuery={setQuery} fieldName={fieldName} openDetail={setDetail} />}
       {page === "documents" && <Process t={t} go={go} />}
       {page === "about" && <About t={t} go={go} />}
-      {page === "contact" && <Contact t={t} company={company} />}
+      {page === "contact" && <Contact t={t} company={company} applyCtx={applyCtx} clearApply={() => setApplyCtx(null)} />}
       {page === "admin" && <Admin t={t} unis={unis} setUnis={setUnis} company={company} setCompany={setCompany} fieldName={fieldName} go={go} />}
 
-      {detail && <Detail u={detail} t={t} lang={lang} fieldName={fieldName} onClose={() => setDetail(null)} onApply={() => go("contact")} />}
+      {detail && <Detail u={detail} t={t} lang={lang} fieldName={fieldName} onClose={() => setDetail(null)} onApply={(facName) => { setApplyCtx({ uni: detail.name, faculty: facName || "" }); setDetail(null); go("contact"); }} />}
 
       {page !== "admin" && <Footer t={t} go={go} company={company} secretTap={secretTap} />}
     </div>
@@ -862,15 +870,16 @@ export default function App() {
 }
 
 /* ---------------- HOME ---------------- */
-function Home({ t, go, goField, unis, fieldName, openDetail }) {
+function Home({ t, go, goField, unis, fieldName, openDetail, company }) {
   const featured = unis.filter(u => u.featured).slice(0, 6);
   const shown = featured.length ? featured : unis.slice(0, 3);
+  const price = (company && company.priceFrom) || "800";
   return (
     <main>
       <section className="hero">
         <div className="wrap hero-in">
           <div>
-            <span className="badge"><Sparkles size={15} />{t.hero.badge}</span>
+            <span className="badge"><Sparkles size={15} />{t.hero.badge.replace(/800/, price)}</span>
             <h1>{t.hero.title1} <span className="hl">{t.hero.title2}</span></h1>
             <p className="lead">{t.hero.subtitle}</p>
             <div className="hero-cta">
@@ -891,7 +900,7 @@ function Home({ t, go, goField, unis, fieldName, openDetail }) {
               </div>
               <div className="pp-row"><span className="pp-ic"><FileText size={18} /></span><div><div className="k">{t.process.steps[1].t}</div><div className="v">100%</div></div></div>
               <div className="pp-row"><span className="pp-ic"><GraduationCap size={18} /></span><div><div className="k">{t.hero.s1}</div><div className="v">50+ ✓</div></div></div>
-              <div className="pp-row"><span className="pp-ic"><Wallet size={18} /></span><div><div className="k">{t.cta.consult}</div><div className="v" style={{ color: "var(--coral)" }}>$800+</div></div></div>
+              <div className="pp-row"><span className="pp-ic"><Wallet size={18} /></span><div><div className="k">{t.cta.consult}</div><div className="v" style={{ color: "var(--coral)" }}>{"$" + price + "+"}</div></div></div>
             </div>
           </div>
         </div>
@@ -907,7 +916,26 @@ function Home({ t, go, goField, unis, fieldName, openDetail }) {
             {t.adv.items.map((it, i) => { const Ic = ADV_ICONS[i]; return (
               <div className="adv-card reveal" key={i} style={{ transitionDelay: `${i * 60}ms` }}>
                 <div className="adv-ic" style={{ background: ADV_COLORS[i] }}><Ic size={26} /></div>
-                <h3>{it.t}</h3><p>{it.d}</p>
+                <h3>{it.t}</h3><p>{it.d.replace(/800/, price)}</p>
+              </div>); })}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ background: "linear-gradient(155deg,var(--teal),var(--teal-d))", color: "#fff", position: "relative", overflow: "hidden", padding: "72px 0" }}>
+        <div style={{ position: "absolute", inset: 0, backgroundImage: `url("${STAR}")`, backgroundSize: 64, opacity: .5 }} />
+        <div className="wrap" style={{ position: "relative" }}>
+          <div className="sec-head center reveal">
+            <span className="eyebrow" style={{ color: "var(--amber)", justifyContent: "center" }}><span style={{ width: 18, height: 2, background: "var(--amber)" }} />{t.benefits.eyebrow}</span>
+            <h2 style={{ color: "#fff" }}>{t.benefits.title}</h2>
+            <p style={{ color: "rgba(255,255,255,.9)" }}>{t.benefits.sub}</p>
+          </div>
+          <div className="grid g4">
+            {t.benefits.items.map((it, i) => { const Ic = BEN_ICONS[i] || Sparkles; return (
+              <div className="reveal" key={i} style={{ background: "rgba(255,255,255,.10)", border: "1px solid rgba(255,255,255,.18)", borderRadius: 18, padding: "26px 22px", transitionDelay: `${i * 70}ms` }}>
+                <div style={{ width: 52, height: 52, borderRadius: 14, background: "var(--amber)", color: "#3a2a00", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14 }}><Ic size={26} /></div>
+                <h3 style={{ fontSize: "1.06rem", marginBottom: 8, color: "#fff" }}>{it.t}</h3>
+                <p style={{ color: "rgba(255,255,255,.88)", fontSize: ".95rem", lineHeight: 1.6 }}>{it.d}</p>
               </div>); })}
           </div>
         </div>
@@ -1070,6 +1098,9 @@ function Detail({ u, t, lang, fieldName, onClose, onApply }) {
                         </div>
                       )}
                     </div>
+                    <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 10 }}>
+                      <button className="btn btn-teal" style={{ padding: "8px 16px", fontSize: ".84rem" }} onClick={() => onApply(facLabel(f.name, lang))}>{t.cta.apply}<ArrowRight size={15} /></button>
+                    </div>
                   </div>
                 );
               })}
@@ -1077,7 +1108,7 @@ function Detail({ u, t, lang, fieldName, onClose, onApply }) {
           ) : <p style={{ color: "var(--ink-soft)", marginBottom: 18 }}>{t.detail.noFac}</p>}
           <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
             <button className="btn btn-out" onClick={onClose}>{t.detail.close}</button>
-            <button className="btn btn-primary" onClick={onApply}>{t.cta.apply}<ArrowRight size={17} /></button>
+            <button className="btn btn-primary" onClick={() => onApply("")}>{t.cta.apply}<ArrowRight size={17} /></button>
           </div>
         </div>
       </div>
@@ -1092,7 +1123,7 @@ function Universities({ t, unis, filter, setFilter, query, setQuery, fieldName, 
     const okF = filter === "all" || (u.fields || []).includes(filter);
     const okQ = !q || u.name.toLowerCase().includes(q) || (u.city || "").toLowerCase().includes(q);
     return okF && okQ;
-  });
+  }).sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
   return (
     <main>
       <section style={{ background: "linear-gradient(155deg,var(--teal),var(--teal-d))", color: "#fff", padding: "56px 0", position: "relative", overflow: "hidden" }}>
@@ -1220,16 +1251,19 @@ function About({ t, go }) {
 }
 
 /* ---------------- CONTACT ---------------- */
-function Contact({ t, company }) {
+function Contact({ t, company, applyCtx, clearApply }) {
   const [form, setForm] = useState({ name: "", email: "", phone: "", msg: "" });
   const [sent, setSent] = useState(false);
   const submit = async () => {
     if (!form.name || (!form.phone && !form.email)) return;
+    const lead = { ...form, uni: (applyCtx && applyCtx.uni) || "", faculty: (applyCtx && applyCtx.faculty) || "", date: new Date().toISOString() };
     const leads = (await store.get("savura:leads")) || [];
-    leads.unshift({ ...form, date: new Date().toISOString() });
+    leads.unshift(lead);
     await store.set("savura:leads", leads);
     setSent(true); setForm({ name: "", email: "", phone: "", msg: "" });
+    if (clearApply) clearApply();
   };
+  const hasCtx = applyCtx && (applyCtx.uni || applyCtx.faculty);
   return (
     <main>
       <section className="section">
@@ -1241,6 +1275,11 @@ function Contact({ t, company }) {
           <div className="contact-grid">
             <div className="form reveal">
               {sent && <div className="ok"><Check size={18} />{t.contact.ok}</div>}
+              {!sent && hasCtx && (
+                <div className="ok" style={{ background: "#FFF7E6", color: "#7a5b00", borderColor: "#FFE3A3" }}>
+                  <Star size={16} fill="#FFC233" color="#FFC233" /><span>{t.cta.apply}: <b>{applyCtx.uni}{applyCtx.faculty ? " — " + applyCtx.faculty : ""}</b></span>
+                </div>
+              )}
               <div className="field"><label>{t.contact.name}</label><input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} /></div>
               <div className="fgrid">
                 <div className="field"><label>{t.contact.email}</label><input type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} /></div>
@@ -1507,7 +1546,10 @@ function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
               <div className="irow" key={i}>
                 <span style={{ fontWeight: 700 }}>{l.name}</span>
                 <span dir="ltr">{l.phone || l.email}</span>
-                <span style={{ color: "var(--ink-soft)" }}>{l.msg || "—"}</span>
+                <span style={{ color: "var(--ink-soft)" }}>
+                  {(l.uni || l.faculty) && <div style={{ fontWeight: 700, color: "var(--teal)" }}>{l.uni}{l.faculty ? " · " + l.faculty : ""}</div>}
+                  {l.msg || (l.uni || l.faculty ? "" : "—")}
+                </span>
                 <span style={{ color: "var(--ink-soft)" }}>{new Date(l.date).toLocaleDateString()}</span>
               </div>
             ))}
@@ -1529,6 +1571,7 @@ function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
               <div className="field"><label>{t.admin.coIg}</label><input value={co.instagram} onChange={e => setCo({ ...co, instagram: e.target.value })} placeholder="https://instagram.com/..." /></div>
               <div className="field"><label>{t.admin.coTg}</label><input value={co.telegram} onChange={e => setCo({ ...co, telegram: e.target.value })} placeholder="https://t.me/..." /></div>
             </div>
+            <div className="field" style={{ marginBottom: 18, maxWidth: 240 }}><label>{t.admin.coPrice}</label><input value={co.priceFrom || ""} onChange={e => setCo({ ...co, priceFrom: e.target.value.replace(/[^0-9]/g, "") })} placeholder="800" inputMode="numeric" /></div>
             <button className="btn btn-teal" onClick={saveCompany}><Save size={17} />{t.admin.saveCo}</button>
           </div>
         )}

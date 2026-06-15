@@ -1,14 +1,21 @@
 // Storage layer for Savura EDU.
-// Default: browser localStorage (works instantly, but data is per-browser only).
-// Optional: Supabase (shared across ALL visitors) — set VITE_SUPABASE_URL and
-// VITE_SUPABASE_ANON_KEY in your environment, and create the `kv` table (see README).
+//
+// Connected to Supabase (shared across ALL visitors) by default.
+// The publishable key below is safe to ship in client code — Supabase keys are
+// public by design; security is enforced by Row Level Security (RLS) policies.
+// You can override these with environment variables if you ever move projects.
 
 import { createClient } from "@supabase/supabase-js";
 
-const url = import.meta.env.VITE_SUPABASE_URL;
-const anon = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const url =
+  import.meta.env.VITE_SUPABASE_URL ||
+  "https://xxrjcyofbgmcqzoaaktq.supabase.co";
 
-/* ---------- localStorage adapter (default) ---------- */
+const anon =
+  import.meta.env.VITE_SUPABASE_ANON_KEY ||
+  "sb_publishable_ceM-8qTVH8RubZcFKsFLOQ_t6iT_uAS";
+
+/* ---------- localStorage fallback (used only if Supabase is unreachable) ---------- */
 const local = {
   async get(key) {
     try {
@@ -25,13 +32,17 @@ const local = {
   },
 };
 
-/* ---------- Supabase adapter (shared, when env is configured) ---------- */
+/* ---------- Supabase adapter (shared key/value store) ---------- */
 function makeSupabase() {
   const sb = createClient(url, anon);
   return {
     async get(key) {
       try {
-        const { data, error } = await sb.from("kv").select("value").eq("key", key).maybeSingle();
+        const { data, error } = await sb
+          .from("kv")
+          .select("value")
+          .eq("key", key)
+          .maybeSingle();
         if (error || !data) return null;
         return data.value;
       } catch {
@@ -42,6 +53,7 @@ function makeSupabase() {
       try {
         await sb.from("kv").upsert({ key, value: val }, { onConflict: "key" });
       } catch {}
+      try { localStorage.setItem(key, JSON.stringify(val)); } catch {}
     },
   };
 }

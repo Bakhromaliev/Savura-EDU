@@ -38,11 +38,14 @@ Parol: **`savura2025`**
 
 ---
 
-## 4) Ma'lumotlarni BARCHA tashrif buyuruvchilarga umumiy qilish (Supabase)
+## 4) Supabase — allaqachon ulangan ✅
 
-Standart holatda ma'lumotlar **brauzer localStorage**'da saqlanadi — ya'ni admin qo'shgan universitetlar faqat **o'sha brauzerda** ko'rinadi, va tashrif buyuruvchilarning arizalari adminga yetib bormaydi.
+Bu loyiha **Supabase**ga ulangan (manzil va publishable kalit `src/storage.js` ichida). `kv` jadvali yaratilgan va RLS sozlangan. Hech narsa qilish shart emas — sayt ishga tushgach, katalog, sozlamalar va arizalar **barcha tashrif buyuruvchilarga umumiy** bo'ladi.
 
-Haqiqiy umumiy (shared) baza uchun Supabase'ni ulang:
+> Eslatma: agar kelajakda boshqa Supabase loyihasiga o'tsangiz, `src/storage.js` dagi `url` va `anon` qiymatlarini almashtiring (yoki Vercel'da `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY` env qo'shing).
+
+<details><summary>Qo'lda Supabase sozlash kerak bo'lsa (SQL)</summary>
+
 
 1. https://supabase.com da loyiha oching.
 2. **SQL Editor** da quyidagini bajaring:
@@ -68,6 +71,8 @@ Haqiqiy umumiy (shared) baza uchun Supabase'ni ulang:
 5. Qayta **Deploy** qiling. Endi katalog, sozlamalar va arizalar hammaga umumiy.
 
 > Xavfsizlik eslatmasi: yuqoridagi siyosatlar (policy) `kv` jadvalini ommaga ochiq yozishga ruxsat beradi — bu kichik sayt/demo uchun yetarli. Jiddiy himoya kerak bo'lsa, yozishni faqat autentifikatsiyadan o'tgan adminga cheklang (Supabase Auth + RLS).
+
+</details>
 
 ---
 

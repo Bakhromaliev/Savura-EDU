@@ -37,6 +37,12 @@ function writeLocal(key, val, ts) {
 const local = {
   async get(key) { return readLocal(key).val; },
   async set(key, val) { writeLocal(key, val, Date.now()); },
+  async update(key, mutator, fallback) {
+    const cur = (await this.get(key)) ?? fallback;
+    const next = mutator(cur);
+    await this.set(key, next);
+    return next;
+  },
 };
 
 /* ---------- Supabase adapter (shared) with local mirror + newest-wins ---------- */
@@ -59,6 +65,14 @@ function makeSupabase() {
       try {
         await sb.from("kv").upsert({ key, value: val, updated_at: new Date(ts).toISOString() }, { onConflict: "key" });
       } catch {}
+    },
+    // Read the freshest copy, apply a change, then write. Prevents a stale
+    // in-memory copy (e.g. another open tab) from overwriting newer data.
+    async update(key, mutator, fallback) {
+      const cur = (await this.get(key)) ?? fallback;
+      const next = mutator(cur);
+      await this.set(key, next);
+      return next;
     },
   };
 }

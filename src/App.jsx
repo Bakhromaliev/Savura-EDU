@@ -1397,17 +1397,23 @@ function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
   useEffect(() => { if (authed) (async () => setLeads((await store.get("savura:leads")) || []))(); }, [authed]);
 
   const flash = (m) => { setToast(m); setTimeout(() => setToast(""), 1800); };
-  const persist = (next) => { setUnis(next); store.set("savura:universities:v4", next); };
-  const toggleFeatured = (id) => persist(unis.map(u => u.id === id ? { ...u, featured: !u.featured } : u));
-
-  const saveUni = () => {
-    if (!editing.name) return;
-    let next;
-    if (editing.id) next = unis.map(u => u.id === editing.id ? editing : u);
-    else next = [...unis, { ...editing, id: "u" + Date.now() }];
-    persist(next); setEditing(null); flash(t.admin.saved);
+  const KEY = "savura:universities:v4";
+  const toggleFeatured = async (id) => {
+    const next = await store.update(KEY, arr => arr.map(u => u.id === id ? { ...u, featured: !u.featured } : u), unis);
+    setUnis(next);
   };
-  const delUni = (id) => { if (window.confirm(t.admin.confirm)) persist(unis.filter(u => u.id !== id)); };
+
+  const saveUni = async () => {
+    if (!editing.name) return;
+    const ed = editing.id ? editing : { ...editing, id: "u" + Date.now() };
+    const next = await store.update(KEY, arr => (editing.id ? arr.map(u => u.id === ed.id ? ed : u) : [...arr, ed]), unis);
+    setUnis(next); setEditing(null); flash(t.admin.saved);
+  };
+  const delUni = async (id) => {
+    if (!window.confirm(t.admin.confirm)) return;
+    const next = await store.update(KEY, arr => arr.filter(u => u.id !== id), unis);
+    setUnis(next);
+  };
 
   const onUpload = async (e) => {
     const file = e.target.files && e.target.files[0];

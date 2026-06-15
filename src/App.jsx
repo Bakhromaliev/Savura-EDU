@@ -199,6 +199,14 @@ const UNI_DB = [
   { name: "Gaziantep Üniversitesi", city: "Gaziantep", faculties: ["Tıp", "Bilgisayar Mühendisliği", "İşletme", "Hukuk"] },
   { name: "İzmir Ekonomi Üniversitesi", city: "İzmir", faculties: ["Bilgisayar Mühendisliği", "İşletme", "Hukuk", "Endüstriyel Tasarım"] },
   { name: "Yaşar Üniversitesi", city: "İzmir", faculties: ["İşletme", "Hukuk", "Mimarlık", "Bilgisayar Mühendisliği"] },
+  { name: "İstanbul Kent Üniversitesi", city: "İstanbul", faculties: ["Diş Hekimliği", "Eczacılık", "Hemşirelik", "Fizyoterapi ve Rehabilitasyon", "Psikoloji", "Bilgisayar Mühendisliği", "Endüstri Mühendisliği", "İşletme", "Uluslararası İlişkiler", "Gastronomi ve Mutfak Sanatları", "Radyo Televizyon ve Sinema", "İç Mimarlık"] },
+  { name: "İstanbul Kültür Üniversitesi", city: "İstanbul", faculties: ["Hukuk", "Bilgisayar Mühendisliği", "Elektrik-Elektronik Mühendisliği", "Endüstri Mühendisliği", "Mimarlık", "İç Mimarlık", "Psikoloji", "İşletme", "İktisat", "Hemşirelik", "Fizyoterapi ve Rehabilitasyon", "Radyo Televizyon ve Sinema", "İngiliz Dili ve Edebiyatı", "Moleküler Biyoloji ve Genetik"] },
+  { name: "Fenerbahçe Üniversitesi", city: "İstanbul", faculties: ["Eczacılık", "Bilgisayar Mühendisliği", "Endüstri Mühendisliği", "Biyomedikal Mühendisliği", "Elektrik-Elektronik Mühendisliği", "Mimarlık", "İç Mimarlık", "İktisat", "Psikoloji", "Hemşirelik", "Fizyoterapi ve Rehabilitasyon", "İngiliz Dili ve Edebiyatı"] },
+  { name: "İstanbul Yeni Yüzyıl Üniversitesi", city: "İstanbul", faculties: ["Tıp", "Diş Hekimliği", "Eczacılık", "Hemşirelik", "Fizyoterapi ve Rehabilitasyon", "Psikoloji", "Bilgisayar Mühendisliği", "İşletme", "Halkla İlişkiler ve Tanıtım"] },
+  { name: "İstanbul Atlas Üniversitesi", city: "İstanbul", faculties: ["Tıp", "Diş Hekimliği", "Hemşirelik", "Fizyoterapi ve Rehabilitasyon", "Beslenme ve Diyetetik", "Psikoloji", "Bilgisayar Mühendisliği", "Yazılım Mühendisliği", "Biyomedikal Mühendisliği", "Endüstri Mühendisliği", "İşletme", "İngiliz Dili ve Edebiyatı", "İç Mimarlık", "Endüstriyel Tasarım"] },
+  { name: "Biruni Üniversitesi", city: "İstanbul", faculties: ["Tıp", "Diş Hekimliği", "Eczacılık", "Hemşirelik", "Fizyoterapi ve Rehabilitasyon", "Beslenme ve Diyetetik", "Bilgisayar Mühendisliği", "Elektrik-Elektronik Mühendisliği", "Biyomedikal Mühendisliği", "Moleküler Biyoloji ve Genetik", "İç Mimarlık", "Rehberlik ve Psikolojik Danışmanlık"] },
+  { name: "İstanbul Topkapı Üniversitesi", city: "İstanbul", faculties: ["İktisat", "İşletme", "Psikoloji", "Uluslararası İlişkiler", "Uluslararası Ticaret ve Lojistik", "Halkla İlişkiler ve Tanıtım", "İngiliz Dili ve Edebiyatı", "Bilgisayar Mühendisliği", "Yazılım Mühendisliği", "Elektrik-Elektronik Mühendisliği", "Mimarlık", "İç Mimarlık", "Grafik Tasarım", "Gastronomi ve Mutfak Sanatları", "Radyo Televizyon ve Sinema", "Moda ve Tekstil Tasarımı"] },
+  { name: "İstanbul Gelişim Üniversitesi", city: "İstanbul", faculties: ["Diş Hekimliği", "Hemşirelik", "Fizyoterapi ve Rehabilitasyon", "Beslenme ve Diyetetik", "Psikoloji", "İşletme", "İktisat", "Uluslararası İlişkiler", "Uluslararası Ticaret ve Lojistik", "Bilgisayar Mühendisliği", "Elektrik-Elektronik Mühendisliği", "İnşaat Mühendisliği", "Havacılık ve Uzay Mühendisliği", "Mimarlık", "İç Mimarlık", "Grafik Tasarım", "Gastronomi ve Mutfak Sanatları", "Turizm İşletmeciliği"] },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -1275,7 +1283,7 @@ function UniNameInput({ value, onText, onPick, placeholder }) {
     ? UNI_DB.filter(u => u.name.toLowerCase().includes(q))
       .sort((a, b) => (a.name.toLowerCase().startsWith(q) ? 0 : 1) - (b.name.toLowerCase().startsWith(q) ? 0 : 1))
     : UNI_DB
-  ).slice(0, 12);
+  ).slice(0, 100);
   return (
     <div className="combo" ref={ref}>
       <input value={value} placeholder={placeholder}

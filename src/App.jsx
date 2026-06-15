@@ -473,6 +473,7 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 .band::before{content:"";position:absolute;inset:0;background-image:url("${STAR}");background-size:64px;opacity:.5}
 .band h2{position:relative;font-size:clamp(1.7rem,3.4vw,2.5rem);margin-bottom:12px}
 .band p{position:relative;color:rgba(255,255,255,.92);max-width:560px;margin:0 auto 26px;font-size:1.06rem}
+.band .btn{position:relative;z-index:2}
 .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
 .about-card{background:linear-gradient(155deg,var(--teal),var(--teal-d));color:#fff;border-radius:24px;padding:34px;position:relative;overflow:hidden}
 .about-card::before{content:"";position:absolute;inset:0;background-image:url("${STAR}");background-size:64px;opacity:.5}
@@ -616,9 +617,16 @@ function useReveal(dep) {
 }
 
 /* ================================================================== */
+const PAGE_LIST = ["home", "universities", "about", "contact", "admin"];
+function pageFromHash() {
+  const h = (typeof window !== "undefined" ? (window.location.hash || "") : "").replace(/^#\/?/, "").toLowerCase();
+  if (h.includes("admin")) return "admin";
+  return PAGE_LIST.includes(h) ? h : "home";
+}
+
 export default function App() {
   const [lang, setLang] = useState("tr");
-  const [page, setPage] = useState("home");
+  const [page, setPage] = useState(pageFromHash());
   const [menu, setMenu] = useState(false);
   const [langPop, setLangPop] = useState(false);
   const [unis, setUnis] = useState(SEED);
@@ -645,12 +653,11 @@ export default function App() {
     })();
   }, []);
 
-  // secret admin via URL hash (#admin) — works on the live deployed site
+  // URL hash routing: browser back/forward and page refresh keep the current page
   useEffect(() => {
-    const check = () => { if ((window.location.hash || "").toLowerCase().includes("admin")) setPage("admin"); };
-    check();
-    window.addEventListener("hashchange", check);
-    return () => window.removeEventListener("hashchange", check);
+    const sync = () => { setPage(pageFromHash()); setMenu(false); setDetail(null); window.scrollTo({ top: 0 }); };
+    window.addEventListener("hashchange", sync);
+    return () => window.removeEventListener("hashchange", sync);
   }, []);
 
   // secret admin via keyboard: just type the word "admin"
@@ -661,7 +668,7 @@ export default function App() {
       if (tag === "INPUT" || tag === "TEXTAREA") return;
       if (!e.key || e.key.length !== 1) return;
       buf = (buf + e.key).slice(-5).toLowerCase();
-      if (buf === "admin") { buf = ""; setPage("admin"); setMenu(false); window.scrollTo({ top: 0 }); }
+      if (buf === "admin") { buf = ""; window.location.hash = "admin"; }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -673,7 +680,16 @@ export default function App() {
     return () => document.removeEventListener("mousedown", h);
   }, []);
 
-  const go = useCallback((p) => { setPage(p); setMenu(false); setDetail(null); window.scrollTo({ top: 0, behavior: "smooth" }); }, []);
+  const go = useCallback((p) => {
+    setMenu(false);
+    const cur = window.location.hash || "";
+    const sameHome = p === "home" && (cur === "" || cur === "#home");
+    if (cur === "#" + p || sameHome) {
+      setPage(p); setDetail(null); window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      window.location.hash = p; // triggers hashchange -> sync()
+    }
+  }, []);
   const goField = (f) => { setFilter(f); setQuery(""); go("universities"); };
   const fieldName = (k) => t.fields.names[k] || k;
 

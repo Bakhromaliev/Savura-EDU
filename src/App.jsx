@@ -711,7 +711,14 @@ function useReveal(dep) {
     if (!("IntersectionObserver" in window)) { els.forEach(e => e.classList.add("in")); return; }
     const io = new IntersectionObserver((ents) => ents.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.12 });
     els.forEach(e => io.observe(e));
-    return () => io.disconnect();
+    // safety net: if anything is on-screen but still hidden shortly after render, show it
+    const t = setTimeout(() => {
+      document.querySelectorAll(".reveal:not(.in)").forEach(e => {
+        const r = e.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) e.classList.add("in");
+      });
+    }, 900);
+    return () => { io.disconnect(); clearTimeout(t); };
   }, [dep]);
 }
 
@@ -740,7 +747,7 @@ export default function App() {
   const langRef = useRef(null);
   const tap = useRef({ n: 0, t: 0 });
 
-  useReveal(page + "|" + filter + "|" + query);
+  useReveal(page + "|" + filter + "|" + query + "|" + (loaded ? 1 : 0) + "|" + unis.length);
 
   useEffect(() => {
     (async () => {

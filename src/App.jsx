@@ -878,7 +878,7 @@ export default function App() {
 
 /* ---------------- HOME ---------------- */
 function Home({ t, go, goField, unis, fieldName, openDetail, company }) {
-  const featured = unis.filter(u => u.featured).slice(0, 6);
+  const featured = unis.filter(u => u.featured);
   const shown = featured.length ? featured : unis.slice(0, 3);
   const price = (company && company.priceFrom) || "800";
   return (

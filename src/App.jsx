@@ -7,7 +7,7 @@ import {
   Building2, ChevronRight, Send, Lock, Heart, Upload, Settings,
   Layers, Image as ImageIcon, Save, Clock
 } from "lucide-react";
-import { store, auth, addLead, getLeads } from "./storage";
+import { store, auth, addLead, getLeads, partner, captureRef, getRef } from "./storage";
 
 /* ---------- custom brand icons (safe, no dependency on lucide brand set) ---------- */
 const InstagramIcon = ({ size = 20 }) => (
@@ -244,6 +244,49 @@ const T = {
     contact: { title: "Biz bilan bog‘laning", sub: "Savolingiz bormi? Bepul konsultatsiya uchun yozing.", name: "Ismingiz", email: "Email", phone: "Telefon", msg: "Xabaringiz", send: "Yuborish", ok: "Rahmat! Arizangiz qabul qilindi. Tez orada bog‘lanamiz.", infoTitle: "Aloqa ma’lumotlari", addressLabel: "Manzil", hours: "Ish vaqti" },
     docs: { eyebrow: "Hujjatlar & Hazırlık", title: "Turk tilini bilmasangiz ham o‘qiysiz", sub: "Til muammosi to‘siq emas — biz tayyorlovdan diplomgacha yo‘ldamiz.", docsTitle: "Kerakli hujjatlar", docs: ["Pasport", "Maktab attestati yoki kollej diplomi"], prepTitle: "1 yillik tayyorlov (hazırlık)", prepText: "Tilni bilmaydiganlar uchun 1 yillik tayyorlov bor. Yo‘nalish tiliga qarab turkcha yoki inglizcha tayyorlov o‘qiysiz — tayyorlov tili siz tanlagan dastur tiliga mos belgilanadi." },
     benefits: { eyebrow: "Imkoniyatlar", title: "O‘qish — bu faqat boshlanishi", sub: "Turkiyada talabalik nafaqat diplom, balki yashash, ishlash va Yevropaga yo‘l ochadi.", items: [ { t: "Yashash ruxsatnomasi", d: "Universitetga qabul qilinganingizdan so‘ng Turkiyada qonuniy yashash uchun ruxsatnoma (ikamet) olasiz." }, { t: "O‘qib, ishlab pul topish", d: "Darsdan bo‘sh vaqtingizda ishlashingiz mumkin — kontrakt va yashash xarajatlaringizni bemalol qoplaydigan daromad topasiz." }, { t: "Work & Travel", d: "Yozgi ta’tilda Yevropa davlatlariga Work and Travel dasturi bilan borib, ishlab dam olasiz." }, { t: "Erasmus+ almashinuvi", d: "Erasmus dasturi orqali o‘qishingizning bir qismini Yevropa Ittifoqi universitetlarida davom ettirasiz." } ] },
+    partner: {
+      nav: "Hamkorlik",
+      earnTitle: "Savura EDU bilan daromad qilishni boshlang",
+      earnSub: "Abituriyentingizni, do‘stingizni yoki qarindoshingizni Savura EDU ga shunchaki tavsiya qiling — ular o‘qishga joylashsa, siz pul ishlaysiz.",
+      earnCta: "Hamkor bo‘lish",
+      heroEyebrow: "Hamkorlik dasturi",
+      heroTitle: "Tavsiya qiling — birga daromad qiling",
+      heroSub: "Bir marta ro‘yxatdan o‘ting, shaxsiy havolangizni ulashing va tavsiya qilgan har bir o‘quvchingiz universitetga joylashganda mukofot oling.",
+      rewardWord: "Har bir joylashgan o‘quvchi uchun",
+      rewardUpto: "gacha",
+      how: [
+        { t: "Ro‘yxatdan o‘ting", d: "Bir daqiqada hamkor akkauntini oching va shaxsiy referal kodingiz hamda havolangizni oling." },
+        { t: "Ulashing", d: "Havolangizni do‘stlaringiz, o‘quvchilaringiz va qarindoshlaringizga yuboring yoki ijtimoiy tarmoqqa joylang." },
+        { t: "Daromad qiling", d: "Tavsiyangiz bilan kelgan abituriyent o‘qishga joylashsa, mukofot balansingizga tushadi." },
+        { t: "Pulni yeching", d: "Balansingizni istalgan vaqt Karta, IBAN, bank o‘tkazmasi yoki TRC20 orqali yechib oling." }
+      ],
+      whoTitle: "Kim daromad qila oladi?",
+      who: ["O‘qituvchilar va repetitorlar", "Talabalar", "Abituriyent ota-onalari", "Bloggerlar va kontakti bor har kim"],
+      ctaJoin: "Hamkor bo‘lish",
+      ctaLogin: "Kabinetga kirish",
+      haveAcc: "Akkauntingiz bormi?",
+      noAcc: "Akkauntingiz yo‘qmi?",
+      regTitle: "Hamkor bo‘lib ro‘yxatdan o‘tish",
+      fName: "Ism familiya", fEmail: "Email", fPhone: "Telefon", fPass: "Parol",
+      fAudience: "Kimlarni tavsiya qilmoqchisiz? (ixtiyoriy)",
+      regBtn: "Ro‘yxatdan o‘tish",
+      loginTitle: "Hamkor kabinetiga kirish", loginBtn: "Kirish",
+      hello: "Salom", myCode: "Sizning referal kodingiz", myLink: "Ulashish havolasi",
+      copy: "Nusxalash", copied: "Nusxalandi!", logout: "Chiqish",
+      stReferred: "Tavsiya qilingan", stProcess: "Jarayonda", stPaid: "To‘lagan", stCancelled: "Bekor qilingan",
+      balance: "Joriy balans", pending: "Kutilayotgan balans", withdraw: "Pulni yechish",
+      tName: "Ism", tUni: "Universitet", tStatus: "Holat", tReward: "Mukofot", tDate: "Sana",
+      noRefs: "Hozircha tavsiyalar yo‘q. Havolangizni ulashing!",
+      sNew: "Yangi", sThinking: "O‘ylamoqda", sInpay: "To‘lov jarayonida", sPaid: "To‘ladi", sCancelled: "Bekor",
+      wTitle: "Pul yechish arizasi", wAmount: "Summa ($)", wMethod: "Usul",
+      mCard: "Karta", mIban: "IBAN", mBank: "Bank o‘tkazmasi", mTrc: "TRC20 (USDT)",
+      wDetails: "Karta raqami / IBAN / hamyon manzili", wSubmit: "Ariza yuborish",
+      wHistory: "To‘lovlar tarixi", wRequested: "Kutilmoqda", wPaid: "To‘landi", noPayouts: "To‘lovlar tarixi bo‘sh.",
+      refField: "Referal kodi (ixtiyoriy)",
+      confirmNeeded: "Ro‘yxatdan o‘tish vaqtincha mavjud emas. Administrator bilan bog‘laning.",
+      loginErr: "Email yoki parol noto‘g‘ri.", regErr: "Ro‘yxatdan o‘tishda xatolik. Email band bo‘lishi mumkin.",
+      minBal: "Yechish uchun yetarli balans yo‘q."
+    },
     proc: { nav: "Hujjatlar va qabul", title: "Kerakli hujjatlar va qabul jarayoni", sub: "Bosqichingizni tanlang va kerakli hujjatlar ro‘yxatini ko‘ring. Hujjatlarni to‘g‘ri va sifatli tayyorlash grant olish imkonini oshiradi.", levelsTitle: "Bosqich bo‘yicha hujjatlar", bachelor: "Bakalavr", master: "Magistratura", doctorate: "Doktorantura", docs: { bachelor: ["Pasport (qizil, yashil yoki ID karta) — PDF", "9-sinf shahodatnomasi asl nusxasi — PDF", "11-sinf shahodatnomasi yoki kollej/litsey diplomi va ilovasi (asl) — PDF. Hali o‘qiyotgan bo‘lsangiz — joriy baholar hujjati", "Niyat (motivatsiya) xati", "1–2 o‘qituvchi/murabbiydan tavsiyanoma", "Yutuqlar: sertifikat, diplom, medal va h.k. (mavjud bo‘lsa)", "TÖMER til sertifikati (mavjud bo‘lsa)"], master: ["Pasport — PDF", "Maktab/kollej/litsey diplomi va ilovasi — PDF", "Bakalavr diplomi va ilovasi (asl) — PDF. Hali o‘qiyotgan bo‘lsangiz — reyting daftarchasi", "Niyat (motivatsiya) xati", "Ilmiy ish mavzusi va kirish qismi (grant uchun muhim)", "1–2 o‘qituvchi/ilmiy rahbardan tavsiyanoma", "Yutuqlar: sertifikat, diplom, maqolalar (mavjud bo‘lsa)", "TÖMER til sertifikati (mavjud bo‘lsa)"], doctorate: ["Pasport — PDF", "Maktab/kollej/litsey diplomi va ilovasi — PDF", "Bakalavr va magistr diplomi va ilovasi (asl) — PDF. Hali o‘qiyotgan bo‘lsangiz — reyting daftarchasi", "Niyat (motivatsiya) xati", "Ilmiy ish mavzusi va kirish qismi (doktorantura uchun shart)", "Ilmiy ishga 1–2 o‘qituvchi/rahbardan tavsiyanoma", "Yutuqlar: sertifikat, diplom, medal, maqolalar (mavjud bo‘lsa)", "TÖMER til sertifikati (mavjud bo‘lsa)"] }, extrasTitle: "Majburiy qo‘shimcha hujjatlar", motivation: { t: "Niyat (motivatsiya) xati", d: "Nega Turkiyani va shu yo‘nalishni tanlaganingiz, bitirgandan keyingi maqsadlaringiz. Taxminan 500 so‘z, professional va aniq.", points: ["O‘zingizni qisqa tanishtiring", "Asosiy maqsadingiz", "Erishgan yutuqlaringiz", "Nega Turkiya va nega bu soha", "Topshirayotgan universitetingiz haqida", "Grant evaziga nima qila olasiz"] }, reference: { t: "Tavsiyanoma (reference letter)", d: "O‘qish joyingizdagi o‘qituvchidan. Ilmiy unvoni yuqori bo‘lgani (fan nomzodi, professor) afzal. O‘qituvchining faol elektron pochtasi ko‘rsatilishi shart." }, stagesTitle: "Qabul jarayoni", stages: [{ t: "1-bosqich: hujjatlarni ko‘rib chiqish", d: "Hujjatlar, maqsad va qiziqishlar mutaxassislar tomonidan o‘rganiladi. Muvaffaqiyatlilar suhbatga o‘tadi (ba’zan matematika/mantiq testi bo‘lishi mumkin)." }, { t: "2-bosqich: suhbat", d: "O‘rtacha 15–20 daqiqa. Asosan Turkiyada o‘qish maqsadi va tanlangan yo‘nalish haqida savollar." }, { t: "3-bosqich: tanlov", d: "Komissiya suhbat natijalarini baholaydi va grant yutganlar ro‘yxati tuziladi." }] },
     footer: { tagline: "Turkiyada o‘qish — Savura EDU bilan oson.", quick: "Tezkor havolalar", rights: "Barcha huquqlar himoyalangan." },
     admin: { login: "Admin kirish", email: "Email", pass: "Parol", enter: "Kirish", wrong: "Parol noto‘g‘ri", hint: "Davom etish uchun parolni kiriting", title: "Boshqaruv paneli", tabU: "Universitetlar", tabI: "Arizalar", tabS: "Sozlamalar", logout: "Chiqish", add: "Universitet qo‘shish", edit: "Tahrirlash", save: "Saqlash", cancel: "Bekor qilish", fName: "Universitet nomi", fCity: "Shahar", fImg: "Universitet rasmi", upload: "Rasm yuklash", remove: "Rasmni o‘chirish", imgHint: "JPG/PNG — avtomatik kichraytiriladi", fDesc: "Tavsif", fFields: "Yo‘nalishlar (filtr uchun)", fFeatured: "Bosh sahifada ko‘rsatish", saved: "Saqlandi", confirm: "Rostdan o‘chirilsinmi?", noI: "Hozircha arizalar yo‘q.", iName: "Ism", iContact: "Aloqa", iMsg: "Xabar", iDate: "Sana", shared: "Eslatma: ma’lumotlar saytda barcha tashrif buyuruvchilarga ko‘rinadi.", facTitle: "Fakultetlar (narxi, manzili, qabul)", addFac: "Fakultet qo‘shish", facName: "Fakultet nomi", facPrice: "Yillik narx", facSchol: "5 yil burs (jami)", facLoc: "Manzil", facAdm: "Qabul holati", facLang: "Ta'lim tili", uniHint: "Ro'yxatdan tanlasangiz shahri va fakultetlari avtomatik to'ladi", coTitle: "Kompaniya ma’lumotlari", coPhone: "Telefon raqam", coEmail: "Email", coAddr: "Manzil", coHours: "Ish vaqti", coIg: "Instagram havolasi", coTg: "Telegram havolasi", coPrice: "Boshlang‘ich narx ($)", saveCo: "Sozlamalarni saqlash" },
@@ -277,6 +320,46 @@ const T = {
     contact: { title: "Bize ulaşın", sub: "Sorunuz mu var? Ücretsiz danışmanlık için yazın.", name: "Adınız", email: "E-posta", phone: "Telefon", msg: "Mesajınız", send: "Gönder", ok: "Teşekkürler! Başvurunuz alındı. En kısa sürede dönüş yapacağız.", infoTitle: "İletişim bilgileri", addressLabel: "Adres", hours: "Çalışma saatleri" },
     docs: { eyebrow: "Belgeler & Hazırlık", title: "Türkçe bilmesen de okuyabilirsin", sub: "Dil bir engel değil — hazırlıktan diplomaya kadar yanındayız.", docsTitle: "Gerekli belgeler", docs: ["Pasaport", "Lise diploması (attestat) veya kolej diploması"], prepTitle: "1 yıllık hazırlık programı", prepText: "Dil bilmeyen öğrenciler için 1 yıllık hazırlık vardır. Bölümün diline göre Türkçe veya İngilizce hazırlık okursun — hazırlık dili seçtiğin programın diline göre belirlenir." },
     benefits: { eyebrow: "Fırsatlar", title: "Okumak sadece başlangıç", sub: "Türkiye'de öğrencilik; diplomanın yanında yaşama, çalışma ve Avrupa'ya açılan bir kapıdır.", items: [ { t: "Oturma izni", d: "Üniversiteye kabul edildikten sonra Türkiye'de yasal kalmak için oturma izni (ikamet) alırsınız." }, { t: "Okurken çalışmak", d: "Boş zamanlarında çalışabilirsin — kontrat ve yaşam giderlerini rahatça karşılayacak gelir elde edebilirsin." }, { t: "Work & Travel", d: "Yaz tatilinde Work and Travel programıyla Avrupa ülkelerine gidip çalışabilir ve gezebilirsin." }, { t: "Erasmus+ değişimi", d: "Erasmus programıyla eğitiminin bir bölümünü Avrupa Birliği üniversitelerinde sürdürebilirsin." } ] },
+    partner: {
+      nav: "Ortaklık",
+      earnTitle: "Savura EDU ile kazanmaya başlayın",
+      earnSub: "Öğrencinizi, arkadaşınızı veya akrabanızı Savura EDU'ya önerin — üniversiteye yerleştiklerinde siz kazanın.",
+      earnCta: "Ortak ol",
+      heroEyebrow: "Ortaklık programı",
+      heroTitle: "Öner — birlikte kazan",
+      heroSub: "Bir kez kaydolun, kişisel bağlantınızı paylaşın ve önerdiğiniz her öğrenci üniversiteye yerleştiğinde ödül kazanın.",
+      rewardWord: "Yerleşen her öğrenci için",
+      rewardUpto: "kadar",
+      how: [
+        { t: "Kaydolun", d: "Bir dakikada ortak hesabı açın, kişisel referans kodunuzu ve bağlantınızı alın." },
+        { t: "Paylaşın", d: "Bağlantınızı arkadaşlarınıza, öğrencilerinize ve akrabalarınıza gönderin veya sosyal medyada paylaşın." },
+        { t: "Kazanın", d: "Önerinizle gelen aday üniversiteye yerleştiğinde ödül bakiyenize eklenir." },
+        { t: "Parayı çekin", d: "Bakiyenizi istediğiniz zaman Kart, IBAN, banka havalesi veya TRC20 ile çekin." }
+      ],
+      whoTitle: "Kimler kazanabilir?",
+      who: ["Öğretmenler ve özel ders verenler", "Öğrenciler", "Aday veliler", "Bloggerlar ve çevresi olan herkes"],
+      ctaJoin: "Ortak ol", ctaLogin: "Panele giriş",
+      haveAcc: "Hesabınız var mı?", noAcc: "Hesabınız yok mu?",
+      regTitle: "Ortak olarak kaydol",
+      fName: "Ad soyad", fEmail: "E-posta", fPhone: "Telefon", fPass: "Şifre",
+      fAudience: "Kimleri önermek istiyorsunuz? (isteğe bağlı)",
+      regBtn: "Kaydol", loginTitle: "Ortak paneline giriş", loginBtn: "Giriş",
+      hello: "Merhaba", myCode: "Referans kodunuz", myLink: "Paylaşım bağlantısı",
+      copy: "Kopyala", copied: "Kopyalandı!", logout: "Çıkış",
+      stReferred: "Önerilen", stProcess: "Süreçte", stPaid: "Ödedi", stCancelled: "İptal",
+      balance: "Güncel bakiye", pending: "Bekleyen bakiye", withdraw: "Para çek",
+      tName: "Ad", tUni: "Üniversite", tStatus: "Durum", tReward: "Ödül", tDate: "Tarih",
+      noRefs: "Henüz öneri yok. Bağlantınızı paylaşın!",
+      sNew: "Yeni", sThinking: "Düşünüyor", sInpay: "Ödeme sürecinde", sPaid: "Ödedi", sCancelled: "İptal",
+      wTitle: "Para çekme talebi", wAmount: "Tutar ($)", wMethod: "Yöntem",
+      mCard: "Kart", mIban: "IBAN", mBank: "Banka havalesi", mTrc: "TRC20 (USDT)",
+      wDetails: "Kart no / IBAN / cüzdan adresi", wSubmit: "Talep gönder",
+      wHistory: "Ödeme geçmişi", wRequested: "Bekliyor", wPaid: "Ödendi", noPayouts: "Ödeme geçmişi boş.",
+      refField: "Referans kodu (isteğe bağlı)",
+      confirmNeeded: "Kayıt geçici olarak kapalı. Lütfen yönetici ile iletişime geçin.",
+      loginErr: "E-posta veya şifre hatalı.", regErr: "Kayıt sırasında hata. E-posta kullanımda olabilir.",
+      minBal: "Çekim için yeterli bakiye yok."
+    },
     proc: { nav: "Belgeler ve kabul", title: "Gerekli belgeler ve kabul süreci", sub: "Seviyeni seç ve gerekli belgeleri gör. Belgeleri doğru ve eksiksiz hazırlamak burs şansını artırır.", levelsTitle: "Seviyeye göre belgeler", bachelor: "Lisans", master: "Yüksek lisans", doctorate: "Doktora", docs: { bachelor: ["Pasaport (kırmızı, yeşil veya kimlik) — PDF", "9. sınıf belgesi aslı — PDF", "Lise diploması veya kolej/lise diploması ve eki (asıl) — PDF. Hâlâ okuyorsanız — güncel not belgesi", "Niyet (motivasyon) mektubu", "1–2 öğretmen/danışmandan referans mektubu", "Başarılar: sertifika, diploma, madalya vb. (varsa)", "TÖMER dil sertifikası (varsa)"], master: ["Pasaport — PDF", "Lise/kolej diploması ve eki — PDF", "Lisans diploması ve eki (asıl) — PDF. Hâlâ okuyorsanız — not dökümü (transkript)", "Niyet (motivasyon) mektubu", "Araştırma konusu ve giriş bölümü (burs için önemli)", "1–2 öğretmen/danışmandan referans mektubu", "Başarılar: sertifika, diploma, makaleler (varsa)", "TÖMER dil sertifikası (varsa)"], doctorate: ["Pasaport — PDF", "Lise/kolej diploması ve eki — PDF", "Lisans ve yüksek lisans diploması ve eki (asıl) — PDF. Hâlâ okuyorsanız — transkript", "Niyet (motivasyon) mektubu", "Araştırma konusu ve giriş bölümü (doktora için şart)", "Araştırma için 1–2 öğretmen/danışmandan referans", "Başarılar: sertifika, diploma, madalya, makaleler (varsa)", "TÖMER dil sertifikası (varsa)"] }, extrasTitle: "Zorunlu ek belgeler", motivation: { t: "Niyet (motivasyon) mektubu", d: "Türkiye'yi ve bu bölümü neden seçtiğin, mezuniyet sonrası hedeflerin. Yaklaşık 500 kelime, profesyonel ve net.", points: ["Kendini kısaca tanıt", "Ana hedefin", "Başarıların", "Neden Türkiye ve neden bu alan", "Başvurduğun üniversite hakkında", "Burs karşılığında neler katabilirsin"] }, reference: { t: "Referans mektubu", d: "Okulundaki bir öğretmenden. Akademik unvanı yüksek olması (doktor, profesör) tercih edilir. Öğretmenin aktif e-posta adresi belirtilmelidir." }, stagesTitle: "Kabul süreci", stages: [{ t: "1. aşama: belge incelemesi", d: "Belgeler, hedefler ve ilgi alanları uzmanlarca incelenir. Başarılı olanlar mülakata geçer (bazen matematik/mantık testi olabilir)." }, { t: "2. aşama: mülakat", d: "Ortalama 15–20 dakika. Genelde Türkiye'de okuma amacı ve seçilen bölüm hakkında sorular." }, { t: "3. aşama: seçim", d: "Komisyon mülakat sonuçlarını değerlendirir ve burs kazananların listesi oluşturulur." }] },
     footer: { tagline: "Türkiye'de okumak — Savura EDU ile kolay.", quick: "Hızlı bağlantılar", rights: "Tüm hakları saklıdır." },
     admin: { login: "Yönetici girişi", email: "E-posta", pass: "Şifre", enter: "Giriş", wrong: "Şifre yanlış", hint: "Devam etmek için şifrenizi girin", title: "Yönetim paneli", tabU: "Üniversiteler", tabI: "Başvurular", tabS: "Ayarlar", logout: "Çıkış", add: "Üniversite ekle", edit: "Düzenle", save: "Kaydet", cancel: "İptal", fName: "Üniversite adı", fCity: "Şehir", fImg: "Üniversite görseli", upload: "Görsel yükle", remove: "Görseli kaldır", imgHint: "JPG/PNG — otomatik küçültülür", fDesc: "Açıklama", fFields: "Bölümler (filtre için)", fFeatured: "Ana sayfada göster", saved: "Kaydedildi", confirm: "Gerçekten silinsin mi?", noI: "Henüz başvuru yok.", iName: "Ad", iContact: "İletişim", iMsg: "Mesaj", iDate: "Tarih", shared: "Not: veriler sitede tüm ziyaretçilere görünür.", facTitle: "Fakülteler (ücret, konum, kayıt)", addFac: "Fakülte ekle", facName: "Fakülte adı", facPrice: "Yıllık ücret", facSchol: "5 yıl burs (toplam)", facLoc: "Konum", facAdm: "Kayıt durumu", facLang: "Eğitim dili", uniHint: "Listeden seçerseniz şehir ve fakülteler otomatik dolar", coTitle: "Şirket bilgileri", coPhone: "Telefon", coEmail: "E-posta", coAddr: "Adres", coHours: "Çalışma saatleri", coIg: "Instagram bağlantısı", coTg: "Telegram bağlantısı", coPrice: "Başlangıç fiyatı ($)", saveCo: "Ayarları kaydet" },
@@ -310,6 +393,46 @@ const T = {
     contact: { title: "Contact us", sub: "Have a question? Write to us for a free consultation.", name: "Your name", email: "Email", phone: "Phone", msg: "Your message", send: "Send", ok: "Thank you! Your request has been received. We'll be in touch shortly.", infoTitle: "Contact details", addressLabel: "Address", hours: "Working hours" },
     docs: { eyebrow: "Documents & Prep", title: "Study even without Turkish", sub: "Language is no barrier — we guide you from prep to diploma.", docsTitle: "Required documents", docs: ["Passport", "High-school certificate (attestat) or college diploma"], prepTitle: "1-year preparatory program", prepText: "There is a 1-year prep program for students who don't speak the language. Depending on the program's language you take Turkish or English prep — the prep language follows the language of the program you choose." },
     benefits: { eyebrow: "Opportunities", title: "Studying is just the beginning", sub: "Student life in Turkey means more than a diploma — it opens the door to living, working and Europe.", items: [ { t: "Residence permit", d: "Once you are admitted, you receive a residence permit (ikamet) to live in Turkey legally." }, { t: "Work while you study", d: "You can work in your free time and comfortably earn enough to cover tuition and living costs." }, { t: "Work & Travel", d: "During summer holidays you can join Work and Travel programs in European countries to work and explore." }, { t: "Erasmus+ exchange", d: "Through Erasmus you can continue part of your studies at universities in the European Union." } ] },
+    partner: {
+      nav: "Partnership",
+      earnTitle: "Start earning with Savura EDU",
+      earnSub: "Simply recommend your student, friend or relative to Savura EDU — when they enroll, you earn.",
+      earnCta: "Become a partner",
+      heroEyebrow: "Partner program",
+      heroTitle: "Refer — and earn together",
+      heroSub: "Register once, share your personal link, and get rewarded every time a student you referred enrolls at a university.",
+      rewardWord: "For every enrolled student",
+      rewardUpto: "up to",
+      how: [
+        { t: "Register", d: "Open a partner account in a minute and get your personal referral code and link." },
+        { t: "Share", d: "Send your link to friends, students and relatives, or post it on social media." },
+        { t: "Earn", d: "When an applicant who came through you enrolls, the reward is added to your balance." },
+        { t: "Withdraw", d: "Withdraw your balance anytime via Card, IBAN, bank transfer or TRC20." }
+      ],
+      whoTitle: "Who can earn?",
+      who: ["Teachers and tutors", "Students", "Applicants' parents", "Bloggers and anyone with contacts"],
+      ctaJoin: "Become a partner", ctaLogin: "Log in to cabinet",
+      haveAcc: "Already have an account?", noAcc: "Don't have an account?",
+      regTitle: "Register as a partner",
+      fName: "Full name", fEmail: "Email", fPhone: "Phone", fPass: "Password",
+      fAudience: "Who do you plan to refer? (optional)",
+      regBtn: "Register", loginTitle: "Partner cabinet login", loginBtn: "Log in",
+      hello: "Hello", myCode: "Your referral code", myLink: "Share link",
+      copy: "Copy", copied: "Copied!", logout: "Log out",
+      stReferred: "Referred", stProcess: "In process", stPaid: "Enrolled", stCancelled: "Cancelled",
+      balance: "Current balance", pending: "Pending balance", withdraw: "Withdraw",
+      tName: "Name", tUni: "University", tStatus: "Status", tReward: "Reward", tDate: "Date",
+      noRefs: "No referrals yet. Share your link!",
+      sNew: "New", sThinking: "Considering", sInpay: "In payment", sPaid: "Enrolled", sCancelled: "Cancelled",
+      wTitle: "Withdrawal request", wAmount: "Amount ($)", wMethod: "Method",
+      mCard: "Card", mIban: "IBAN", mBank: "Bank transfer", mTrc: "TRC20 (USDT)",
+      wDetails: "Card no / IBAN / wallet address", wSubmit: "Send request",
+      wHistory: "Payout history", wRequested: "Pending", wPaid: "Paid", noPayouts: "No payouts yet.",
+      refField: "Referral code (optional)",
+      confirmNeeded: "Registration is temporarily unavailable. Please contact the administrator.",
+      loginErr: "Wrong email or password.", regErr: "Registration error. Email may already be in use.",
+      minBal: "Not enough balance to withdraw."
+    },
     proc: { nav: "Documents & admission", title: "Required documents & admission process", sub: "Choose your level to see the documents. Preparing them correctly and completely increases your scholarship chances.", levelsTitle: "Documents by level", bachelor: "Bachelor's", master: "Master's", doctorate: "Doctorate", docs: { bachelor: ["Passport (any type or ID card) — PDF", "9th-grade certificate, original — PDF", "High-school certificate or college/lyceum diploma with transcript (original) — PDF. If still studying — current grade record", "Motivation letter", "Reference letter from 1–2 teachers/mentors", "Achievements: certificates, diplomas, medals, etc. (if any)", "TÖMER language certificate (if any)"], master: ["Passport — PDF", "High-school/college diploma with transcript — PDF", "Bachelor's diploma with transcript (original) — PDF. If still studying — transcript of records", "Motivation letter", "Research topic and introduction (important for the scholarship)", "Reference letter from 1–2 teachers/supervisors", "Achievements: certificates, diplomas, articles (if any)", "TÖMER language certificate (if any)"], doctorate: ["Passport — PDF", "High-school/college diploma with transcript — PDF", "Bachelor's and master's diplomas with transcripts (original) — PDF. If still studying — transcript", "Motivation letter", "Research topic and introduction (required for doctorate)", "Reference letter for research from 1–2 teachers/supervisors", "Achievements: certificates, diplomas, medals, articles (if any)", "TÖMER language certificate (if any)"] }, extrasTitle: "Mandatory extra documents", motivation: { t: "Motivation letter", d: "Why you chose Turkey and this field, and your goals after graduation. About 500 words, professional and clear.", points: ["Briefly introduce yourself", "Your main goal", "Your achievements", "Why Turkey and why this field", "About the university you apply to", "What you can give back for the scholarship"] }, reference: { t: "Reference letter", d: "From a teacher at your institution. A higher academic title (PhD, professor) is preferred. The teacher's active email must be included." }, stagesTitle: "Admission process", stages: [{ t: "Stage 1: document review", d: "Specialists review documents, goals and interests. Successful applicants move to the interview (sometimes a math/logic test)." }, { t: "Stage 2: interview", d: "About 15–20 minutes. Mostly about your goal of studying in Turkey and your chosen program." }, { t: "Stage 3: selection", d: "The committee evaluates interview results and the list of scholarship winners is formed." }] },
     footer: { tagline: "Studying in Turkey — made easy with Savura EDU.", quick: "Quick links", rights: "All rights reserved." },
     admin: { login: "Admin login", email: "Email", pass: "Password", enter: "Log in", wrong: "Wrong password", hint: "Enter your password to continue", title: "Dashboard", tabU: "Universities", tabI: "Inquiries", tabS: "Settings", logout: "Log out", add: "Add university", edit: "Edit", save: "Save", cancel: "Cancel", fName: "University name", fCity: "City", fImg: "University image", upload: "Upload image", remove: "Remove image", imgHint: "JPG/PNG — auto-resized", fDesc: "Description", fFields: "Programs (for filter)", fFeatured: "Show on homepage", saved: "Saved", confirm: "Delete for real?", noI: "No inquiries yet.", iName: "Name", iContact: "Contact", iMsg: "Message", iDate: "Date", shared: "Note: data is visible to all site visitors.", facTitle: "Faculties (price, location, admission)", addFac: "Add faculty", facName: "Faculty name", facPrice: "Annual price", facSchol: "5-yr scholarship (total)", facLoc: "Location", facAdm: "Admission status", facLang: "Language", uniHint: "Pick from the list to auto-fill city and faculties", coTitle: "Company details", coPhone: "Phone number", coEmail: "Email", coAddr: "Address", coHours: "Working hours", coIg: "Instagram link", coTg: "Telegram link", coPrice: "Starting price ($)", saveCo: "Save settings" },
@@ -343,6 +466,46 @@ const T = {
     contact: { title: "Связаться с нами", sub: "Есть вопрос? Напишите нам для бесплатной консультации.", name: "Ваше имя", email: "Email", phone: "Телефон", msg: "Ваше сообщение", send: "Отправить", ok: "Спасибо! Ваша заявка принята. Мы скоро свяжемся с вами.", infoTitle: "Контактные данные", addressLabel: "Адрес", hours: "Часы работы" },
     docs: { eyebrow: "Документы и подготовка", title: "Учитесь, даже не зная турецкого", sub: "Язык — не преграда: мы рядом от подготовки до диплома.", docsTitle: "Необходимые документы", docs: ["Загранпаспорт", "Аттестат школы или диплом колледжа"], prepTitle: "Годичная подготовка (hazırlık)", prepText: "Для студентов без знания языка есть годичная подготовка. В зависимости от языка программы вы проходите турецкую или английскую подготовку — язык подготовки соответствует языку выбранной программы." },
     benefits: { eyebrow: "Возможности", title: "Учёба — это только начало", sub: "Студенчество в Турции — это не только диплом, но и проживание, работа и путь в Европу.", items: [ { t: "Вид на жительство", d: "После зачисления вы получаете вид на жительство (икамет) для легального проживания в Турции." }, { t: "Учёба и работа", d: "В свободное время можно работать и спокойно зарабатывать на контракт и проживание." }, { t: "Work & Travel", d: "На летних каникулах можно поехать по программе Work and Travel в страны Европы — работать и путешествовать." }, { t: "Обмен Erasmus+", d: "По программе Erasmus часть обучения можно продолжить в университетах Евросоюза." } ] },
+    partner: {
+      nav: "Партнёрство",
+      earnTitle: "Начните зарабатывать с Savura EDU",
+      earnSub: "Просто порекомендуйте своего ученика, друга или родственника Savura EDU — когда они поступят, вы заработаете.",
+      earnCta: "Стать партнёром",
+      heroEyebrow: "Партнёрская программа",
+      heroTitle: "Рекомендуйте — и зарабатывайте вместе",
+      heroSub: "Зарегистрируйтесь один раз, делитесь персональной ссылкой и получайте вознаграждение каждый раз, когда приведённый вами студент поступает в университет.",
+      rewardWord: "За каждого поступившего студента",
+      rewardUpto: "до",
+      how: [
+        { t: "Регистрация", d: "Откройте партнёрский аккаунт за минуту и получите персональный реферальный код и ссылку." },
+        { t: "Поделитесь", d: "Отправьте ссылку друзьям, ученикам и родственникам или опубликуйте в соцсетях." },
+        { t: "Зарабатывайте", d: "Когда пришедший по вашей ссылке абитуриент поступает, вознаграждение добавляется на ваш баланс." },
+        { t: "Выводите", d: "Выводите баланс в любое время через Карту, IBAN, банковский перевод или TRC20." }
+      ],
+      whoTitle: "Кто может зарабатывать?",
+      who: ["Учителя и репетиторы", "Студенты", "Родители абитуриентов", "Блогеры и все, у кого есть контакты"],
+      ctaJoin: "Стать партнёром", ctaLogin: "Войти в кабинет",
+      haveAcc: "Уже есть аккаунт?", noAcc: "Нет аккаунта?",
+      regTitle: "Регистрация партнёра",
+      fName: "Имя и фамилия", fEmail: "Эл. почта", fPhone: "Телефон", fPass: "Пароль",
+      fAudience: "Кого вы планируете рекомендовать? (необязательно)",
+      regBtn: "Зарегистрироваться", loginTitle: "Вход в кабинет партнёра", loginBtn: "Войти",
+      hello: "Здравствуйте", myCode: "Ваш реферальный код", myLink: "Ссылка для приглашения",
+      copy: "Копировать", copied: "Скопировано!", logout: "Выйти",
+      stReferred: "Приглашено", stProcess: "В процессе", stPaid: "Поступили", stCancelled: "Отменено",
+      balance: "Текущий баланс", pending: "Ожидаемый баланс", withdraw: "Вывести",
+      tName: "Имя", tUni: "Университет", tStatus: "Статус", tReward: "Вознаграждение", tDate: "Дата",
+      noRefs: "Пока нет рекомендаций. Поделитесь ссылкой!",
+      sNew: "Новый", sThinking: "Думает", sInpay: "В оплате", sPaid: "Поступил", sCancelled: "Отменён",
+      wTitle: "Запрос на вывод", wAmount: "Сумма ($)", wMethod: "Способ",
+      mCard: "Карта", mIban: "IBAN", mBank: "Банковский перевод", mTrc: "TRC20 (USDT)",
+      wDetails: "Номер карты / IBAN / адрес кошелька", wSubmit: "Отправить запрос",
+      wHistory: "История выплат", wRequested: "Ожидает", wPaid: "Выплачено", noPayouts: "История выплат пуста.",
+      refField: "Реферальный код (необязательно)",
+      confirmNeeded: "Регистрация временно недоступна. Свяжитесь с администратором.",
+      loginErr: "Неверная почта или пароль.", regErr: "Ошибка регистрации. Возможно, почта уже используется.",
+      minBal: "Недостаточно баланса для вывода."
+    },
     proc: { nav: "Документы и поступление", title: "Необходимые документы и процесс поступления", sub: "Выберите уровень, чтобы увидеть документы. Правильная и полная подготовка повышает шансы на грант.", levelsTitle: "Документы по уровням", bachelor: "Бакалавриат", master: "Магистратура", doctorate: "Докторантура", docs: { bachelor: ["Паспорт (любой или ID-карта) — PDF", "Аттестат за 9 класс, оригинал — PDF", "Аттестат за 11 класс или диплом колледжа/лицея с приложением (оригинал) — PDF. Если ещё учитесь — справка с текущими оценками", "Мотивационное письмо", "Рекомендательное письмо от 1–2 преподавателей/наставников", "Достижения: сертификаты, дипломы, медали и т.д. (при наличии)", "Языковой сертификат TÖMER (при наличии)"], master: ["Паспорт — PDF", "Диплом школы/колледжа с приложением — PDF", "Диплом бакалавра с приложением (оригинал) — PDF. Если ещё учитесь — выписка оценок", "Мотивационное письмо", "Тема исследования и введение (важно для гранта)", "Рекомендательное письмо от 1–2 преподавателей/руководителей", "Достижения: сертификаты, дипломы, статьи (при наличии)", "Языковой сертификат TÖMER (при наличии)"], doctorate: ["Паспорт — PDF", "Диплом школы/колледжа с приложением — PDF", "Дипломы бакалавра и магистра с приложениями (оригинал) — PDF. Если ещё учитесь — выписка оценок", "Мотивационное письмо", "Тема исследования и введение (обязательно для докторантуры)", "Рекомендация для исследования от 1–2 преподавателей/руководителей", "Достижения: сертификаты, дипломы, медали, статьи (при наличии)", "Языковой сертификат TÖMER (при наличии)"] }, extrasTitle: "Обязательные дополнительные документы", motivation: { t: "Мотивационное письмо", d: "Почему вы выбрали Турцию и это направление, ваши цели после выпуска. Примерно 500 слов, профессионально и чётко.", points: ["Кратко представьтесь", "Ваша главная цель", "Ваши достижения", "Почему Турция и почему это направление", "Об университете, куда поступаете", "Что вы можете дать взамен гранта"] }, reference: { t: "Рекомендательное письмо", d: "От преподавателя вашего учебного заведения. Предпочтительно с высоким научным званием (кандидат наук, профессор). Должен быть указан активный email преподавателя." }, stagesTitle: "Процесс поступления", stages: [{ t: "Этап 1: проверка документов", d: "Специалисты изучают документы, цели и интересы. Успешные проходят на собеседование (иногда тест по математике/логике)." }, { t: "Этап 2: собеседование", d: "Около 15–20 минут. В основном о цели учёбы в Турции и выбранном направлении." }, { t: "Этап 3: отбор", d: "Комиссия оценивает результаты собеседования, формируется список получателей гранта." }] },
     footer: { tagline: "Учёба в Турции — легко с Savura EDU.", quick: "Быстрые ссылки", rights: "Все права защищены." },
     admin: { login: "Вход для админа", email: "Эл. почта", pass: "Пароль", enter: "Войти", wrong: "Неверный пароль", hint: "Введите пароль для продолжения", title: "Панель управления", tabU: "Университеты", tabI: "Заявки", tabS: "Настройки", logout: "Выйти", add: "Добавить университет", edit: "Изменить", save: "Сохранить", cancel: "Отмена", fName: "Название университета", fCity: "Город", fImg: "Изображение университета", upload: "Загрузить фото", remove: "Удалить фото", imgHint: "JPG/PNG — авто-сжатие", fDesc: "Описание", fFields: "Направления (для фильтра)", fFeatured: "Показывать на главной", saved: "Сохранено", confirm: "Точно удалить?", noI: "Заявок пока нет.", iName: "Имя", iContact: "Контакт", iMsg: "Сообщение", iDate: "Дата", shared: "Примечание: данные видны всем посетителям сайта.", facTitle: "Факультеты (цена, адрес, приём)", addFac: "Добавить факультет", facName: "Название факультета", facPrice: "Цена в год", facSchol: "5-летний грант (всего)", facLoc: "Адрес", facAdm: "Статус приёма", facLang: "Язык обучения", uniHint: "Выберите из списка — город и факультеты заполнятся автоматически", coTitle: "Данные компании", coPhone: "Номер телефона", coEmail: "Email", coAddr: "Адрес", coHours: "Часы работы", coIg: "Ссылка Instagram", coTg: "Ссылка Telegram", coPrice: "Начальная цена ($)", saveCo: "Сохранить настройки" },
@@ -376,6 +539,46 @@ const T = {
     contact: { title: "تواصل معنا", sub: "لديك سؤال؟ راسلنا للحصول على استشارة مجانية.", name: "اسمك", email: "البريد الإلكتروني", phone: "الهاتف", msg: "رسالتك", send: "إرسال", ok: "شكرًا! تم استلام طلبك وسنتواصل معك قريبًا.", infoTitle: "بيانات التواصل", addressLabel: "العنوان", hours: "ساعات العمل" },
     docs: { eyebrow: "المستندات والتحضير", title: "ادرس حتى لو كنت لا تعرف التركية", sub: "اللغة ليست عائقًا — نرافقك من التحضير حتى التخرج.", docsTitle: "المستندات المطلوبة", docs: ["جواز السفر", "شهادة الثانوية (الأتيستات) أو دبلوم الكلية"], prepTitle: "برنامج تحضيري لمدة سنة", prepText: "يوجد برنامج تحضيري لمدة سنة للطلاب الذين لا يجيدون اللغة. وحسب لغة البرنامج تدرس تحضيريًا تركيًا أو إنجليزيًا — وتُحدَّد لغة التحضير وفق لغة البرنامج الذي تختاره." },
     benefits: { eyebrow: "الفرص", title: "الدراسة مجرد البداية", sub: "الحياة الطلابية في تركيا ليست شهادة فحسب، بل باب للإقامة والعمل والوصول إلى أوروبا.", items: [ { t: "تصريح الإقامة", d: "بعد قبولك تحصل على تصريح إقامة (إقامت) للعيش في تركيا بشكل قانوني." }, { t: "الدراسة مع العمل", d: "يمكنك العمل في وقت فراغك وكسب ما يكفي لتغطية القسط ونفقات المعيشة بسهولة." }, { t: "Work & Travel", d: "في العطلة الصيفية يمكنك المشاركة في برنامج Work and Travel في الدول الأوروبية للعمل والسياحة." }, { t: "تبادل Erasmus+", d: "عبر برنامج إيراسموس يمكنك متابعة جزء من دراستك في جامعات الاتحاد الأوروبي." } ] },
+    partner: {
+      nav: "الشراكة",
+      earnTitle: "ابدأ الربح مع Savura EDU",
+      earnSub: "ببساطة أوصِ بطالبك أو صديقك أو قريبك إلى Savura EDU — عندما يلتحقون بالجامعة، تربح أنت.",
+      earnCta: "كن شريكاً",
+      heroEyebrow: "برنامج الشراكة",
+      heroTitle: "أوصِ — واربح معاً",
+      heroSub: "سجّل مرة واحدة، شارك رابطك الشخصي، واحصل على مكافأة في كل مرة يلتحق فيها طالب أوصيت به بالجامعة.",
+      rewardWord: "لكل طالب يلتحق",
+      rewardUpto: "حتى",
+      how: [
+        { t: "سجّل", d: "افتح حساب شريك في دقيقة واحصل على رمز الإحالة والرابط الخاص بك." },
+        { t: "شارك", d: "أرسل رابطك للأصدقاء والطلاب والأقارب أو انشره على وسائل التواصل." },
+        { t: "اربح", d: "عندما يلتحق المتقدم الذي جاء عبرك، تُضاف المكافأة إلى رصيدك." },
+        { t: "اسحب", d: "اسحب رصيدك في أي وقت عبر البطاقة أو IBAN أو التحويل البنكي أو TRC20." }
+      ],
+      whoTitle: "من يمكنه الربح؟",
+      who: ["المعلمون والمدرّسون", "الطلاب", "أولياء أمور المتقدمين", "المدوّنون وكل من لديه معارف"],
+      ctaJoin: "كن شريكاً", ctaLogin: "الدخول إلى الحساب",
+      haveAcc: "لديك حساب؟", noAcc: "ليس لديك حساب؟",
+      regTitle: "التسجيل كشريك",
+      fName: "الاسم الكامل", fEmail: "البريد الإلكتروني", fPhone: "الهاتف", fPass: "كلمة المرور",
+      fAudience: "من تنوي أن توصي به؟ (اختياري)",
+      regBtn: "تسجيل", loginTitle: "الدخول إلى حساب الشريك", loginBtn: "دخول",
+      hello: "مرحباً", myCode: "رمز الإحالة الخاص بك", myLink: "رابط المشاركة",
+      copy: "نسخ", copied: "تم النسخ!", logout: "خروج",
+      stReferred: "موصى بهم", stProcess: "قيد المعالجة", stPaid: "التحقوا", stCancelled: "ملغى",
+      balance: "الرصيد الحالي", pending: "الرصيد المتوقع", withdraw: "سحب",
+      tName: "الاسم", tUni: "الجامعة", tStatus: "الحالة", tReward: "المكافأة", tDate: "التاريخ",
+      noRefs: "لا إحالات بعد. شارك رابطك!",
+      sNew: "جديد", sThinking: "يفكّر", sInpay: "قيد الدفع", sPaid: "التحق", sCancelled: "ملغى",
+      wTitle: "طلب سحب", wAmount: "المبلغ ($)", wMethod: "الطريقة",
+      mCard: "بطاقة", mIban: "IBAN", mBank: "تحويل بنكي", mTrc: "TRC20 (USDT)",
+      wDetails: "رقم البطاقة / IBAN / عنوان المحفظة", wSubmit: "إرسال الطلب",
+      wHistory: "سجل المدفوعات", wRequested: "قيد الانتظار", wPaid: "تم الدفع", noPayouts: "لا مدفوعات بعد.",
+      refField: "رمز الإحالة (اختياري)",
+      confirmNeeded: "التسجيل غير متاح مؤقتاً. يرجى التواصل مع المسؤول.",
+      loginErr: "البريد أو كلمة المرور غير صحيحة.", regErr: "خطأ في التسجيل. قد يكون البريد مستخدماً.",
+      minBal: "الرصيد غير كافٍ للسحب."
+    },
     proc: { nav: "المستندات والقبول", title: "المستندات المطلوبة وعملية القبول", sub: "اختر المرحلة لرؤية المستندات. تجهيزها بشكل صحيح وكامل يزيد فرص الحصول على المنحة.", levelsTitle: "المستندات حسب المرحلة", bachelor: "البكالوريوس", master: "الماجستير", doctorate: "الدكتوراه", docs: { bachelor: ["جواز السفر (أو بطاقة الهوية) — PDF", "شهادة الصف التاسع الأصلية — PDF", "شهادة الثانوية أو دبلوم الكلية/الليسيه مع الملحق (الأصل) — PDF. إن كنت ما زلت تدرس — كشف الدرجات الحالي", "خطاب الدوافع (Motivation)", "خطاب توصية من 1–2 من المعلمين/المرشدين", "الإنجازات: شهادات، دبلومات، ميداليات... (إن وجدت)", "شهادة اللغة TÖMER (إن وجدت)"], master: ["جواز السفر — PDF", "دبلوم الثانوية/الكلية مع الملحق — PDF", "دبلوم البكالوريوس مع الملحق (الأصل) — PDF. إن كنت ما زلت تدرس — كشف الدرجات", "خطاب الدوافع", "موضوع البحث ومقدّمته (مهم للمنحة)", "خطاب توصية من 1–2 من المعلمين/المشرفين", "الإنجازات: شهادات، دبلومات، أبحاث (إن وجدت)", "شهادة اللغة TÖMER (إن وجدت)"], doctorate: ["جواز السفر — PDF", "دبلوم الثانوية/الكلية مع الملحق — PDF", "دبلوما البكالوريوس والماجستير مع الملاحق (الأصل) — PDF. إن كنت ما زلت تدرس — كشف الدرجات", "خطاب الدوافع", "موضوع البحث ومقدّمته (شرط للدكتوراه)", "خطاب توصية للبحث من 1–2 من المعلمين/المشرفين", "الإنجازات: شهادات، دبلومات، ميداليات، أبحاث (إن وجدت)", "شهادة اللغة TÖMER (إن وجدت)"] }, extrasTitle: "مستندات إضافية إلزامية", motivation: { t: "خطاب الدوافع", d: "لماذا اخترت تركيا وهذا التخصص، وأهدافك بعد التخرج. حوالي 500 كلمة، باحترافية ووضوح.", points: ["عرّف بنفسك باختصار", "هدفك الأساسي", "إنجازاتك", "لماذا تركيا ولماذا هذا المجال", "عن الجامعة التي تتقدّم إليها", "ماذا يمكن أن تقدّم مقابل المنحة"] }, reference: { t: "خطاب التوصية", d: "من معلّم في مؤسستك التعليمية. يُفضّل أن يكون بدرجة علمية عالية (دكتوراه، أستاذ). يجب ذكر بريد إلكتروني فعّال للمعلّم." }, stagesTitle: "عملية القبول", stages: [{ t: "المرحلة 1: مراجعة المستندات", d: "يراجع المختصّون المستندات والأهداف والاهتمامات. الناجحون ينتقلون إلى المقابلة (أحيانًا اختبار رياضيات/منطق)." }, { t: "المرحلة 2: المقابلة", d: "حوالي 15–20 دقيقة. غالبًا عن هدفك من الدراسة في تركيا والتخصص المختار." }, { t: "المرحلة 3: الاختيار", d: "تقيّم اللجنة نتائج المقابلة وتُعدّ قائمة الفائزين بالمنحة." }] },
     footer: { tagline: "الدراسة في تركيا — سهلة مع سفورة للتعليم.", quick: "روابط سريعة", rights: "جميع الحقوق محفوظة." },
     admin: { login: "دخول المشرف", email: "البريد الإلكتروني", pass: "كلمة المرور", enter: "دخول", wrong: "كلمة المرور خاطئة", hint: "أدخل كلمة المرور للمتابعة", title: "لوحة التحكم", tabU: "الجامعات", tabI: "الطلبات", tabS: "الإعدادات", logout: "خروج", add: "إضافة جامعة", edit: "تعديل", save: "حفظ", cancel: "إلغاء", fName: "اسم الجامعة", fCity: "المدينة", fImg: "صورة الجامعة", upload: "رفع صورة", remove: "إزالة الصورة", imgHint: "JPG/PNG — يُصغّر تلقائيًا", fDesc: "الوصف", fFields: "التخصصات (للتصفية)", fFeatured: "العرض في الصفحة الرئيسية", saved: "تم الحفظ", confirm: "هل تريد الحذف فعلًا؟", noI: "لا توجد طلبات بعد.", iName: "الاسم", iContact: "التواصل", iMsg: "الرسالة", iDate: "التاريخ", shared: "ملاحظة: البيانات مرئية لكل زوار الموقع.", facTitle: "الكليات (السعر، الموقع، القبول)", addFac: "إضافة كلية", facName: "اسم الكلية", facPrice: "السعر السنوي", facSchol: "منحة 5 سنوات (الإجمالي)", facLoc: "الموقع", facAdm: "حالة القبول", facLang: "لغة الدراسة", uniHint: "اختر من القائمة ليُملأ المدينة والكليات تلقائيًا", coTitle: "بيانات الشركة", coPhone: "رقم الهاتف", coEmail: "البريد الإلكتروني", coAddr: "العنوان", coHours: "ساعات العمل", coIg: "رابط إنستغرام", coTg: "رابط تيليجرام", coPrice: "السعر الابتدائي ($)", saveCo: "حفظ الإعدادات" },
@@ -696,6 +899,22 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
 @keyframes fade{from{opacity:0}to{opacity:1}}
+.partner-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.partner-auth{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--sh)}
+.pa-tabs{display:flex;gap:6px;background:var(--bg2);border-radius:12px;padding:4px;margin-bottom:14px}
+.pa-tabs button{flex:1;padding:9px;border:none;background:none;border-radius:9px;font-weight:700;color:var(--ink-soft);cursor:pointer}
+.pa-tabs button.on{background:var(--teal);color:#fff}
+.cab-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.cab-code{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.cab-bal{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ptable{width:100%;border-collapse:collapse;font-size:.9rem}
+.ptable th{text-align:left;padding:12px 16px;background:var(--bg2);color:var(--ink-soft);font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap}
+.ptable td{padding:12px 16px;border-top:1px solid var(--line);white-space:nowrap}
+.pmodal-back{position:fixed;inset:0;z-index:95;background:rgba(14,42,44,.6);display:flex;align-items:center;justify-content:center;padding:20px;animation:fade .2s}
+.pmodal{background:var(--card);border-radius:var(--r);width:100%;max-width:440px;box-shadow:var(--sh);animation:fade .25s}
+.pmodal-head{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line)}
+.pmodal-head .x{background:none;border:none;cursor:pointer;color:var(--ink-soft)}
+@media(max-width:900px){.partner-hero{grid-template-columns:1fr;gap:30px}.cab-bal{grid-template-columns:1fr}}
 @media(max-width:900px){.hero-in{grid-template-columns:1fr;gap:34px;padding-top:48px;padding-bottom:60px}.about-grid,.contact-grid{grid-template-columns:1fr}.g3,.g4{grid-template-columns:repeat(2,1fr)}.foot-grid{grid-template-columns:1fr 1fr}.step .arrow{display:none}.fgrid{grid-template-columns:1fr}.irow{grid-template-columns:1fr 1fr;gap:8px}.facgrid{grid-template-columns:1fr 1fr;gap:8px}.facrow-d{grid-template-columns:1fr 1fr;gap:6px}.facrow-d.h{display:none}}
 @media(max-width:560px){.g3,.g4,.g2{grid-template-columns:1fr}.facc-prices{grid-template-columns:1fr}.foot-grid{grid-template-columns:1fr}.section{padding:54px 0}.band{padding:40px 24px}.brand-sub{display:none}}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.btn:hover,.adv-card:hover,.ucard:hover,.chip:hover{transform:none}}
@@ -723,7 +942,7 @@ function useReveal(dep) {
 }
 
 /* ================================================================== */
-const PAGE_LIST = ["home", "universities", "documents", "about", "contact", "admin"];
+const PAGE_LIST = ["home", "universities", "documents", "partner", "about", "contact", "admin"];
 function pageFromHash() {
   const h = (typeof window !== "undefined" ? (window.location.hash || "") : "").replace(/^#\/?/, "").toLowerCase();
   if (h.includes("admin")) return "admin";
@@ -762,6 +981,7 @@ export default function App() {
 
   // URL hash routing: browser back/forward and page refresh keep the current page
   useEffect(() => {
+    captureRef();
     const sync = () => { setPage(pageFromHash()); setMenu(false); setDetail(null); window.scrollTo({ top: 0 }); };
     window.addEventListener("hashchange", sync);
     return () => window.removeEventListener("hashchange", sync);
@@ -848,7 +1068,7 @@ export default function App() {
             <button className="ov-x" onClick={() => setMenu(false)} aria-label="close"><X size={22} /></button>
           </div>
           <div className="wrap ov-links">
-            {[["home", t.nav.home], ["universities", t.nav.universities], ["documents", t.proc.nav], ["about", t.nav.about], ["contact", t.nav.contact]].map(([p, label], i) => (
+            {[["home", t.nav.home], ["universities", t.nav.universities], ["documents", t.proc.nav], ["partner", t.partner.nav], ["about", t.nav.about], ["contact", t.nav.contact]].map(([p, label], i) => (
               <button key={p} className="ov-link" onClick={() => go(p)}><span className="num">0{i + 1}</span>{label}</button>
             ))}
           </div>
@@ -865,6 +1085,7 @@ export default function App() {
       {page === "home" && <Home t={t} go={go} goField={goField} unis={unis} fieldName={fieldName} openDetail={setDetail} company={company} />}
       {page === "universities" && <Universities t={t} unis={unis} filter={filter} setFilter={setFilter} query={query} setQuery={setQuery} fieldName={fieldName} openDetail={setDetail} />}
       {page === "documents" && <Process t={t} go={go} />}
+      {page === "partner" && <PartnerPage t={t} company={company} />}
       {page === "about" && <About t={t} go={go} />}
       {page === "contact" && <Contact t={t} company={company} applyCtx={applyCtx} clearApply={() => setApplyCtx(null)} />}
       {page === "admin" && <Admin t={t} unis={unis} setUnis={setUnis} company={company} setCompany={setCompany} fieldName={fieldName} go={go} />}
@@ -1010,6 +1231,22 @@ function Home({ t, go, goField, unis, fieldName, openDetail, company }) {
             <button className="btn btn-out" onClick={() => go("universities")}>{t.cta.viewAll}<ArrowRight size={17} /></button>
           </div>
           <div className="grid g3">{shown.map(u => <UniCard key={u.id} u={u} t={t} fieldName={fieldName} openDetail={openDetail} />)}</div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <div className="reveal" style={{ background: "linear-gradient(135deg,#0E2A2C,var(--teal-d))", borderRadius: "var(--r)", padding: "clamp(32px,5vw,52px)", position: "relative", overflow: "hidden", display: "grid", gridTemplateColumns: "1fr auto", gap: 26, alignItems: "center" }}>
+            <div style={{ position: "absolute", inset: 0, backgroundImage: `url("${STAR}")`, backgroundSize: 60, opacity: .35 }} />
+            <div style={{ position: "relative" }}>
+              <span className="eyebrow" style={{ color: "var(--amber)" }}><span style={{ width: 18, height: 2, background: "var(--amber)" }} />{t.partner.heroEyebrow}</span>
+              <h2 style={{ color: "#fff", fontSize: "clamp(1.5rem,3vw,2.1rem)", margin: "12px 0 10px", maxWidth: 620 }}>{t.partner.earnTitle}</h2>
+              <p style={{ color: "rgba(255,255,255,.85)", maxWidth: 560, marginBottom: 4 }}>{t.partner.earnSub}</p>
+            </div>
+            <div style={{ position: "relative", textAlign: "center" }}>
+              <button className="btn" style={{ background: "var(--amber)", color: "#3a2a00", fontWeight: 800, fontSize: "1rem", padding: "15px 28px" }} onClick={() => go("partner")}>{t.partner.earnCta}<ArrowRight size={18} /></button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1259,13 +1496,13 @@ function About({ t, go }) {
 
 /* ---------------- CONTACT ---------------- */
 function Contact({ t, company, applyCtx, clearApply }) {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", msg: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", msg: "", referral: getRef() });
   const [sent, setSent] = useState(false);
   const submit = async () => {
     if (!form.name || (!form.phone && !form.email)) return;
     const lead = { ...form, uni: (applyCtx && applyCtx.uni) || "", faculty: (applyCtx && applyCtx.faculty) || "" };
     await addLead(lead);
-    setSent(true); setForm({ name: "", email: "", phone: "", msg: "" });
+    setSent(true); setForm({ name: "", email: "", phone: "", msg: "", referral: getRef() });
     if (clearApply) clearApply();
   };
   const hasCtx = applyCtx && (applyCtx.uni || applyCtx.faculty);
@@ -1291,6 +1528,7 @@ function Contact({ t, company, applyCtx, clearApply }) {
                 <div className="field"><label>{t.contact.phone}</label><input value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} /></div>
               </div>
               <div className="field"><label>{t.contact.msg}</label><textarea rows={4} value={form.msg} onChange={e => setForm({ ...form, msg: e.target.value })} /></div>
+              <div className="field"><label>{t.partner.refField}</label><input dir="ltr" value={form.referral} onChange={e => setForm({ ...form, referral: e.target.value })} /></div>
               <button className="btn btn-primary" onClick={submit} style={{ justifyContent: "center" }}><Send size={17} />{t.contact.send}</button>
             </div>
             <div className="cinfo reveal">
@@ -1426,6 +1664,273 @@ function UniNameInput({ value, onText, onPick, placeholder }) {
   );
 }
 
+/* ============== PARTNER (referral) PLATFORM ============== */
+function PField({ label, ...props }) {
+  return (<div className="field" style={{ marginBottom: 12 }}><label>{label}</label><input {...props} /></div>);
+}
+
+function PartnerLanding({ t, company, mode, setMode, onAuthed }) {
+  const P = t.partner;
+  const reward = (company && company.partnerReward) || "50";
+  const [form, setForm] = useState({ name: "", email: "", phone: "", password: "", audience: "" });
+  const [err, setErr] = useState("");
+  const [busy, setBusy] = useState(false);
+  const HOW_ICONS = [Users, Send, Wallet, ArrowRight];
+  const submit = async () => {
+    setErr(""); setBusy(true);
+    if (mode === "join") {
+      if (!form.name || !form.email || !form.password) { setBusy(false); return; }
+      const r = await partner.register(form); setBusy(false);
+      if (r.ok) { onAuthed(); return; }
+      setErr(r.error === "confirm-disabled-needed" ? P.confirmNeeded : P.regErr);
+    } else {
+      const r = await partner.signIn(form.email, form.password); setBusy(false);
+      if (r.ok) { onAuthed(); return; }
+      setErr(P.loginErr);
+    }
+  };
+  return (
+    <main>
+      <section style={{ background: "linear-gradient(155deg,var(--teal),var(--teal-d))", color: "#fff", position: "relative", overflow: "hidden", padding: "72px 0 60px" }}>
+        <div style={{ position: "absolute", inset: 0, backgroundImage: `url("${STAR}")`, backgroundSize: 64, opacity: .5 }} />
+        <div className="wrap" style={{ position: "relative" }}>
+          <div className="partner-hero">
+            <div className="reveal in">
+              <span className="eyebrow" style={{ color: "var(--amber)" }}><span style={{ width: 18, height: 2, background: "var(--amber)" }} />{P.heroEyebrow}</span>
+              <h1 style={{ color: "#fff", fontSize: "clamp(2rem,4.5vw,3rem)", margin: "12px 0 14px", lineHeight: 1.12 }}>{P.heroTitle}</h1>
+              <p style={{ color: "rgba(255,255,255,.9)", fontSize: "1.05rem", maxWidth: 540 }}>{P.heroSub}</p>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 14, marginTop: 22, background: "rgba(255,255,255,.12)", border: "1px solid rgba(255,255,255,.2)", borderRadius: 16, padding: "16px 22px" }}>
+                <span style={{ fontSize: "2.4rem", fontWeight: 800, color: "var(--amber)" }}>${reward}</span>
+                <span style={{ color: "rgba(255,255,255,.9)", fontSize: ".95rem", maxWidth: 170 }}>{P.rewardWord}</span>
+              </div>
+            </div>
+            <div className="partner-auth reveal in">
+              <div className="pa-tabs">
+                <button className={mode === "join" ? "on" : ""} onClick={() => { setMode("join"); setErr(""); }}>{P.regBtn}</button>
+                <button className={mode === "login" ? "on" : ""} onClick={() => { setMode("login"); setErr(""); }}>{P.loginBtn}</button>
+              </div>
+              <h3 style={{ margin: "4px 0 16px", color: "var(--ink)" }}>{mode === "join" ? P.regTitle : P.loginTitle}</h3>
+              {mode === "join" && <>
+                <PField label={P.fName} value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
+                <PField label={P.fPhone} dir="ltr" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} />
+              </>}
+              <PField label={P.fEmail} type="email" dir="ltr" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
+              <PField label={P.fPass} type="password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
+              {mode === "join" && <PField label={P.fAudience} value={form.audience} onChange={e => setForm({ ...form, audience: e.target.value })} />}
+              {err && <div style={{ color: "var(--coral)", fontSize: ".88rem", marginBottom: 10 }}>{err}</div>}
+              <button className="btn btn-primary" style={{ width: "100%", justifyContent: "center" }} disabled={busy} onClick={submit}>{busy ? "…" : (mode === "join" ? P.regBtn : P.loginBtn)}</button>
+              <p style={{ textAlign: "center", marginTop: 12, fontSize: ".9rem", color: "var(--ink-soft)" }}>
+                {mode === "join" ? P.haveAcc : P.noAcc}{" "}
+                <button onClick={() => { setMode(mode === "join" ? "login" : "join"); setErr(""); }} style={{ color: "var(--teal)", fontWeight: 700, background: "none", border: "none", cursor: "pointer", padding: 0 }}>{mode === "join" ? P.loginBtn : P.regBtn}</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="section">
+        <div className="wrap">
+          <div className="sec-head center reveal"><h2>{P.nav}</h2></div>
+          <div className="grid g4">
+            {P.how.map((h, i) => { const Ic = HOW_ICONS[i] || Sparkles; return (
+              <div className="card reveal" key={i} style={{ padding: "26px 22px", transitionDelay: `${i * 70}ms` }}>
+                <div style={{ width: 50, height: 50, borderRadius: 13, background: "var(--teal)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14, position: "relative" }}>
+                  <Ic size={24} /><span style={{ position: "absolute", top: -8, right: -8, width: 24, height: 24, borderRadius: "50%", background: "var(--amber)", color: "#3a2a00", fontSize: ".8rem", fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center" }}>{i + 1}</span>
+                </div>
+                <h3 style={{ fontSize: "1.05rem", marginBottom: 8 }}>{h.t}</h3>
+                <p style={{ color: "var(--ink-soft)", fontSize: ".94rem", lineHeight: 1.6 }}>{h.d}</p>
+              </div>); })}
+          </div>
+        </div>
+      </section>
+      <section className="section alt">
+        <div className="wrap">
+          <div className="sec-head center reveal"><h2>{P.whoTitle}</h2></div>
+          <div className="grid g4">
+            {P.who.map((w, i) => (
+              <div className="card reveal" key={i} style={{ padding: "22px", textAlign: "center", transitionDelay: `${i * 60}ms` }}>
+                <Star size={22} color="var(--amber)" fill="var(--amber)" style={{ marginBottom: 8 }} />
+                <p style={{ fontWeight: 600 }}>{w}</p>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 30 }}>
+            <button className="btn btn-primary" onClick={() => { setMode("join"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>{P.ctaJoin}<ArrowRight size={18} /></button>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function WithdrawModal({ t, me, max, onClose, onDone }) {
+  const P = t.partner;
+  const [amount, setAmount] = useState("");
+  const [method, setMethod] = useState("card");
+  const [details, setDetails] = useState("");
+  const [err, setErr] = useState("");
+  const [busy, setBusy] = useState(false);
+  const methods = [["card", P.mCard], ["iban", P.mIban], ["bank", P.mBank], ["trc20", P.mTrc]];
+  const submit = async () => {
+    setErr("");
+    const amt = Number(amount);
+    if (!amt || amt <= 0 || !details) return;
+    if (amt > max) { setErr(P.minBal); return; }
+    setBusy(true);
+    const ok = await partner.requestPayout({ partner_id: me.id, amount: amt, method, details });
+    setBusy(false);
+    if (ok) onDone(); else setErr(P.minBal);
+  };
+  return (
+    <div className="pmodal-back" onClick={onClose}>
+      <div className="pmodal" onClick={e => e.stopPropagation()}>
+        <div className="pmodal-head"><h3>{P.wTitle}</h3><button className="x" onClick={onClose}><X size={20} /></button></div>
+        <div style={{ padding: 22 }}>
+          <div className="field" style={{ marginBottom: 12 }}><label>{P.wAmount}</label><input type="number" inputMode="numeric" value={amount} onChange={e => setAmount(e.target.value)} placeholder={`max $${max}`} /></div>
+          <div className="field" style={{ marginBottom: 12 }}><label>{P.wMethod}</label>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+              {methods.map(([k, lbl]) => (
+                <button key={k} onClick={() => setMethod(k)} style={{ padding: "8px 14px", borderRadius: 10, border: "1px solid var(--line)", background: method === k ? "var(--teal)" : "#fff", color: method === k ? "#fff" : "var(--ink)", cursor: "pointer", fontWeight: 600 }}>{lbl}</button>
+              ))}
+            </div>
+          </div>
+          <div className="field" style={{ marginBottom: 14 }}><label>{P.wDetails}</label><input value={details} dir="ltr" onChange={e => setDetails(e.target.value)} /></div>
+          {err && <div style={{ color: "var(--coral)", fontSize: ".88rem", marginBottom: 10 }}>{err}</div>}
+          <button className="btn btn-primary" style={{ width: "100%", justifyContent: "center" }} disabled={busy} onClick={submit}>{busy ? "…" : P.wSubmit}<Send size={16} /></button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PartnerCabinet({ t, me, onLogout }) {
+  const P = t.partner;
+  const [refs, setRefs] = useState([]);
+  const [pays, setPays] = useState([]);
+  const [copied, setCopied] = useState(false);
+  const [wOpen, setWOpen] = useState(false);
+  const load = async () => { setRefs(await partner.referrals()); setPays(await partner.payouts()); };
+  useEffect(() => { load(); }, []);
+  const link = `${window.location.origin}/?ref=${me.code}`;
+  const copy = () => { try { navigator.clipboard.writeText(link); setCopied(true); setTimeout(() => setCopied(false), 1500); } catch {} };
+  const num = (x) => Number(x) || 0;
+  const inProc = (st) => ["new", "thinking", "in_payment"].includes(st);
+  const counts = {
+    referred: refs.length,
+    process: refs.filter(r => inProc(r.status)).length,
+    paid: refs.filter(r => r.status === "paid").length,
+    cancelled: refs.filter(r => r.status === "cancelled").length,
+  };
+  const earned = refs.filter(r => r.status === "paid").reduce((s, r) => s + num(r.reward_usd), 0);
+  const paidOut = pays.filter(p => p.status === "paid").reduce((s, p) => s + num(p.amount_usd), 0);
+  const balance = Math.max(0, earned - paidOut);
+  const pending = refs.filter(r => inProc(r.status)).reduce((s, r) => s + num(r.reward_usd), 0);
+  const stLabel = (st) => ({ new: P.sNew, thinking: P.sThinking, in_payment: P.sInpay, paid: P.sPaid, cancelled: P.sCancelled }[st] || st);
+  const stColor = (st) => ({ new: "#6b7280", thinking: "#F5A623", in_payment: "#3b82f6", paid: "#0B8A8C", cancelled: "#FF5A5A" }[st] || "#6b7280");
+  return (
+    <main>
+      <section className="section">
+        <div className="wrap">
+          <div className="cab-top reveal in">
+            <div>
+              <span className="eyebrow"><span style={{ width: 18, height: 2, background: "var(--teal)" }} />{P.nav}</span>
+              <h1 style={{ fontSize: "clamp(1.6rem,3vw,2.2rem)", margin: "8px 0 0" }}>{P.hello}, {me.name || ""}</h1>
+            </div>
+            <button className="btn btn-out" onClick={onLogout}><LogOut size={16} />{P.logout}</button>
+          </div>
+          <div className="card reveal in" style={{ padding: 22, marginBottom: 18 }}>
+            <div className="cab-code">
+              <div>
+                <div style={{ fontSize: ".82rem", color: "var(--ink-soft)", marginBottom: 4 }}>{P.myCode}</div>
+                <div style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--teal)", letterSpacing: 1 }}>{me.code}</div>
+              </div>
+              <div style={{ flex: 1, minWidth: 220 }}>
+                <div style={{ fontSize: ".82rem", color: "var(--ink-soft)", marginBottom: 4 }}>{P.myLink}</div>
+                <div style={{ display: "flex", gap: 8 }}>
+                  <input readOnly value={link} dir="ltr" style={{ flex: 1, padding: "10px 12px", border: "1px solid var(--line)", borderRadius: 10, background: "var(--bg2)", fontSize: ".85rem", minWidth: 0 }} />
+                  <button className="btn btn-teal" onClick={copy}>{copied ? P.copied : P.copy}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="grid g4" style={{ marginBottom: 18 }}>
+            {[[P.stReferred, counts.referred, "var(--teal)"], [P.stProcess, counts.process, "#3b82f6"], [P.stPaid, counts.paid, "var(--amber-d)"], [P.stCancelled, counts.cancelled, "var(--coral)"]].map(([lbl, val, col], i) => (
+              <div className="card reveal in" key={i} style={{ padding: "20px", textAlign: "center" }}>
+                <div style={{ fontSize: "2rem", fontWeight: 800, color: col }}>{val}</div>
+                <div style={{ color: "var(--ink-soft)", fontSize: ".9rem" }}>{lbl}</div>
+              </div>
+            ))}
+          </div>
+          <div className="cab-bal reveal in">
+            <div className="card" style={{ padding: 24, background: "linear-gradient(155deg,var(--teal),var(--teal-d))", color: "#fff" }}>
+              <div style={{ fontSize: ".9rem", opacity: .9 }}>{P.balance}</div>
+              <div style={{ fontSize: "2.6rem", fontWeight: 800, margin: "4px 0 14px" }}>${balance.toLocaleString()}</div>
+              <button className="btn" style={{ background: "var(--amber)", color: "#3a2a00", fontWeight: 700, opacity: balance <= 0 ? .55 : 1 }} onClick={() => balance > 0 && setWOpen(true)} disabled={balance <= 0}><Wallet size={17} />{P.withdraw}</button>
+            </div>
+            <div className="card" style={{ padding: 24 }}>
+              <div style={{ fontSize: ".9rem", color: "var(--ink-soft)" }}>{P.pending}</div>
+              <div style={{ fontSize: "2.6rem", fontWeight: 800, margin: "4px 0", color: "var(--ink)" }}>${pending.toLocaleString()}</div>
+              <div style={{ fontSize: ".85rem", color: "var(--ink-soft)" }}>{counts.process} · {P.stProcess}</div>
+            </div>
+          </div>
+          <h3 style={{ margin: "26px 0 12px" }}>{P.stReferred}</h3>
+          <div className="card" style={{ padding: 0, overflow: "hidden" }}>
+            {refs.length === 0 ? <div style={{ padding: 30, textAlign: "center", color: "var(--ink-soft)" }}>{P.noRefs}</div> : (
+              <div style={{ overflowX: "auto" }}>
+                <table className="ptable">
+                  <thead><tr><th>{P.tName}</th><th>{P.tUni}</th><th>{P.tStatus}</th><th>{P.tReward}</th><th>{P.tDate}</th></tr></thead>
+                  <tbody>{refs.map(r => (
+                    <tr key={r.id}>
+                      <td>{r.name || "—"}</td>
+                      <td style={{ color: "var(--ink-soft)" }}>{r.uni || "—"}</td>
+                      <td><span style={{ background: stColor(r.status) + "22", color: stColor(r.status), padding: "3px 10px", borderRadius: 20, fontSize: ".8rem", fontWeight: 700 }}>{stLabel(r.status)}</span></td>
+                      <td style={{ fontWeight: 700 }}>${num(r.reward_usd)}</td>
+                      <td style={{ color: "var(--ink-soft)", fontSize: ".85rem" }}>{new Date(r.created_at).toLocaleDateString()}</td>
+                    </tr>))}</tbody>
+                </table>
+              </div>
+            )}
+          </div>
+          <h3 style={{ margin: "26px 0 12px" }}>{P.wHistory}</h3>
+          <div className="card" style={{ padding: 0, overflow: "hidden" }}>
+            {pays.length === 0 ? <div style={{ padding: 30, textAlign: "center", color: "var(--ink-soft)" }}>{P.noPayouts}</div> : (
+              <div style={{ overflowX: "auto" }}>
+                <table className="ptable">
+                  <thead><tr><th>{P.wAmount}</th><th>{P.wMethod}</th><th>{P.tStatus}</th><th>{P.tDate}</th></tr></thead>
+                  <tbody>{pays.map(p => (
+                    <tr key={p.id}>
+                      <td style={{ fontWeight: 700 }}>${num(p.amount_usd)}</td>
+                      <td>{p.method}</td>
+                      <td><span style={{ color: p.status === "paid" ? "var(--teal)" : "var(--amber-d)", fontWeight: 700 }}>{p.status === "paid" ? P.wPaid : P.wRequested}</span></td>
+                      <td style={{ color: "var(--ink-soft)", fontSize: ".85rem" }}>{new Date(p.created_at).toLocaleDateString()}</td>
+                    </tr>))}</tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+      {wOpen && <WithdrawModal t={t} me={me} max={balance} onClose={() => setWOpen(false)} onDone={() => { setWOpen(false); load(); }} />}
+    </main>
+  );
+}
+
+function PartnerPage({ t, company }) {
+  const [sess, setSess] = useState(null);
+  const [me, setMe] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [mode, setMode] = useState("join");
+  const refresh = async () => {
+    const s = await partner.session();
+    setSess(s);
+    if (s) { setMe(await partner.me()); } else setMe(null);
+    setLoading(false);
+  };
+  useEffect(() => { refresh(); }, []);
+  if (loading) return <main><section className="section"><div className="wrap" style={{ textAlign: "center", padding: "70px 0", color: "var(--ink-soft)" }}>…</div></section></main>;
+  if (sess && me) return <PartnerCabinet t={t} me={me} onLogout={async () => { await partner.signOut(); setSess(null); setMe(null); }} />;
+  return <PartnerLanding t={t} company={company} mode={mode} setMode={setMode} onAuthed={refresh} />;
+}
+
 function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
   const [authed, setAuthed] = useState(false);
   const [email, setEmail] = useState("admin@savura.edu");
@@ -1439,7 +1944,7 @@ function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
   const fileRef = useRef(null);
 
   useEffect(() => { setCo(company); }, [company]);
-  useEffect(() => { (async () => { if (await auth.session()) setAuthed(true); })(); }, []);
+  useEffect(() => { (async () => { if (await auth.session() && await auth.isAdmin()) setAuthed(true); })(); }, []);
   useEffect(() => { if (authed) (async () => setLeads(await getLeads()))(); }, [authed]);
 
   const doLogout = async () => { await auth.signOut(); setAuthed(false); setPw(""); go("home"); };
@@ -1486,7 +1991,8 @@ function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
 
   const tryLogin = async () => {
     const r = await auth.signIn(email, pw);
-    if (r.ok) { setAuthed(true); setErr(false); } else setErr(true);
+    if (r.ok && await auth.isAdmin()) { setAuthed(true); setErr(false); }
+    else { await auth.signOut(); setErr(true); }
   };
 
   if (!authed) {

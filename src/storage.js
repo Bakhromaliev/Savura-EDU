@@ -86,18 +86,34 @@ export const auth = usingSupabase ? {
   },
   async signOut() { try { await sb.auth.signOut(); } catch {} },
   async session() { try { const { data } = await sb.auth.getSession(); return (data && data.session) || null; } catch { return null; } },
+  async isAdmin() { try { const { data } = await sb.rpc("is_admin"); return data === true; } catch { return false; } },
 } : {
   // offline/demo fallback only (Supabase is normally configured)
   async signIn() { return { ok: true }; },
   async signOut() {},
   async session() { return null; },
+  async isAdmin() { return true; },
 };
+
+/* ---------- referral capture (?ref=CODE) ---------- */
+const REF_KEY = "savura:ref";
+export function captureRef() {
+  try {
+    const u = new URL(window.location.href);
+    const r = (u.searchParams.get("ref") || "").trim();
+    if (r) localStorage.setItem(REF_KEY, r);
+  } catch {}
+}
+export function getRef() {
+  try { return localStorage.getItem(REF_KEY) || ""; } catch { return ""; }
+}
 
 /* ---------- leads (customer inquiries) ---------- */
 export async function addLead(lead) {
   const row = {
     name: lead.name || "", phone: lead.phone || "", email: lead.email || "",
     msg: lead.msg || "", uni: lead.uni || "", faculty: lead.faculty || "",
+    referral: (lead.referral || getRef() || "").trim(),
   };
   if (!usingSupabase) {
     const arr = (await store.get("savura:leads")) || [];
@@ -117,3 +133,76 @@ export async function getLeads() {
     return data || [];
   } catch { return []; }
 }
+
+/* ---------- partner (referral affiliate) platform ---------- */
+function genCode(name) {
+  const base = (name || "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6) || "SAVURA";
+  return base + Math.floor(1000 + Math.random() * 9000);
+}
+
+export const partner = usingSupabase ? {
+  async register({ name, email, phone, password, audience }) {
+    try {
+      const { data, error } = await sb.auth.signUp({ email: (email || "").trim(), password });
+      if (error) return { ok: false, error: error.message };
+      const uid = data && data.user && data.user.id;
+      if (!data || !data.session) {
+        // email confirmation is ON -> no session; cannot create profile yet
+        return { ok: false, error: "confirm-disabled-needed", uid };
+      }
+      let code = genCode(name), tries = 0, prow = null;
+      while (tries < 6) {
+        const { data: ins, error: e2 } = await sb.from("partners")
+          .insert({ auth_id: uid, name: name || "", email: email || "", phone: phone || "", audience: audience || "", code })
+          .select().single();
+        if (!e2) { prow = ins; break; }
+        if (e2.code === "23505") { code = genCode(name); tries++; continue; }
+        return { ok: false, error: e2.message };
+      }
+      return { ok: true, partner: prow };
+    } catch (e) { return { ok: false, error: String(e) }; }
+  },
+  async signIn(email, password) {
+    try {
+      const { data, error } = await sb.auth.signInWithPassword({ email: (email || "").trim(), password });
+      return { ok: !!(data && data.session) && !error, error: error && error.message };
+    } catch (e) { return { ok: false, error: String(e) }; }
+  },
+  async signOut() { try { await sb.auth.signOut(); } catch {} },
+  async session() { try { const { data } = await sb.auth.getSession(); return (data && data.session) || null; } catch { return null; } },
+  async me() {
+    try {
+      const { data } = await sb.from("partners").select("*").eq("auth_id", (await sb.auth.getUser()).data.user.id).maybeSingle();
+      return data || null;
+    } catch { return null; }
+  },
+  async referrals() {
+    try {
+      const { data } = await sb.from("leads")
+        .select("id,name,phone,uni,faculty,status,reward_usd,created_at")
+        .order("created_at", { ascending: false });
+      return data || [];
+    } catch { return []; }
+  },
+  async payouts() {
+    try {
+      const { data } = await sb.from("payouts").select("*").order("created_at", { ascending: false });
+      return data || [];
+    } catch { return []; }
+  },
+  async requestPayout({ partner_id, amount, method, details }) {
+    try {
+      const { error } = await sb.from("payouts").insert({ partner_id, amount_usd: amount, method, details });
+      return !error;
+    } catch { return false; }
+  },
+} : {
+  async register() { return { ok: false, error: "offline" }; },
+  async signIn() { return { ok: false }; },
+  async signOut() {},
+  async session() { return null; },
+  async me() { return null; },
+  async referrals() { return []; },
+  async payouts() { return []; },
+  async requestPayout() { return false; },
+};

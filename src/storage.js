@@ -13,11 +13,11 @@ import { createClient } from "@supabase/supabase-js";
 
 const url =
   import.meta.env.VITE_SUPABASE_URL ||
-  "https://xxrjcyofbgmcqzoaaktq.supabase.co";
+  "https://lvjkxqeoqqzhddctfzba.supabase.co";
 
 const anon =
   import.meta.env.VITE_SUPABASE_ANON_KEY ||
-  "sb_publishable_ceM-8qTVH8RubZcFKsFLOQ_t6iT_uAS";
+  "sb_publishable_0OpT5m81YxLTza-1XBBAoQ_rX48aFNn";
 
 export const usingSupabase = Boolean(url && anon);
 const sb = usingSupabase ? createClient(url, anon) : null;

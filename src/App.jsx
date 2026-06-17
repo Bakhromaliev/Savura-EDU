@@ -5,9 +5,10 @@ import {
   Stethoscope, Cpu, Briefcase, Scale, Moon, Pill, Palette, Users,
   Wrench, Award, Wallet, ShieldCheck, Plane, FileText, Sparkles,
   Building2, ChevronRight, Send, Lock, Heart, Upload, Settings,
-  Layers, Image as ImageIcon, Save, Clock
+  Layers, Image as ImageIcon, Save, Clock, Eye, EyeOff,
+  CheckCircle2, XCircle, Link2, Copy, TrendingUp, UserPlus
 } from "lucide-react";
-import { store, auth, addLead, getLeads, partner, captureRef, getRef } from "./storage";
+import { store, auth, addLead, getLeads, partner, captureRef, getRef, admin } from "./storage";
 
 /* ---------- custom brand icons (safe, no dependency on lucide brand set) ---------- */
 const InstagramIcon = ({ size = 20 }) => (
@@ -285,11 +286,11 @@ const T = {
       refField: "Referal kodi (ixtiyoriy)",
       confirmNeeded: "Ro‘yxatdan o‘tish vaqtincha mavjud emas. Administrator bilan bog‘laning.",
       loginErr: "Email yoki parol noto‘g‘ri.", regErr: "Ro‘yxatdan o‘tishda xatolik. Email band bo‘lishi mumkin.",
-      minBal: "Yechish uchun yetarli balans yo‘q."
+      minBal: "Yechish uchun yetarli balans yo‘q.", fConfirm: "Parolni tasdiqlang", passMismatch: "Parollar mos kelmadi.", passShort: "Parol kamida 6 belgidan iborat bo‘lsin."
     },
     proc: { nav: "Hujjatlar va qabul", title: "Kerakli hujjatlar va qabul jarayoni", sub: "Bosqichingizni tanlang va kerakli hujjatlar ro‘yxatini ko‘ring. Hujjatlarni to‘g‘ri va sifatli tayyorlash grant olish imkonini oshiradi.", levelsTitle: "Bosqich bo‘yicha hujjatlar", bachelor: "Bakalavr", master: "Magistratura", doctorate: "Doktorantura", docs: { bachelor: ["Pasport (qizil, yashil yoki ID karta) — PDF", "9-sinf shahodatnomasi asl nusxasi — PDF", "11-sinf shahodatnomasi yoki kollej/litsey diplomi va ilovasi (asl) — PDF. Hali o‘qiyotgan bo‘lsangiz — joriy baholar hujjati", "Niyat (motivatsiya) xati", "1–2 o‘qituvchi/murabbiydan tavsiyanoma", "Yutuqlar: sertifikat, diplom, medal va h.k. (mavjud bo‘lsa)", "TÖMER til sertifikati (mavjud bo‘lsa)"], master: ["Pasport — PDF", "Maktab/kollej/litsey diplomi va ilovasi — PDF", "Bakalavr diplomi va ilovasi (asl) — PDF. Hali o‘qiyotgan bo‘lsangiz — reyting daftarchasi", "Niyat (motivatsiya) xati", "Ilmiy ish mavzusi va kirish qismi (grant uchun muhim)", "1–2 o‘qituvchi/ilmiy rahbardan tavsiyanoma", "Yutuqlar: sertifikat, diplom, maqolalar (mavjud bo‘lsa)", "TÖMER til sertifikati (mavjud bo‘lsa)"], doctorate: ["Pasport — PDF", "Maktab/kollej/litsey diplomi va ilovasi — PDF", "Bakalavr va magistr diplomi va ilovasi (asl) — PDF. Hali o‘qiyotgan bo‘lsangiz — reyting daftarchasi", "Niyat (motivatsiya) xati", "Ilmiy ish mavzusi va kirish qismi (doktorantura uchun shart)", "Ilmiy ishga 1–2 o‘qituvchi/rahbardan tavsiyanoma", "Yutuqlar: sertifikat, diplom, medal, maqolalar (mavjud bo‘lsa)", "TÖMER til sertifikati (mavjud bo‘lsa)"] }, extrasTitle: "Majburiy qo‘shimcha hujjatlar", motivation: { t: "Niyat (motivatsiya) xati", d: "Nega Turkiyani va shu yo‘nalishni tanlaganingiz, bitirgandan keyingi maqsadlaringiz. Taxminan 500 so‘z, professional va aniq.", points: ["O‘zingizni qisqa tanishtiring", "Asosiy maqsadingiz", "Erishgan yutuqlaringiz", "Nega Turkiya va nega bu soha", "Topshirayotgan universitetingiz haqida", "Grant evaziga nima qila olasiz"] }, reference: { t: "Tavsiyanoma (reference letter)", d: "O‘qish joyingizdagi o‘qituvchidan. Ilmiy unvoni yuqori bo‘lgani (fan nomzodi, professor) afzal. O‘qituvchining faol elektron pochtasi ko‘rsatilishi shart." }, stagesTitle: "Qabul jarayoni", stages: [{ t: "1-bosqich: hujjatlarni ko‘rib chiqish", d: "Hujjatlar, maqsad va qiziqishlar mutaxassislar tomonidan o‘rganiladi. Muvaffaqiyatlilar suhbatga o‘tadi (ba’zan matematika/mantiq testi bo‘lishi mumkin)." }, { t: "2-bosqich: suhbat", d: "O‘rtacha 15–20 daqiqa. Asosan Turkiyada o‘qish maqsadi va tanlangan yo‘nalish haqida savollar." }, { t: "3-bosqich: tanlov", d: "Komissiya suhbat natijalarini baholaydi va grant yutganlar ro‘yxati tuziladi." }] },
     footer: { tagline: "Turkiyada o‘qish — Savura EDU bilan oson.", quick: "Tezkor havolalar", rights: "Barcha huquqlar himoyalangan." },
-    admin: { login: "Admin kirish", email: "Email", pass: "Parol", enter: "Kirish", wrong: "Parol noto‘g‘ri", hint: "Davom etish uchun parolni kiriting", title: "Boshqaruv paneli", tabU: "Universitetlar", tabI: "Arizalar", tabS: "Sozlamalar", logout: "Chiqish", add: "Universitet qo‘shish", edit: "Tahrirlash", save: "Saqlash", cancel: "Bekor qilish", fName: "Universitet nomi", fCity: "Shahar", fImg: "Universitet rasmi", upload: "Rasm yuklash", remove: "Rasmni o‘chirish", imgHint: "JPG/PNG — avtomatik kichraytiriladi", fDesc: "Tavsif", fFields: "Yo‘nalishlar (filtr uchun)", fFeatured: "Bosh sahifada ko‘rsatish", saved: "Saqlandi", confirm: "Rostdan o‘chirilsinmi?", noI: "Hozircha arizalar yo‘q.", iName: "Ism", iContact: "Aloqa", iMsg: "Xabar", iDate: "Sana", shared: "Eslatma: ma’lumotlar saytda barcha tashrif buyuruvchilarga ko‘rinadi.", facTitle: "Fakultetlar (narxi, manzili, qabul)", addFac: "Fakultet qo‘shish", facName: "Fakultet nomi", facPrice: "Yillik narx", facSchol: "5 yil burs (jami)", facLoc: "Manzil", facAdm: "Qabul holati", facLang: "Ta'lim tili", uniHint: "Ro'yxatdan tanlasangiz shahri va fakultetlari avtomatik to'ladi", coTitle: "Kompaniya ma’lumotlari", coPhone: "Telefon raqam", coEmail: "Email", coAddr: "Manzil", coHours: "Ish vaqti", coIg: "Instagram havolasi", coTg: "Telegram havolasi", coPrice: "Boshlang‘ich narx ($)", saveCo: "Sozlamalarni saqlash" },
+    admin: { login: "Admin kirish", email: "Email", pass: "Parol", enter: "Kirish", wrong: "Parol noto‘g‘ri", hint: "Davom etish uchun parolni kiriting", title: "Boshqaruv paneli", tabU: "Universitetlar", tabI: "Arizalar", tabS: "Sozlamalar", logout: "Chiqish", add: "Universitet qo‘shish", edit: "Tahrirlash", save: "Saqlash", cancel: "Bekor qilish", fName: "Universitet nomi", fCity: "Shahar", fImg: "Universitet rasmi", upload: "Rasm yuklash", remove: "Rasmni o‘chirish", imgHint: "JPG/PNG — avtomatik kichraytiriladi", fDesc: "Tavsif", fFields: "Yo‘nalishlar (filtr uchun)", fFeatured: "Bosh sahifada ko‘rsatish", saved: "Saqlandi", confirm: "Rostdan o‘chirilsinmi?", noI: "Hozircha arizalar yo‘q.", iName: "Ism", iContact: "Aloqa", iMsg: "Xabar", iDate: "Sana", shared: "Eslatma: ma’lumotlar saytda barcha tashrif buyuruvchilarga ko‘rinadi.", facTitle: "Fakultetlar (narxi, manzili, qabul)", addFac: "Fakultet qo‘shish", facName: "Fakultet nomi", facPrice: "Yillik narx", facSchol: "5 yil burs (jami)", facLoc: "Manzil", facAdm: "Qabul holati", facLang: "Ta'lim tili", uniHint: "Ro'yxatdan tanlasangiz shahri va fakultetlari avtomatik to'ladi", coTitle: "Kompaniya ma’lumotlari", coPhone: "Telefon raqam", coEmail: "Email", coAddr: "Manzil", coHours: "Ish vaqti", coIg: "Instagram havolasi", coTg: "Telegram havolasi", coPrice: "Boshlang‘ich narx ($)", saveCo: "Sozlamalarni saqlash", tabP: "Hamkorlar", iRef: "Referal / Hamkor", payReqs: "Pul yechish arizalari", markPaid: "To‘lov qildim", noPartners: "Hozircha hamkorlar yo‘q.", noPayReq: "Pul yechish arizalari yo‘q.", crmRef: "Tavsiyalar", crmBal: "Balans" },
   },
 
   tr: {
@@ -358,11 +359,11 @@ const T = {
       refField: "Referans kodu (isteğe bağlı)",
       confirmNeeded: "Kayıt geçici olarak kapalı. Lütfen yönetici ile iletişime geçin.",
       loginErr: "E-posta veya şifre hatalı.", regErr: "Kayıt sırasında hata. E-posta kullanımda olabilir.",
-      minBal: "Çekim için yeterli bakiye yok."
+      minBal: "Çekim için yeterli bakiye yok.", fConfirm: "Şifreyi onaylayın", passMismatch: "Şifreler eşleşmiyor.", passShort: "Şifre en az 6 karakter olmalı."
     },
     proc: { nav: "Belgeler ve kabul", title: "Gerekli belgeler ve kabul süreci", sub: "Seviyeni seç ve gerekli belgeleri gör. Belgeleri doğru ve eksiksiz hazırlamak burs şansını artırır.", levelsTitle: "Seviyeye göre belgeler", bachelor: "Lisans", master: "Yüksek lisans", doctorate: "Doktora", docs: { bachelor: ["Pasaport (kırmızı, yeşil veya kimlik) — PDF", "9. sınıf belgesi aslı — PDF", "Lise diploması veya kolej/lise diploması ve eki (asıl) — PDF. Hâlâ okuyorsanız — güncel not belgesi", "Niyet (motivasyon) mektubu", "1–2 öğretmen/danışmandan referans mektubu", "Başarılar: sertifika, diploma, madalya vb. (varsa)", "TÖMER dil sertifikası (varsa)"], master: ["Pasaport — PDF", "Lise/kolej diploması ve eki — PDF", "Lisans diploması ve eki (asıl) — PDF. Hâlâ okuyorsanız — not dökümü (transkript)", "Niyet (motivasyon) mektubu", "Araştırma konusu ve giriş bölümü (burs için önemli)", "1–2 öğretmen/danışmandan referans mektubu", "Başarılar: sertifika, diploma, makaleler (varsa)", "TÖMER dil sertifikası (varsa)"], doctorate: ["Pasaport — PDF", "Lise/kolej diploması ve eki — PDF", "Lisans ve yüksek lisans diploması ve eki (asıl) — PDF. Hâlâ okuyorsanız — transkript", "Niyet (motivasyon) mektubu", "Araştırma konusu ve giriş bölümü (doktora için şart)", "Araştırma için 1–2 öğretmen/danışmandan referans", "Başarılar: sertifika, diploma, madalya, makaleler (varsa)", "TÖMER dil sertifikası (varsa)"] }, extrasTitle: "Zorunlu ek belgeler", motivation: { t: "Niyet (motivasyon) mektubu", d: "Türkiye'yi ve bu bölümü neden seçtiğin, mezuniyet sonrası hedeflerin. Yaklaşık 500 kelime, profesyonel ve net.", points: ["Kendini kısaca tanıt", "Ana hedefin", "Başarıların", "Neden Türkiye ve neden bu alan", "Başvurduğun üniversite hakkında", "Burs karşılığında neler katabilirsin"] }, reference: { t: "Referans mektubu", d: "Okulundaki bir öğretmenden. Akademik unvanı yüksek olması (doktor, profesör) tercih edilir. Öğretmenin aktif e-posta adresi belirtilmelidir." }, stagesTitle: "Kabul süreci", stages: [{ t: "1. aşama: belge incelemesi", d: "Belgeler, hedefler ve ilgi alanları uzmanlarca incelenir. Başarılı olanlar mülakata geçer (bazen matematik/mantık testi olabilir)." }, { t: "2. aşama: mülakat", d: "Ortalama 15–20 dakika. Genelde Türkiye'de okuma amacı ve seçilen bölüm hakkında sorular." }, { t: "3. aşama: seçim", d: "Komisyon mülakat sonuçlarını değerlendirir ve burs kazananların listesi oluşturulur." }] },
     footer: { tagline: "Türkiye'de okumak — Savura EDU ile kolay.", quick: "Hızlı bağlantılar", rights: "Tüm hakları saklıdır." },
-    admin: { login: "Yönetici girişi", email: "E-posta", pass: "Şifre", enter: "Giriş", wrong: "Şifre yanlış", hint: "Devam etmek için şifrenizi girin", title: "Yönetim paneli", tabU: "Üniversiteler", tabI: "Başvurular", tabS: "Ayarlar", logout: "Çıkış", add: "Üniversite ekle", edit: "Düzenle", save: "Kaydet", cancel: "İptal", fName: "Üniversite adı", fCity: "Şehir", fImg: "Üniversite görseli", upload: "Görsel yükle", remove: "Görseli kaldır", imgHint: "JPG/PNG — otomatik küçültülür", fDesc: "Açıklama", fFields: "Bölümler (filtre için)", fFeatured: "Ana sayfada göster", saved: "Kaydedildi", confirm: "Gerçekten silinsin mi?", noI: "Henüz başvuru yok.", iName: "Ad", iContact: "İletişim", iMsg: "Mesaj", iDate: "Tarih", shared: "Not: veriler sitede tüm ziyaretçilere görünür.", facTitle: "Fakülteler (ücret, konum, kayıt)", addFac: "Fakülte ekle", facName: "Fakülte adı", facPrice: "Yıllık ücret", facSchol: "5 yıl burs (toplam)", facLoc: "Konum", facAdm: "Kayıt durumu", facLang: "Eğitim dili", uniHint: "Listeden seçerseniz şehir ve fakülteler otomatik dolar", coTitle: "Şirket bilgileri", coPhone: "Telefon", coEmail: "E-posta", coAddr: "Adres", coHours: "Çalışma saatleri", coIg: "Instagram bağlantısı", coTg: "Telegram bağlantısı", coPrice: "Başlangıç fiyatı ($)", saveCo: "Ayarları kaydet" },
+    admin: { login: "Yönetici girişi", email: "E-posta", pass: "Şifre", enter: "Giriş", wrong: "Şifre yanlış", hint: "Devam etmek için şifrenizi girin", title: "Yönetim paneli", tabU: "Üniversiteler", tabI: "Başvurular", tabS: "Ayarlar", logout: "Çıkış", add: "Üniversite ekle", edit: "Düzenle", save: "Kaydet", cancel: "İptal", fName: "Üniversite adı", fCity: "Şehir", fImg: "Üniversite görseli", upload: "Görsel yükle", remove: "Görseli kaldır", imgHint: "JPG/PNG — otomatik küçültülür", fDesc: "Açıklama", fFields: "Bölümler (filtre için)", fFeatured: "Ana sayfada göster", saved: "Kaydedildi", confirm: "Gerçekten silinsin mi?", noI: "Henüz başvuru yok.", iName: "Ad", iContact: "İletişim", iMsg: "Mesaj", iDate: "Tarih", shared: "Not: veriler sitede tüm ziyaretçilere görünür.", facTitle: "Fakülteler (ücret, konum, kayıt)", addFac: "Fakülte ekle", facName: "Fakülte adı", facPrice: "Yıllık ücret", facSchol: "5 yıl burs (toplam)", facLoc: "Konum", facAdm: "Kayıt durumu", facLang: "Eğitim dili", uniHint: "Listeden seçerseniz şehir ve fakülteler otomatik dolar", coTitle: "Şirket bilgileri", coPhone: "Telefon", coEmail: "E-posta", coAddr: "Adres", coHours: "Çalışma saatleri", coIg: "Instagram bağlantısı", coTg: "Telegram bağlantısı", coPrice: "Başlangıç fiyatı ($)", saveCo: "Ayarları kaydet", tabP: "Ortaklar", iRef: "Referans / Ortak", payReqs: "Para çekme talepleri", markPaid: "Ödeme yaptım", noPartners: "Henüz ortak yok.", noPayReq: "Para çekme talebi yok.", crmRef: "Öneriler", crmBal: "Bakiye" },
   },
 
   en: {
@@ -431,11 +432,11 @@ const T = {
       refField: "Referral code (optional)",
       confirmNeeded: "Registration is temporarily unavailable. Please contact the administrator.",
       loginErr: "Wrong email or password.", regErr: "Registration error. Email may already be in use.",
-      minBal: "Not enough balance to withdraw."
+      minBal: "Not enough balance to withdraw.", fConfirm: "Confirm password", passMismatch: "Passwords do not match.", passShort: "Password must be at least 6 characters."
     },
     proc: { nav: "Documents & admission", title: "Required documents & admission process", sub: "Choose your level to see the documents. Preparing them correctly and completely increases your scholarship chances.", levelsTitle: "Documents by level", bachelor: "Bachelor's", master: "Master's", doctorate: "Doctorate", docs: { bachelor: ["Passport (any type or ID card) — PDF", "9th-grade certificate, original — PDF", "High-school certificate or college/lyceum diploma with transcript (original) — PDF. If still studying — current grade record", "Motivation letter", "Reference letter from 1–2 teachers/mentors", "Achievements: certificates, diplomas, medals, etc. (if any)", "TÖMER language certificate (if any)"], master: ["Passport — PDF", "High-school/college diploma with transcript — PDF", "Bachelor's diploma with transcript (original) — PDF. If still studying — transcript of records", "Motivation letter", "Research topic and introduction (important for the scholarship)", "Reference letter from 1–2 teachers/supervisors", "Achievements: certificates, diplomas, articles (if any)", "TÖMER language certificate (if any)"], doctorate: ["Passport — PDF", "High-school/college diploma with transcript — PDF", "Bachelor's and master's diplomas with transcripts (original) — PDF. If still studying — transcript", "Motivation letter", "Research topic and introduction (required for doctorate)", "Reference letter for research from 1–2 teachers/supervisors", "Achievements: certificates, diplomas, medals, articles (if any)", "TÖMER language certificate (if any)"] }, extrasTitle: "Mandatory extra documents", motivation: { t: "Motivation letter", d: "Why you chose Turkey and this field, and your goals after graduation. About 500 words, professional and clear.", points: ["Briefly introduce yourself", "Your main goal", "Your achievements", "Why Turkey and why this field", "About the university you apply to", "What you can give back for the scholarship"] }, reference: { t: "Reference letter", d: "From a teacher at your institution. A higher academic title (PhD, professor) is preferred. The teacher's active email must be included." }, stagesTitle: "Admission process", stages: [{ t: "Stage 1: document review", d: "Specialists review documents, goals and interests. Successful applicants move to the interview (sometimes a math/logic test)." }, { t: "Stage 2: interview", d: "About 15–20 minutes. Mostly about your goal of studying in Turkey and your chosen program." }, { t: "Stage 3: selection", d: "The committee evaluates interview results and the list of scholarship winners is formed." }] },
     footer: { tagline: "Studying in Turkey — made easy with Savura EDU.", quick: "Quick links", rights: "All rights reserved." },
-    admin: { login: "Admin login", email: "Email", pass: "Password", enter: "Log in", wrong: "Wrong password", hint: "Enter your password to continue", title: "Dashboard", tabU: "Universities", tabI: "Inquiries", tabS: "Settings", logout: "Log out", add: "Add university", edit: "Edit", save: "Save", cancel: "Cancel", fName: "University name", fCity: "City", fImg: "University image", upload: "Upload image", remove: "Remove image", imgHint: "JPG/PNG — auto-resized", fDesc: "Description", fFields: "Programs (for filter)", fFeatured: "Show on homepage", saved: "Saved", confirm: "Delete for real?", noI: "No inquiries yet.", iName: "Name", iContact: "Contact", iMsg: "Message", iDate: "Date", shared: "Note: data is visible to all site visitors.", facTitle: "Faculties (price, location, admission)", addFac: "Add faculty", facName: "Faculty name", facPrice: "Annual price", facSchol: "5-yr scholarship (total)", facLoc: "Location", facAdm: "Admission status", facLang: "Language", uniHint: "Pick from the list to auto-fill city and faculties", coTitle: "Company details", coPhone: "Phone number", coEmail: "Email", coAddr: "Address", coHours: "Working hours", coIg: "Instagram link", coTg: "Telegram link", coPrice: "Starting price ($)", saveCo: "Save settings" },
+    admin: { login: "Admin login", email: "Email", pass: "Password", enter: "Log in", wrong: "Wrong password", hint: "Enter your password to continue", title: "Dashboard", tabU: "Universities", tabI: "Inquiries", tabS: "Settings", logout: "Log out", add: "Add university", edit: "Edit", save: "Save", cancel: "Cancel", fName: "University name", fCity: "City", fImg: "University image", upload: "Upload image", remove: "Remove image", imgHint: "JPG/PNG — auto-resized", fDesc: "Description", fFields: "Programs (for filter)", fFeatured: "Show on homepage", saved: "Saved", confirm: "Delete for real?", noI: "No inquiries yet.", iName: "Name", iContact: "Contact", iMsg: "Message", iDate: "Date", shared: "Note: data is visible to all site visitors.", facTitle: "Faculties (price, location, admission)", addFac: "Add faculty", facName: "Faculty name", facPrice: "Annual price", facSchol: "5-yr scholarship (total)", facLoc: "Location", facAdm: "Admission status", facLang: "Language", uniHint: "Pick from the list to auto-fill city and faculties", coTitle: "Company details", coPhone: "Phone number", coEmail: "Email", coAddr: "Address", coHours: "Working hours", coIg: "Instagram link", coTg: "Telegram link", coPrice: "Starting price ($)", saveCo: "Save settings", tabP: "Partners", iRef: "Referral / Partner", payReqs: "Withdrawal requests", markPaid: "Mark as paid", noPartners: "No partners yet.", noPayReq: "No withdrawal requests.", crmRef: "Referrals", crmBal: "Balance" },
   },
 
   ru: {
@@ -504,11 +505,11 @@ const T = {
       refField: "Реферальный код (необязательно)",
       confirmNeeded: "Регистрация временно недоступна. Свяжитесь с администратором.",
       loginErr: "Неверная почта или пароль.", regErr: "Ошибка регистрации. Возможно, почта уже используется.",
-      minBal: "Недостаточно баланса для вывода."
+      minBal: "Недостаточно баланса для вывода.", fConfirm: "Подтвердите пароль", passMismatch: "Пароли не совпадают.", passShort: "Пароль должен быть не менее 6 символов."
     },
     proc: { nav: "Документы и поступление", title: "Необходимые документы и процесс поступления", sub: "Выберите уровень, чтобы увидеть документы. Правильная и полная подготовка повышает шансы на грант.", levelsTitle: "Документы по уровням", bachelor: "Бакалавриат", master: "Магистратура", doctorate: "Докторантура", docs: { bachelor: ["Паспорт (любой или ID-карта) — PDF", "Аттестат за 9 класс, оригинал — PDF", "Аттестат за 11 класс или диплом колледжа/лицея с приложением (оригинал) — PDF. Если ещё учитесь — справка с текущими оценками", "Мотивационное письмо", "Рекомендательное письмо от 1–2 преподавателей/наставников", "Достижения: сертификаты, дипломы, медали и т.д. (при наличии)", "Языковой сертификат TÖMER (при наличии)"], master: ["Паспорт — PDF", "Диплом школы/колледжа с приложением — PDF", "Диплом бакалавра с приложением (оригинал) — PDF. Если ещё учитесь — выписка оценок", "Мотивационное письмо", "Тема исследования и введение (важно для гранта)", "Рекомендательное письмо от 1–2 преподавателей/руководителей", "Достижения: сертификаты, дипломы, статьи (при наличии)", "Языковой сертификат TÖMER (при наличии)"], doctorate: ["Паспорт — PDF", "Диплом школы/колледжа с приложением — PDF", "Дипломы бакалавра и магистра с приложениями (оригинал) — PDF. Если ещё учитесь — выписка оценок", "Мотивационное письмо", "Тема исследования и введение (обязательно для докторантуры)", "Рекомендация для исследования от 1–2 преподавателей/руководителей", "Достижения: сертификаты, дипломы, медали, статьи (при наличии)", "Языковой сертификат TÖMER (при наличии)"] }, extrasTitle: "Обязательные дополнительные документы", motivation: { t: "Мотивационное письмо", d: "Почему вы выбрали Турцию и это направление, ваши цели после выпуска. Примерно 500 слов, профессионально и чётко.", points: ["Кратко представьтесь", "Ваша главная цель", "Ваши достижения", "Почему Турция и почему это направление", "Об университете, куда поступаете", "Что вы можете дать взамен гранта"] }, reference: { t: "Рекомендательное письмо", d: "От преподавателя вашего учебного заведения. Предпочтительно с высоким научным званием (кандидат наук, профессор). Должен быть указан активный email преподавателя." }, stagesTitle: "Процесс поступления", stages: [{ t: "Этап 1: проверка документов", d: "Специалисты изучают документы, цели и интересы. Успешные проходят на собеседование (иногда тест по математике/логике)." }, { t: "Этап 2: собеседование", d: "Около 15–20 минут. В основном о цели учёбы в Турции и выбранном направлении." }, { t: "Этап 3: отбор", d: "Комиссия оценивает результаты собеседования, формируется список получателей гранта." }] },
     footer: { tagline: "Учёба в Турции — легко с Savura EDU.", quick: "Быстрые ссылки", rights: "Все права защищены." },
-    admin: { login: "Вход для админа", email: "Эл. почта", pass: "Пароль", enter: "Войти", wrong: "Неверный пароль", hint: "Введите пароль для продолжения", title: "Панель управления", tabU: "Университеты", tabI: "Заявки", tabS: "Настройки", logout: "Выйти", add: "Добавить университет", edit: "Изменить", save: "Сохранить", cancel: "Отмена", fName: "Название университета", fCity: "Город", fImg: "Изображение университета", upload: "Загрузить фото", remove: "Удалить фото", imgHint: "JPG/PNG — авто-сжатие", fDesc: "Описание", fFields: "Направления (для фильтра)", fFeatured: "Показывать на главной", saved: "Сохранено", confirm: "Точно удалить?", noI: "Заявок пока нет.", iName: "Имя", iContact: "Контакт", iMsg: "Сообщение", iDate: "Дата", shared: "Примечание: данные видны всем посетителям сайта.", facTitle: "Факультеты (цена, адрес, приём)", addFac: "Добавить факультет", facName: "Название факультета", facPrice: "Цена в год", facSchol: "5-летний грант (всего)", facLoc: "Адрес", facAdm: "Статус приёма", facLang: "Язык обучения", uniHint: "Выберите из списка — город и факультеты заполнятся автоматически", coTitle: "Данные компании", coPhone: "Номер телефона", coEmail: "Email", coAddr: "Адрес", coHours: "Часы работы", coIg: "Ссылка Instagram", coTg: "Ссылка Telegram", coPrice: "Начальная цена ($)", saveCo: "Сохранить настройки" },
+    admin: { login: "Вход для админа", email: "Эл. почта", pass: "Пароль", enter: "Войти", wrong: "Неверный пароль", hint: "Введите пароль для продолжения", title: "Панель управления", tabU: "Университеты", tabI: "Заявки", tabS: "Настройки", logout: "Выйти", add: "Добавить университет", edit: "Изменить", save: "Сохранить", cancel: "Отмена", fName: "Название университета", fCity: "Город", fImg: "Изображение университета", upload: "Загрузить фото", remove: "Удалить фото", imgHint: "JPG/PNG — авто-сжатие", fDesc: "Описание", fFields: "Направления (для фильтра)", fFeatured: "Показывать на главной", saved: "Сохранено", confirm: "Точно удалить?", noI: "Заявок пока нет.", iName: "Имя", iContact: "Контакт", iMsg: "Сообщение", iDate: "Дата", shared: "Примечание: данные видны всем посетителям сайта.", facTitle: "Факультеты (цена, адрес, приём)", addFac: "Добавить факультет", facName: "Название факультета", facPrice: "Цена в год", facSchol: "5-летний грант (всего)", facLoc: "Адрес", facAdm: "Статус приёма", facLang: "Язык обучения", uniHint: "Выберите из списка — город и факультеты заполнятся автоматически", coTitle: "Данные компании", coPhone: "Номер телефона", coEmail: "Email", coAddr: "Адрес", coHours: "Часы работы", coIg: "Ссылка Instagram", coTg: "Ссылка Telegram", coPrice: "Начальная цена ($)", saveCo: "Сохранить настройки", tabP: "Партнёры", iRef: "Реферал / Партнёр", payReqs: "Запросы на вывод", markPaid: "Отметить выплаченным", noPartners: "Партнёров пока нет.", noPayReq: "Запросов на вывод нет.", crmRef: "Рекомендации", crmBal: "Баланс" },
   },
 
   ar: {
@@ -577,11 +578,11 @@ const T = {
       refField: "رمز الإحالة (اختياري)",
       confirmNeeded: "التسجيل غير متاح مؤقتاً. يرجى التواصل مع المسؤول.",
       loginErr: "البريد أو كلمة المرور غير صحيحة.", regErr: "خطأ في التسجيل. قد يكون البريد مستخدماً.",
-      minBal: "الرصيد غير كافٍ للسحب."
+      minBal: "الرصيد غير كافٍ للسحب.", fConfirm: "أكد كلمة المرور", passMismatch: "كلمتا المرور غير متطابقتين.", passShort: "يجب ألا تقل كلمة المرور عن 6 أحرف."
     },
     proc: { nav: "المستندات والقبول", title: "المستندات المطلوبة وعملية القبول", sub: "اختر المرحلة لرؤية المستندات. تجهيزها بشكل صحيح وكامل يزيد فرص الحصول على المنحة.", levelsTitle: "المستندات حسب المرحلة", bachelor: "البكالوريوس", master: "الماجستير", doctorate: "الدكتوراه", docs: { bachelor: ["جواز السفر (أو بطاقة الهوية) — PDF", "شهادة الصف التاسع الأصلية — PDF", "شهادة الثانوية أو دبلوم الكلية/الليسيه مع الملحق (الأصل) — PDF. إن كنت ما زلت تدرس — كشف الدرجات الحالي", "خطاب الدوافع (Motivation)", "خطاب توصية من 1–2 من المعلمين/المرشدين", "الإنجازات: شهادات، دبلومات، ميداليات... (إن وجدت)", "شهادة اللغة TÖMER (إن وجدت)"], master: ["جواز السفر — PDF", "دبلوم الثانوية/الكلية مع الملحق — PDF", "دبلوم البكالوريوس مع الملحق (الأصل) — PDF. إن كنت ما زلت تدرس — كشف الدرجات", "خطاب الدوافع", "موضوع البحث ومقدّمته (مهم للمنحة)", "خطاب توصية من 1–2 من المعلمين/المشرفين", "الإنجازات: شهادات، دبلومات، أبحاث (إن وجدت)", "شهادة اللغة TÖMER (إن وجدت)"], doctorate: ["جواز السفر — PDF", "دبلوم الثانوية/الكلية مع الملحق — PDF", "دبلوما البكالوريوس والماجستير مع الملاحق (الأصل) — PDF. إن كنت ما زلت تدرس — كشف الدرجات", "خطاب الدوافع", "موضوع البحث ومقدّمته (شرط للدكتوراه)", "خطاب توصية للبحث من 1–2 من المعلمين/المشرفين", "الإنجازات: شهادات، دبلومات، ميداليات، أبحاث (إن وجدت)", "شهادة اللغة TÖMER (إن وجدت)"] }, extrasTitle: "مستندات إضافية إلزامية", motivation: { t: "خطاب الدوافع", d: "لماذا اخترت تركيا وهذا التخصص، وأهدافك بعد التخرج. حوالي 500 كلمة، باحترافية ووضوح.", points: ["عرّف بنفسك باختصار", "هدفك الأساسي", "إنجازاتك", "لماذا تركيا ولماذا هذا المجال", "عن الجامعة التي تتقدّم إليها", "ماذا يمكن أن تقدّم مقابل المنحة"] }, reference: { t: "خطاب التوصية", d: "من معلّم في مؤسستك التعليمية. يُفضّل أن يكون بدرجة علمية عالية (دكتوراه، أستاذ). يجب ذكر بريد إلكتروني فعّال للمعلّم." }, stagesTitle: "عملية القبول", stages: [{ t: "المرحلة 1: مراجعة المستندات", d: "يراجع المختصّون المستندات والأهداف والاهتمامات. الناجحون ينتقلون إلى المقابلة (أحيانًا اختبار رياضيات/منطق)." }, { t: "المرحلة 2: المقابلة", d: "حوالي 15–20 دقيقة. غالبًا عن هدفك من الدراسة في تركيا والتخصص المختار." }, { t: "المرحلة 3: الاختيار", d: "تقيّم اللجنة نتائج المقابلة وتُعدّ قائمة الفائزين بالمنحة." }] },
     footer: { tagline: "الدراسة في تركيا — سهلة مع سفورة للتعليم.", quick: "روابط سريعة", rights: "جميع الحقوق محفوظة." },
-    admin: { login: "دخول المشرف", email: "البريد الإلكتروني", pass: "كلمة المرور", enter: "دخول", wrong: "كلمة المرور خاطئة", hint: "أدخل كلمة المرور للمتابعة", title: "لوحة التحكم", tabU: "الجامعات", tabI: "الطلبات", tabS: "الإعدادات", logout: "خروج", add: "إضافة جامعة", edit: "تعديل", save: "حفظ", cancel: "إلغاء", fName: "اسم الجامعة", fCity: "المدينة", fImg: "صورة الجامعة", upload: "رفع صورة", remove: "إزالة الصورة", imgHint: "JPG/PNG — يُصغّر تلقائيًا", fDesc: "الوصف", fFields: "التخصصات (للتصفية)", fFeatured: "العرض في الصفحة الرئيسية", saved: "تم الحفظ", confirm: "هل تريد الحذف فعلًا؟", noI: "لا توجد طلبات بعد.", iName: "الاسم", iContact: "التواصل", iMsg: "الرسالة", iDate: "التاريخ", shared: "ملاحظة: البيانات مرئية لكل زوار الموقع.", facTitle: "الكليات (السعر، الموقع، القبول)", addFac: "إضافة كلية", facName: "اسم الكلية", facPrice: "السعر السنوي", facSchol: "منحة 5 سنوات (الإجمالي)", facLoc: "الموقع", facAdm: "حالة القبول", facLang: "لغة الدراسة", uniHint: "اختر من القائمة ليُملأ المدينة والكليات تلقائيًا", coTitle: "بيانات الشركة", coPhone: "رقم الهاتف", coEmail: "البريد الإلكتروني", coAddr: "العنوان", coHours: "ساعات العمل", coIg: "رابط إنستغرام", coTg: "رابط تيليجرام", coPrice: "السعر الابتدائي ($)", saveCo: "حفظ الإعدادات" },
+    admin: { login: "دخول المشرف", email: "البريد الإلكتروني", pass: "كلمة المرور", enter: "دخول", wrong: "كلمة المرور خاطئة", hint: "أدخل كلمة المرور للمتابعة", title: "لوحة التحكم", tabU: "الجامعات", tabI: "الطلبات", tabS: "الإعدادات", logout: "خروج", add: "إضافة جامعة", edit: "تعديل", save: "حفظ", cancel: "إلغاء", fName: "اسم الجامعة", fCity: "المدينة", fImg: "صورة الجامعة", upload: "رفع صورة", remove: "إزالة الصورة", imgHint: "JPG/PNG — يُصغّر تلقائيًا", fDesc: "الوصف", fFields: "التخصصات (للتصفية)", fFeatured: "العرض في الصفحة الرئيسية", saved: "تم الحفظ", confirm: "هل تريد الحذف فعلًا؟", noI: "لا توجد طلبات بعد.", iName: "الاسم", iContact: "التواصل", iMsg: "الرسالة", iDate: "التاريخ", shared: "ملاحظة: البيانات مرئية لكل زوار الموقع.", facTitle: "الكليات (السعر، الموقع، القبول)", addFac: "إضافة كلية", facName: "اسم الكلية", facPrice: "السعر السنوي", facSchol: "منحة 5 سنوات (الإجمالي)", facLoc: "الموقع", facAdm: "حالة القبول", facLang: "لغة الدراسة", uniHint: "اختر من القائمة ليُملأ المدينة والكليات تلقائيًا", coTitle: "بيانات الشركة", coPhone: "رقم الهاتف", coEmail: "البريد الإلكتروني", coAddr: "العنوان", coHours: "ساعات العمل", coIg: "رابط إنستغرام", coTg: "رابط تيليجرام", coPrice: "السعر الابتدائي ($)", saveCo: "حفظ الإعدادات", tabP: "الشركاء", iRef: "إحالة / شريك", payReqs: "طلبات السحب", markPaid: "تم الدفع", noPartners: "لا شركاء بعد.", noPayReq: "لا طلبات سحب.", crmRef: "الإحالات", crmBal: "الرصيد" },
   },
 };
 
@@ -1668,22 +1669,40 @@ function UniNameInput({ value, onText, onPick, placeholder }) {
 function PField({ label, ...props }) {
   return (<div className="field" style={{ marginBottom: 12 }}><label>{label}</label><input {...props} /></div>);
 }
+function PassField({ label, value, onChange }) {
+  const [show, setShow] = useState(false);
+  return (
+    <div className="field" style={{ marginBottom: 12 }}>
+      <label>{label}</label>
+      <div style={{ position: "relative" }}>
+        <input type={show ? "text" : "password"} value={value} onChange={onChange} style={{ paddingInlineEnd: 42, width: "100%" }} />
+        <button type="button" onClick={() => setShow(s => !s)} aria-label="toggle password" style={{ position: "absolute", top: "50%", insetInlineEnd: 10, transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "var(--ink-soft)", padding: 4, display: "flex" }}>
+          {show ? <EyeOff size={18} /> : <Eye size={18} />}
+        </button>
+      </div>
+    </div>
+  );
+}
 
 function PartnerLanding({ t, company, mode, setMode, onAuthed }) {
   const P = t.partner;
   const reward = (company && company.partnerReward) || "50";
-  const [form, setForm] = useState({ name: "", email: "", phone: "", password: "", audience: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", password: "", confirm: "", audience: "" });
   const [err, setErr] = useState("");
   const [busy, setBusy] = useState(false);
   const HOW_ICONS = [Users, Send, Wallet, ArrowRight];
   const submit = async () => {
-    setErr(""); setBusy(true);
+    setErr("");
     if (mode === "join") {
-      if (!form.name || !form.email || !form.password) { setBusy(false); return; }
+      if (!form.name || !form.email || !form.password) return;
+      if (form.password.length < 6) { setErr(P.passShort); return; }
+      if (form.password !== form.confirm) { setErr(P.passMismatch); return; }
+      setBusy(true);
       const r = await partner.register(form); setBusy(false);
       if (r.ok) { onAuthed(); return; }
       setErr(r.error === "confirm-disabled-needed" ? P.confirmNeeded : P.regErr);
     } else {
+      setBusy(true);
       const r = await partner.signIn(form.email, form.password); setBusy(false);
       if (r.ok) { onAuthed(); return; }
       setErr(P.loginErr);
@@ -1715,7 +1734,8 @@ function PartnerLanding({ t, company, mode, setMode, onAuthed }) {
                 <PField label={P.fPhone} dir="ltr" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} />
               </>}
               <PField label={P.fEmail} type="email" dir="ltr" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
-              <PField label={P.fPass} type="password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
+              <PassField label={P.fPass} value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
+              {mode === "join" && <PassField label={P.fConfirm} value={form.confirm} onChange={e => setForm({ ...form, confirm: e.target.value })} />}
               {mode === "join" && <PField label={P.fAudience} value={form.audience} onChange={e => setForm({ ...form, audience: e.target.value })} />}
               {err && <div style={{ color: "var(--coral)", fontSize: ".88rem", marginBottom: 10 }}>{err}</div>}
               <button className="btn btn-primary" style={{ width: "100%", justifyContent: "center" }} disabled={busy} onClick={submit}>{busy ? "…" : (mode === "join" ? P.regBtn : P.loginBtn)}</button>
@@ -1811,7 +1831,7 @@ function PartnerCabinet({ t, me, onLogout }) {
   const load = async () => { setRefs(await partner.referrals()); setPays(await partner.payouts()); };
   useEffect(() => { load(); }, []);
   const link = `${window.location.origin}/?ref=${me.code}`;
-  const copy = () => { try { navigator.clipboard.writeText(link); setCopied(true); setTimeout(() => setCopied(false), 1500); } catch {} };
+  const copy = () => { try { navigator.clipboard.writeText(link); setCopied(true); setTimeout(() => setCopied(false), 1600); } catch {} };
   const num = (x) => Number(x) || 0;
   const inProc = (st) => ["new", "thinking", "in_payment"].includes(st);
   const counts = {
@@ -1826,63 +1846,82 @@ function PartnerCabinet({ t, me, onLogout }) {
   const pending = refs.filter(r => inProc(r.status)).reduce((s, r) => s + num(r.reward_usd), 0);
   const stLabel = (st) => ({ new: P.sNew, thinking: P.sThinking, in_payment: P.sInpay, paid: P.sPaid, cancelled: P.sCancelled }[st] || st);
   const stColor = (st) => ({ new: "#6b7280", thinking: "#F5A623", in_payment: "#3b82f6", paid: "#0B8A8C", cancelled: "#FF5A5A" }[st] || "#6b7280");
+  const initials = (me.name || "S").trim().split(/\s+/).map(w => w[0]).slice(0, 2).join("").toUpperCase();
+  const STAT = [
+    { lbl: P.stReferred, val: counts.referred, col: "#0B8A8C", Ic: Users },
+    { lbl: P.stProcess, val: counts.process, col: "#3b82f6", Ic: Clock },
+    { lbl: P.stPaid, val: counts.paid, col: "#F5A623", Ic: CheckCircle2 },
+    { lbl: P.stCancelled, val: counts.cancelled, col: "#FF5A5A", Ic: XCircle },
+  ];
   return (
     <main>
-      <section className="section">
-        <div className="wrap">
-          <div className="cab-top reveal in">
-            <div>
-              <span className="eyebrow"><span style={{ width: 18, height: 2, background: "var(--teal)" }} />{P.nav}</span>
-              <h1 style={{ fontSize: "clamp(1.6rem,3vw,2.2rem)", margin: "8px 0 0" }}>{P.hello}, {me.name || ""}</h1>
-            </div>
-            <button className="btn btn-out" onClick={onLogout}><LogOut size={16} />{P.logout}</button>
-          </div>
-          <div className="card reveal in" style={{ padding: 22, marginBottom: 18 }}>
-            <div className="cab-code">
+      <section style={{ background: "linear-gradient(150deg,var(--teal),var(--teal-d))", color: "#fff", position: "relative", overflow: "hidden", padding: "40px 0 92px" }}>
+        <div style={{ position: "absolute", inset: 0, backgroundImage: `url("${STAR}")`, backgroundSize: 60, opacity: .4 }} />
+        <div className="wrap" style={{ position: "relative" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <div style={{ width: 60, height: 60, borderRadius: "50%", background: "rgba(255,255,255,.18)", border: "2px solid rgba(255,255,255,.35)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.4rem", fontWeight: 800 }}>{initials}</div>
               <div>
-                <div style={{ fontSize: ".82rem", color: "var(--ink-soft)", marginBottom: 4 }}>{P.myCode}</div>
-                <div style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--teal)", letterSpacing: 1 }}>{me.code}</div>
+                <div style={{ opacity: .85, fontSize: ".9rem" }}>{P.hello}</div>
+                <h1 style={{ color: "#fff", fontSize: "clamp(1.4rem,3vw,2rem)", margin: 0 }}>{me.name || ""}</h1>
               </div>
-              <div style={{ flex: 1, minWidth: 220 }}>
-                <div style={{ fontSize: ".82rem", color: "var(--ink-soft)", marginBottom: 4 }}>{P.myLink}</div>
+            </div>
+            <button className="btn" style={{ background: "rgba(255,255,255,.15)", color: "#fff", border: "1px solid rgba(255,255,255,.3)" }} onClick={onLogout}><LogOut size={16} />{P.logout}</button>
+          </div>
+        </div>
+      </section>
+      <section style={{ marginTop: -64, paddingBottom: 64, position: "relative", zIndex: 2 }}>
+        <div className="wrap">
+          <div className="card" style={{ padding: 24, marginBottom: 18, boxShadow: "var(--sh)" }}>
+            <div className="cab-code">
+              <div style={{ background: "var(--bg2)", borderRadius: 14, padding: "14px 22px", textAlign: "center" }}>
+                <div style={{ fontSize: ".72rem", color: "var(--ink-soft)", marginBottom: 5, textTransform: "uppercase", letterSpacing: ".06em" }}>{P.myCode}</div>
+                <div style={{ fontSize: "1.6rem", fontWeight: 800, color: "var(--teal)", letterSpacing: 3, fontFamily: "monospace" }}>{me.code}</div>
+              </div>
+              <div style={{ flex: 1, minWidth: 240 }}>
+                <div style={{ fontSize: ".82rem", color: "var(--ink-soft)", marginBottom: 6, display: "flex", alignItems: "center", gap: 6 }}><Link2 size={15} />{P.myLink}</div>
                 <div style={{ display: "flex", gap: 8 }}>
-                  <input readOnly value={link} dir="ltr" style={{ flex: 1, padding: "10px 12px", border: "1px solid var(--line)", borderRadius: 10, background: "var(--bg2)", fontSize: ".85rem", minWidth: 0 }} />
-                  <button className="btn btn-teal" onClick={copy}>{copied ? P.copied : P.copy}</button>
+                  <input readOnly value={link} dir="ltr" onFocus={e => e.target.select()} style={{ flex: 1, padding: "11px 14px", border: "1px solid var(--line)", borderRadius: 12, background: "var(--bg)", fontSize: ".85rem", minWidth: 0, color: "var(--ink-soft)" }} />
+                  <button className="btn btn-teal" onClick={copy} style={{ whiteSpace: "nowrap" }}>{copied ? <><Check size={16} />{P.copied}</> : <><Copy size={16} />{P.copy}</>}</button>
                 </div>
               </div>
             </div>
           </div>
           <div className="grid g4" style={{ marginBottom: 18 }}>
-            {[[P.stReferred, counts.referred, "var(--teal)"], [P.stProcess, counts.process, "#3b82f6"], [P.stPaid, counts.paid, "var(--amber-d)"], [P.stCancelled, counts.cancelled, "var(--coral)"]].map(([lbl, val, col], i) => (
-              <div className="card reveal in" key={i} style={{ padding: "20px", textAlign: "center" }}>
-                <div style={{ fontSize: "2rem", fontWeight: 800, color: col }}>{val}</div>
-                <div style={{ color: "var(--ink-soft)", fontSize: ".9rem" }}>{lbl}</div>
-              </div>
-            ))}
+            {STAT.map((st, i) => { const Ic = st.Ic; return (
+              <div className="card" key={i} style={{ padding: "18px 20px", display: "flex", alignItems: "center", gap: 14, borderTop: `3px solid ${st.col}` }}>
+                <div style={{ width: 46, height: 46, borderRadius: 12, background: st.col + "18", color: st.col, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Ic size={22} /></div>
+                <div>
+                  <div style={{ fontSize: "1.7rem", fontWeight: 800, color: "var(--ink)", lineHeight: 1 }}>{st.val}</div>
+                  <div style={{ color: "var(--ink-soft)", fontSize: ".85rem", marginTop: 3 }}>{st.lbl}</div>
+                </div>
+              </div>); })}
           </div>
-          <div className="cab-bal reveal in">
-            <div className="card" style={{ padding: 24, background: "linear-gradient(155deg,var(--teal),var(--teal-d))", color: "#fff" }}>
-              <div style={{ fontSize: ".9rem", opacity: .9 }}>{P.balance}</div>
-              <div style={{ fontSize: "2.6rem", fontWeight: 800, margin: "4px 0 14px" }}>${balance.toLocaleString()}</div>
-              <button className="btn" style={{ background: "var(--amber)", color: "#3a2a00", fontWeight: 700, opacity: balance <= 0 ? .55 : 1 }} onClick={() => balance > 0 && setWOpen(true)} disabled={balance <= 0}><Wallet size={17} />{P.withdraw}</button>
+          <div className="cab-bal">
+            <div className="card" style={{ padding: 26, background: "linear-gradient(150deg,#0E2A2C,var(--teal-d))", color: "#fff", position: "relative", overflow: "hidden" }}>
+              <div style={{ position: "absolute", insetInlineEnd: -12, top: -8, opacity: .14 }}><Wallet size={96} /></div>
+              <div style={{ fontSize: ".9rem", opacity: .85, position: "relative" }}>{P.balance}</div>
+              <div style={{ fontSize: "2.7rem", fontWeight: 800, margin: "6px 0 16px", position: "relative" }}>${balance.toLocaleString()}</div>
+              <button className="btn" style={{ background: "var(--amber)", color: "#3a2a00", fontWeight: 800, opacity: balance <= 0 ? .5 : 1, position: "relative" }} onClick={() => balance > 0 && setWOpen(true)} disabled={balance <= 0}><Wallet size={17} />{P.withdraw}</button>
             </div>
-            <div className="card" style={{ padding: 24 }}>
+            <div className="card" style={{ padding: 26, position: "relative", overflow: "hidden" }}>
+              <div style={{ position: "absolute", insetInlineEnd: -12, top: -8, opacity: .09, color: "var(--teal)" }}><TrendingUp size={96} /></div>
               <div style={{ fontSize: ".9rem", color: "var(--ink-soft)" }}>{P.pending}</div>
-              <div style={{ fontSize: "2.6rem", fontWeight: 800, margin: "4px 0", color: "var(--ink)" }}>${pending.toLocaleString()}</div>
+              <div style={{ fontSize: "2.7rem", fontWeight: 800, margin: "6px 0", color: "var(--ink)" }}>${pending.toLocaleString()}</div>
               <div style={{ fontSize: ".85rem", color: "var(--ink-soft)" }}>{counts.process} · {P.stProcess}</div>
             </div>
           </div>
-          <h3 style={{ margin: "26px 0 12px" }}>{P.stReferred}</h3>
+          <h3 style={{ margin: "28px 0 12px", display: "flex", alignItems: "center", gap: 8 }}><Users size={18} color="var(--teal)" />{P.stReferred}</h3>
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            {refs.length === 0 ? <div style={{ padding: 30, textAlign: "center", color: "var(--ink-soft)" }}>{P.noRefs}</div> : (
+            {refs.length === 0 ? <div style={{ padding: 36, textAlign: "center", color: "var(--ink-soft)" }}>{P.noRefs}</div> : (
               <div style={{ overflowX: "auto" }}>
                 <table className="ptable">
                   <thead><tr><th>{P.tName}</th><th>{P.tUni}</th><th>{P.tStatus}</th><th>{P.tReward}</th><th>{P.tDate}</th></tr></thead>
                   <tbody>{refs.map(r => (
                     <tr key={r.id}>
-                      <td>{r.name || "—"}</td>
+                      <td style={{ fontWeight: 600 }}>{r.name || "—"}</td>
                       <td style={{ color: "var(--ink-soft)" }}>{r.uni || "—"}</td>
-                      <td><span style={{ background: stColor(r.status) + "22", color: stColor(r.status), padding: "3px 10px", borderRadius: 20, fontSize: ".8rem", fontWeight: 700 }}>{stLabel(r.status)}</span></td>
+                      <td><span style={{ background: stColor(r.status) + "22", color: stColor(r.status), padding: "4px 11px", borderRadius: 20, fontSize: ".8rem", fontWeight: 700 }}>{stLabel(r.status)}</span></td>
                       <td style={{ fontWeight: 700 }}>${num(r.reward_usd)}</td>
                       <td style={{ color: "var(--ink-soft)", fontSize: ".85rem" }}>{new Date(r.created_at).toLocaleDateString()}</td>
                     </tr>))}</tbody>
@@ -1890,9 +1929,9 @@ function PartnerCabinet({ t, me, onLogout }) {
               </div>
             )}
           </div>
-          <h3 style={{ margin: "26px 0 12px" }}>{P.wHistory}</h3>
+          <h3 style={{ margin: "28px 0 12px", display: "flex", alignItems: "center", gap: 8 }}><Wallet size={18} color="var(--teal)" />{P.wHistory}</h3>
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
-            {pays.length === 0 ? <div style={{ padding: 30, textAlign: "center", color: "var(--ink-soft)" }}>{P.noPayouts}</div> : (
+            {pays.length === 0 ? <div style={{ padding: 36, textAlign: "center", color: "var(--ink-soft)" }}>{P.noPayouts}</div> : (
               <div style={{ overflowX: "auto" }}>
                 <table className="ptable">
                   <thead><tr><th>{P.wAmount}</th><th>{P.wMethod}</th><th>{P.tStatus}</th><th>{P.tDate}</th></tr></thead>
@@ -1940,12 +1979,27 @@ function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
   const [editing, setEditing] = useState(null);
   const [toast, setToast] = useState("");
   const [leads, setLeads] = useState([]);
+  const [partners, setPartners] = useState([]);
+  const [pays, setPays] = useState([]);
   const [co, setCo] = useState(company);
   const fileRef = useRef(null);
 
   useEffect(() => { setCo(company); }, [company]);
   useEffect(() => { (async () => { if (await auth.session() && await auth.isAdmin()) setAuthed(true); })(); }, []);
-  useEffect(() => { if (authed) (async () => setLeads(await getLeads()))(); }, [authed]);
+  useEffect(() => { if (authed) (async () => { setLeads(await getLeads()); setPartners(await admin.partners()); setPays(await admin.payouts()); })(); }, [authed]);
+  const reloadCRM = async () => { setLeads(await getLeads()); setPartners(await admin.partners()); setPays(await admin.payouts()); };
+  const setLeadStatus = async (id, status) => { await admin.updateLeadStatus(id, status); await reloadCRM(); };
+  const markPayoutPaid = async (id) => { await admin.markPayoutPaid(id); await reloadCRM(); };
+  const pById = Object.fromEntries(partners.map(p => [p.id, p]));
+  const STATUS_OPTS = ["new", "thinking", "in_payment", "paid", "cancelled"];
+  const stLabelA = (st) => ({ new: t.partner.sNew, thinking: t.partner.sThinking, in_payment: t.partner.sInpay, paid: t.partner.sPaid, cancelled: t.partner.sCancelled }[st] || st);
+  const stColorA = (st) => ({ new: "#6b7280", thinking: "#F5A623", in_payment: "#3b82f6", paid: "#0B8A8C", cancelled: "#FF5A5A" }[st] || "#6b7280");
+  const partnerStats = (pid) => {
+    const myLeads = leads.filter(l => l.partner_id === pid);
+    const earned = myLeads.filter(l => l.status === "paid").reduce((s, l) => s + (Number(l.reward_usd) || 0), 0);
+    const paidOut = pays.filter(p => p.partner_id === pid && p.status === "paid").reduce((s, p) => s + (Number(p.amount_usd) || 0), 0);
+    return { refs: myLeads.length, balance: Math.max(0, earned - paidOut) };
+  };
 
   const doLogout = async () => { await auth.signOut(); setAuthed(false); setPw(""); go("home"); };
 
@@ -2032,6 +2086,7 @@ function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
             <div className="tabs">
               <button className={"tab" + (tab === "u" ? " on" : "")} onClick={() => setTab("u")}>{t.admin.tabU} ({unis.length})</button>
               <button className={"tab" + (tab === "i" ? " on" : "")} onClick={() => setTab("i")}>{t.admin.tabI} ({leads.length})</button>
+              <button className={"tab" + (tab === "p" ? " on" : "")} onClick={() => setTab("p")}>{t.admin.tabP} ({partners.length})</button>
               <button className={"tab" + (tab === "s" ? " on" : "")} onClick={() => setTab("s")}>{t.admin.tabS}</button>
             </div>
             <button className="btn btn-out" onClick={doLogout}><LogOut size={16} />{t.admin.logout}</button>
@@ -2061,21 +2116,94 @@ function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
         </>)}
 
         {tab === "i" && (leads.length ? (
-          <div className="itable">
-            <div className="irow h"><span>{t.admin.iName}</span><span>{t.admin.iContact}</span><span>{t.admin.iMsg}</span><span>{t.admin.iDate}</span></div>
-            {leads.map((l, i) => (
-              <div className="irow" key={i}>
-                <span style={{ fontWeight: 700 }}>{l.name}</span>
-                <span dir="ltr">{l.phone || l.email}</span>
-                <span style={{ color: "var(--ink-soft)" }}>
-                  {(l.uni || l.faculty) && <div style={{ fontWeight: 700, color: "var(--teal)" }}>{l.uni}{l.faculty ? " · " + l.faculty : ""}</div>}
-                  {l.msg || (l.uni || l.faculty ? "" : "—")}
-                </span>
-                <span style={{ color: "var(--ink-soft)" }}>{new Date(l.date || l.created_at).toLocaleDateString()}</span>
-              </div>
-            ))}
+          <div style={{ display: "grid", gap: 12 }}>
+            {leads.map((l) => {
+              const pr = l.partner_id ? pById[l.partner_id] : null;
+              return (
+                <div className="card" key={l.id} style={{ padding: 18, borderInlineStart: `4px solid ${stColorA(l.status)}` }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", gap: 14, flexWrap: "wrap", alignItems: "flex-start" }}>
+                    <div style={{ minWidth: 200, flex: 1 }}>
+                      <div style={{ fontWeight: 800, fontSize: "1.05rem" }}>{l.name || "—"}</div>
+                      <div dir="ltr" style={{ color: "var(--ink-soft)", fontSize: ".9rem", marginTop: 2 }}>{l.phone || l.email || "—"}</div>
+                      {(l.uni || l.faculty) && <div style={{ color: "var(--teal)", fontWeight: 700, fontSize: ".9rem", marginTop: 6 }}>{l.uni}{l.faculty ? " · " + l.faculty : ""}</div>}
+                      {l.msg && <div style={{ color: "var(--ink-soft)", fontSize: ".9rem", marginTop: 6 }}>{l.msg}</div>}
+                    </div>
+                    <div style={{ textAlign: "end", minWidth: 150 }}>
+                      <div style={{ fontSize: ".78rem", color: "var(--ink-soft)" }}>{new Date(l.date || l.created_at).toLocaleDateString()}</div>
+                      {(l.referral || pr) && (
+                        <div style={{ marginTop: 6, fontSize: ".82rem" }}>
+                          <span style={{ color: "var(--ink-soft)" }}>{t.admin.iRef}: </span>
+                          {l.referral ? <b style={{ fontFamily: "monospace", color: "var(--teal-d)" }}>{l.referral}</b> : null}
+                          {pr ? <span style={{ color: "var(--ink)" }}> · {pr.name}</span> : null}
+                          {Number(l.reward_usd) > 0 && <span style={{ color: "var(--amber-d)", fontWeight: 700 }}> · ${Number(l.reward_usd)}</span>}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
+                    <span style={{ fontSize: ".82rem", color: "var(--ink-soft)" }}>{t.partner.tStatus}:</span>
+                    {STATUS_OPTS.map(st => (
+                      <button key={st} onClick={() => setLeadStatus(l.id, st)}
+                        style={{ padding: "6px 12px", borderRadius: 20, border: "1px solid " + (l.status === st ? stColorA(st) : "var(--line)"), background: l.status === st ? stColorA(st) : "#fff", color: l.status === st ? "#fff" : "var(--ink-soft)", cursor: "pointer", fontSize: ".8rem", fontWeight: 700 }}>
+                        {stLabelA(st)}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         ) : <div style={{ textAlign: "center", padding: "50px", color: "var(--ink-soft)", fontWeight: 700 }}>{t.admin.noI}</div>)}
+
+        {tab === "p" && (
+          <div style={{ display: "grid", gap: 22 }}>
+            <div>
+              <h3 style={{ display: "flex", alignItems: "center", gap: 8, fontSize: "1.15rem", marginBottom: 14 }}><Users size={19} color="#0B8A8C" />{t.admin.tabP}</h3>
+              {partners.length ? (
+                <div className="card" style={{ padding: 0, overflow: "hidden" }}>
+                  <div style={{ overflowX: "auto" }}>
+                    <table className="ptable">
+                      <thead><tr><th>{t.partner.tName}</th><th>{t.contact.phone}</th><th>{t.partner.myCode}</th><th>{t.admin.crmRef}</th><th>{t.admin.crmBal}</th></tr></thead>
+                      <tbody>{partners.map(p => { const st = partnerStats(p.id); return (
+                        <tr key={p.id}>
+                          <td style={{ fontWeight: 700 }}>{p.name || "—"}</td>
+                          <td dir="ltr" style={{ color: "var(--ink-soft)" }}>{p.phone || "—"}</td>
+                          <td style={{ fontFamily: "monospace", color: "var(--teal-d)", fontWeight: 700 }}>{p.code}</td>
+                          <td>{st.refs}</td>
+                          <td style={{ fontWeight: 800, color: "var(--teal)" }}>${st.balance}</td>
+                        </tr>); })}</tbody>
+                    </table>
+                  </div>
+                </div>
+              ) : <div className="card" style={{ padding: 30, textAlign: "center", color: "var(--ink-soft)" }}>{t.admin.noPartners}</div>}
+            </div>
+            <div>
+              <h3 style={{ display: "flex", alignItems: "center", gap: 8, fontSize: "1.15rem", marginBottom: 14 }}><Wallet size={19} color="#0B8A8C" />{t.admin.payReqs}</h3>
+              {pays.length ? (
+                <div style={{ display: "grid", gap: 10 }}>
+                  {pays.map(p => {
+                    const pn = (p.partners && p.partners.name) || (pById[p.partner_id] && pById[p.partner_id].name) || "—";
+                    return (
+                      <div className="card" key={p.id} style={{ padding: 16, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
+                        <div>
+                          <div style={{ fontWeight: 800, fontSize: "1.1rem" }}>${Number(p.amount_usd) || 0} <span style={{ fontSize: ".82rem", fontWeight: 600, color: "var(--ink-soft)" }}>· {p.method}</span></div>
+                          <div style={{ color: "var(--ink-soft)", fontSize: ".85rem", marginTop: 2 }}>{pn}</div>
+                          <div dir="ltr" style={{ color: "var(--ink-soft)", fontSize: ".82rem", marginTop: 2, wordBreak: "break-all" }}>{p.details}</div>
+                        </div>
+                        <div style={{ textAlign: "end" }}>
+                          {p.status === "paid"
+                            ? <span style={{ color: "var(--teal)", fontWeight: 800, display: "inline-flex", alignItems: "center", gap: 5 }}><CheckCircle2 size={17} />{t.partner.wPaid}</span>
+                            : <button className="btn btn-teal" onClick={() => markPayoutPaid(p.id)}><Check size={16} />{t.admin.markPaid}</button>}
+                          <div style={{ color: "var(--ink-soft)", fontSize: ".78rem", marginTop: 6 }}>{new Date(p.created_at).toLocaleDateString()}</div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : <div className="card" style={{ padding: 30, textAlign: "center", color: "var(--ink-soft)" }}>{t.admin.noPayReq}</div>}
+            </div>
+          </div>
+        )}
 
         {tab === "s" && (
           <div className="setcard">

@@ -135,9 +135,11 @@ export async function getLeads() {
 }
 
 /* ---------- partner (referral affiliate) platform ---------- */
-function genCode(name) {
-  const base = (name || "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6) || "SAVURA";
-  return base + Math.floor(1000 + Math.random() * 9000);
+function genCode() {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // no ambiguous 0/O/1/I
+  let s = "";
+  for (let i = 0; i < 8; i++) s += chars[Math.floor(Math.random() * chars.length)];
+  return s;
 }
 
 export const partner = usingSupabase ? {
@@ -150,13 +152,13 @@ export const partner = usingSupabase ? {
         // email confirmation is ON -> no session; cannot create profile yet
         return { ok: false, error: "confirm-disabled-needed", uid };
       }
-      let code = genCode(name), tries = 0, prow = null;
+      let code = genCode(), tries = 0, prow = null;
       while (tries < 6) {
         const { data: ins, error: e2 } = await sb.from("partners")
           .insert({ auth_id: uid, name: name || "", email: email || "", phone: phone || "", audience: audience || "", code })
           .select().single();
         if (!e2) { prow = ins; break; }
-        if (e2.code === "23505") { code = genCode(name); tries++; continue; }
+        if (e2.code === "23505") { code = genCode(); tries++; continue; }
         return { ok: false, error: e2.message };
       }
       return { ok: true, partner: prow };
@@ -205,4 +207,29 @@ export const partner = usingSupabase ? {
   async referrals() { return []; },
   async payouts() { return []; },
   async requestPayout() { return false; },
+};
+
+/* ---------- admin CRM ---------- */
+export const admin = usingSupabase ? {
+  async partners() {
+    try { const { data } = await sb.from("partners").select("*").order("created_at", { ascending: false }); return data || []; }
+    catch { return []; }
+  },
+  async updateLeadStatus(id, status) {
+    try { const { error } = await sb.from("leads").update({ status }).eq("id", id); return !error; }
+    catch { return false; }
+  },
+  async payouts() {
+    try { const { data } = await sb.from("payouts").select("*, partners(name,code,phone)").order("created_at", { ascending: false }); return data || []; }
+    catch { return []; }
+  },
+  async markPayoutPaid(id) {
+    try { const { error } = await sb.from("payouts").update({ status: "paid", paid_at: new Date().toISOString() }).eq("id", id); return !error; }
+    catch { return false; }
+  },
+} : {
+  async partners() { return []; },
+  async updateLeadStatus() { return false; },
+  async payouts() { return []; },
+  async markPayoutPaid() { return false; },
 };

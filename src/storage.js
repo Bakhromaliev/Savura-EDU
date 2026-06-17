@@ -145,23 +145,18 @@ function genCode() {
 export const partner = usingSupabase ? {
   async register({ name, email, phone, password, audience }) {
     try {
-      const { data, error } = await sb.auth.signUp({ email: (email || "").trim(), password });
+      const { data, error } = await sb.auth.signUp({
+        email: (email || "").trim(),
+        password,
+        options: {
+          data: { role: "partner", name: name || "", phone: phone || "", audience: audience || "" },
+          emailRedirectTo: (typeof window !== "undefined" ? window.location.origin : "") + "/",
+        },
+      });
       if (error) return { ok: false, error: error.message };
-      const uid = data && data.user && data.user.id;
-      if (!data || !data.session) {
-        // email confirmation is ON -> no session; cannot create profile yet
-        return { ok: false, error: "confirm-disabled-needed", uid };
-      }
-      let code = genCode(), tries = 0, prow = null;
-      while (tries < 6) {
-        const { data: ins, error: e2 } = await sb.from("partners")
-          .insert({ auth_id: uid, name: name || "", email: email || "", phone: phone || "", audience: audience || "", code })
-          .select().single();
-        if (!e2) { prow = ins; break; }
-        if (e2.code === "23505") { code = genCode(); tries++; continue; }
-        return { ok: false, error: e2.message };
-      }
-      return { ok: true, partner: prow };
+      // Profile row is auto-created by the DB trigger from the metadata above.
+      if (!data || !data.session) return { ok: true, needConfirm: true }; // confirmation email sent
+      return { ok: true }; // auto-confirmed (confirmation OFF): session active, profile ready
     } catch (e) { return { ok: false, error: String(e) }; }
   },
   async signIn(email, password) {

@@ -6,7 +6,7 @@ import {
   Wrench, Award, Wallet, ShieldCheck, Plane, FileText, Sparkles,
   Building2, ChevronRight, Send, Lock, Heart, Upload, Settings,
   Layers, Image as ImageIcon, Save, Clock, Eye, EyeOff,
-  CheckCircle2, XCircle, Link2, Copy, TrendingUp, UserPlus
+  CheckCircle2, XCircle, Link2, Copy, TrendingUp, UserPlus, Sun
 } from "lucide-react";
 import { store, auth, addLead, getLeads, partner, captureRef, getRef, admin } from "./storage";
 import * as XLSX from "xlsx";
@@ -663,6 +663,16 @@ const STAR = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' wi
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap');
 :root{--teal:#0B8A8C;--teal-d:#0A6E70;--teal-l:#13B0B2;--coral:#FF5A5A;--coral-d:#E8453F;--amber:#FFC233;--amber-d:#F5A623;--ink:#0E2A2C;--ink-soft:#3C5658;--line:#E3EDEC;--bg:#FBFCF9;--bg2:#F0FAF8;--card:#FFFFFF;--r:18px;--maxw:1180px;--sh:0 18px 40px -22px rgba(11,138,140,.35)}
+:root[data-theme="dark"]{color-scheme:dark;--ink:#EAF3F1;--ink-soft:#94ABA9;--line:#263A38;--bg:#0B1312;--bg2:#101C1A;--card:#15211F;--sh:0 18px 40px -22px rgba(0,0,0,.65)}
+body{background:var(--bg)}
+.sv-root,.card,.section.alt,.footer,.field input,.field textarea,.btn-out,.chip,.fpill,.searchbox,.tabs,.lang-btn,.lang-pop,.setcard,.itable,.acard,.faccard{transition:background-color .25s ease,color .25s ease,border-color .25s ease}
+.theme-btn{display:flex;align-items:center;justify-content:center;width:42px;height:42px;background:var(--card);border:1px solid var(--line);border-radius:999px;color:var(--ink)}
+.theme-btn:hover{border-color:var(--teal);color:var(--teal)}
+:root[data-theme="dark"] .footer{background:#070D0C}
+:root[data-theme="dark"] .burger{background:#1B2D2B}
+:root[data-theme="dark"] .pcell.schol{background:rgba(245,166,35,.12);border-color:rgba(245,166,35,.32)}
+:root[data-theme="dark"] .pcell.schol .pv{color:var(--amber)}
+
 *{box-sizing:border-box}
 .sv-root{font-family:'Manrope',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .sv-root[dir="rtl"]{font-family:'Cairo','Manrope',sans-serif}
@@ -679,7 +689,7 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 .btn-teal:hover{background:var(--teal-d)}
 .btn-ghost{background:rgba(255,255,255,.16);color:#fff;border:1.5px solid rgba(255,255,255,.5)}
 .btn-ghost:hover{background:rgba(255,255,255,.26)}
-.btn-out{background:#fff;color:var(--teal);border:1.5px solid var(--line)}
+.btn-out{background:var(--card);color:var(--teal);border:1.5px solid var(--line)}
 .btn-out:hover{border-color:var(--teal);box-shadow:var(--sh)}
 .nav{position:sticky;top:0;z-index:60;background:rgba(251,252,249,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
@@ -689,9 +699,9 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 .brand-name b{color:var(--coral)}
 .brand-sub{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin-top:-2px}
 .nav-right{display:flex;align-items:center;gap:10px}
-.lang-btn{display:flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-weight:700;font-size:.9rem;color:var(--ink)}
+.lang-btn{display:flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-weight:700;font-size:.9rem;color:var(--ink)}
 .lang-btn:hover{border-color:var(--teal)}
-.lang-pop{position:absolute;top:58px;min-width:180px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 50px -20px rgba(14,42,44,.4);padding:7px;z-index:70}
+.lang-pop{position:absolute;top:58px;min-width:180px;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 50px -20px rgba(14,42,44,.4);padding:7px;z-index:70}
 .sv-root[dir="ltr"] .lang-pop{right:0}.sv-root[dir="rtl"] .lang-pop{left:0}
 .lang-item{display:flex;align-items:center;gap:10px;width:100%;background:none;border:none;padding:10px 12px;border-radius:11px;font-weight:600;font-size:.95rem;color:var(--ink);text-align:start}
 .lang-item:hover{background:var(--bg2)}.lang-item.on{background:var(--teal);color:#fff}
@@ -724,7 +734,7 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 .hstat .n{font-size:2rem;font-weight:800;color:var(--amber);line-height:1}
 .hstat .l{font-size:.84rem;color:rgba(255,255,255,.82);margin-top:5px;max-width:130px}
 .hero-card{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.24);border-radius:26px;padding:26px;backdrop-filter:blur(6px)}
-.passport{background:#fff;color:var(--ink);border-radius:18px;padding:22px;box-shadow:0 30px 60px -28px rgba(0,0,0,.5)}
+.passport{background:var(--card);color:var(--ink);border-radius:18px;padding:22px;box-shadow:0 30px 60px -28px rgba(0,0,0,.5)}
 .pp-top{display:flex;align-items:center;justify-content:space-between;border-bottom:2px dashed var(--line);padding-bottom:14px;margin-bottom:14px}
 .pp-stamp{width:62px;height:62px;border-radius:50%;border:2.5px solid var(--coral);color:var(--coral);display:grid;place-items:center;font-weight:800;transform:rotate(-12deg);font-size:.66rem;text-align:center;line-height:1.1}
 .pp-row{display:flex;align-items:center;gap:12px;padding:9px 0}
@@ -741,7 +751,7 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 .adv-ic{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;margin-bottom:16px;color:#fff}
 .adv-card h3{font-size:1.18rem;margin-bottom:8px}.adv-card p{color:var(--ink-soft);font-size:.96rem}
 .chips{display:flex;flex-wrap:wrap;gap:13px;justify-content:center}
-.chip{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:13px 20px;font-weight:700;font-size:.98rem;color:var(--ink);transition:.2s}
+.chip{display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:13px 20px;font-weight:700;font-size:.98rem;color:var(--ink);transition:.2s}
 .chip:hover{background:var(--teal);color:#fff;border-color:var(--teal);transform:translateY(-3px)}
 .chip:hover .chip-ic{color:#fff}.chip-ic{color:var(--teal);display:grid;place-items:center}
 .step{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px 24px}
@@ -765,10 +775,10 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 .uprice .p{font-size:1.5rem;font-weight:800;color:var(--coral);line-height:1}
 .uprice .p small{font-size:.78rem;color:var(--ink-soft);font-weight:700}
 .fbar{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:18px;align-items:center}
-.searchbox{flex:1;min-width:230px;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px 16px}
+.searchbox{flex:1;min-width:230px;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:12px 16px}
 .searchbox input{border:none;outline:none;font-size:1rem;width:100%;font-family:inherit;background:none;color:var(--ink)}
 .fpills{display:flex;flex-wrap:wrap;gap:9px}
-.fpill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-weight:700;font-size:.88rem;color:var(--ink-soft);display:inline-flex;align-items:center;gap:6px}
+.fpill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-weight:700;font-size:.88rem;color:var(--ink-soft);display:inline-flex;align-items:center;gap:6px}
 .fpill:hover{border-color:var(--teal);color:var(--teal)}.fpill.on{background:var(--teal);color:#fff;border-color:var(--teal)}
 .band{position:relative;background:linear-gradient(135deg,var(--coral),var(--coral-d));color:#fff;border-radius:28px;padding:54px 44px;overflow:hidden;text-align:center}
 .band::before{content:"";position:absolute;inset:0;background-image:url("${STAR}");background-size:64px;opacity:.5}
@@ -786,7 +796,7 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 .form{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:14px}
 .field label{display:block;font-weight:700;font-size:.86rem;margin-bottom:6px;color:var(--ink)}
 .field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px 14px;font-size:1rem;font-family:inherit;outline:none;background:var(--bg);color:var(--ink);transition:border .2s}
-.field input:focus,.field textarea:focus{border-color:var(--teal);background:#fff}
+.field input:focus,.field textarea:focus{border-color:var(--teal);background:var(--card)}
 .cinfo{display:flex;flex-direction:column;gap:14px}
 .cibox{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px}
 .cibox:hover{border-color:var(--teal)}
@@ -805,7 +815,7 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 .fbot .copy{cursor:default;user-select:none}
 /* DETAIL MODAL */
 .dmodal{position:fixed;inset:0;z-index:95;background:rgba(14,42,44,.6);display:flex;align-items:flex-start;justify-content:center;padding:24px;overflow:auto;animation:fade .2s}
-.dcard{background:#fff;border-radius:24px;max-width:760px;width:100%;margin:auto;overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.6)}
+.dcard{background:var(--card);border-radius:24px;max-width:760px;width:100%;margin:auto;overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.6)}
 .dhead{height:200px;position:relative;display:grid;place-items:center;color:#fff;overflow:hidden}
 .dhead img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .dhead .ovl{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,138,140,.45),rgba(7,86,88,.9))}
@@ -827,7 +837,7 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 .langbadge{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;margin-top:4px;background:var(--bg2);color:var(--teal-d)}
 .langbadge.en{background:#eef0ff;color:#4b46c7}
 .faclist{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
-.faccard{border:1px solid var(--line);border-radius:14px;padding:15px 16px;background:#fff}
+.faccard{border:1px solid var(--line);border-radius:14px;padding:15px 16px;background:var(--card)}
 .facc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:13px}
 .facc-name{font-weight:800;font-size:1.04rem;line-height:1.2}
 .facc-meta{display:flex;align-items:center;gap:9px;margin-top:6px;flex-wrap:wrap}
@@ -842,8 +852,8 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 .save{margin-top:7px;display:inline-block;background:#e8f8f1;color:#0a7a52;font-weight:800;font-size:.74rem;padding:4px 10px;border-radius:999px}
 .facsub{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
 .facsub select,.facsub input{border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:.9rem;font-family:inherit;outline:none;background:var(--bg);width:100%;color:var(--ink)}
-.facsub select:focus,.facsub input:focus{border-color:var(--teal);background:#fff}
-.facdel{position:absolute;top:10px;inset-inline-end:10px;width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;color:var(--ink-soft)}
+.facsub select:focus,.facsub input:focus{border-color:var(--teal);background:var(--card)}
+.facdel{position:absolute;top:10px;inset-inline-end:10px;width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;color:var(--ink-soft)}
 .facdel:hover{border-color:var(--coral);color:var(--coral)}
 .doccard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px}
 .docitem{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-weight:600}
@@ -855,21 +865,21 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 .preplang span{background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.4);border-radius:999px;padding:8px 16px;font-weight:700;font-size:.9rem}
 /* ADMIN */
 .admin-wrap{min-height:100vh;background:var(--bg2);padding:30px 0}
-.login{max-width:420px;margin:6vh auto;background:#fff;border:1px solid var(--line);border-radius:22px;padding:38px;box-shadow:var(--sh)}
+.login{max-width:420px;margin:6vh auto;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:38px;box-shadow:var(--sh)}
 .login .lk{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--teal),var(--teal-l));color:#fff;display:grid;place-items:center;margin-bottom:18px}
 .atop{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-bottom:22px}
-.tabs{display:flex;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px;flex-wrap:wrap}
+.tabs{display:flex;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px;flex-wrap:wrap}
 .tab{border:none;background:none;padding:9px 16px;border-radius:999px;font-weight:700;color:var(--ink-soft);font-size:.9rem}
 .tab.on{background:var(--teal);color:#fff}
-.acard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:14px}
+.acard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:14px}
 .arow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between}
 .athumb{width:64px;height:64px;border-radius:12px;object-fit:cover;flex-shrink:0;background:var(--bg2)}
 .aname{font-weight:800;font-size:1.06rem}.amini{color:var(--ink-soft);font-size:.86rem;font-weight:600}
-.iconbtn{width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;color:var(--ink-soft)}
+.iconbtn{width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;color:var(--ink-soft)}
 .iconbtn:hover{border-color:var(--teal);color:var(--teal)}
 .iconbtn.danger:hover{border-color:var(--coral);color:var(--coral)}
 .amodal{position:fixed;inset:0;z-index:90;background:rgba(14,42,44,.55);display:flex;align-items:flex-start;justify-content:center;padding:24px;overflow:auto}
-.aform{background:#fff;border-radius:22px;padding:28px;max-width:640px;width:100%;margin:auto;box-shadow:0 40px 80px -30px rgba(0,0,0,.5)}
+.aform{background:var(--card);border-radius:22px;padding:28px;max-width:640px;width:100%;margin:auto;box-shadow:0 40px 80px -30px rgba(0,0,0,.5)}
 .aform h3{font-size:1.35rem;margin-bottom:18px}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .checkgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
@@ -881,23 +891,23 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 .facedit{border:1px solid var(--line);border-radius:13px;padding:12px;margin-bottom:10px;position:relative}
 .facgrid{display:grid;grid-template-columns:1.4fr .7fr 1.2fr 1fr auto;gap:8px;align-items:center}
 .facgrid input{border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:.9rem;font-family:inherit;outline:none;background:var(--bg);width:100%}
-.facgrid input:focus{border-color:var(--teal);background:#fff}
+.facgrid input:focus{border-color:var(--teal);background:var(--card)}
 .combo{position:relative}
 .combo input{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:.92rem;font-family:inherit;outline:none;background:var(--bg);color:var(--ink)}
-.combo input:focus{border-color:var(--teal);background:#fff}
+.combo input:focus{border-color:var(--teal);background:var(--card)}
 .facedit > .combo input{padding-right:40px}
 .combo-item small{color:var(--ink-soft)}
-.combo-pop{position:absolute;top:calc(100% + 4px);inset-inline:0;z-index:40;background:#fff;border:1px solid var(--line);border-radius:11px;box-shadow:0 20px 44px -18px rgba(14,42,44,.4);padding:5px;max-height:230px;overflow:auto}
+.combo-pop{position:absolute;top:calc(100% + 4px);inset-inline:0;z-index:40;background:var(--card);border:1px solid var(--line);border-radius:11px;box-shadow:0 20px 44px -18px rgba(14,42,44,.4);padding:5px;max-height:230px;overflow:auto}
 .combo-item{display:block;width:100%;text-align:start;background:none;border:none;padding:9px 11px;border-radius:8px;font-size:.9rem;font-family:inherit;color:var(--ink)}
 .combo-item:hover{background:var(--bg2)}
 .combo-item b{color:var(--teal)}
 .iconbtn.starred{background:var(--amber);border-color:var(--amber);color:#3a2a00}
 .toast{position:fixed;bottom:26px;inset-inline:0;margin:auto;width:fit-content;background:var(--ink);color:#fff;padding:13px 22px;border-radius:999px;font-weight:700;z-index:100;display:flex;align-items:center;gap:9px;box-shadow:var(--sh);animation:fade .3s}
-.itable{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.itable{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .irow{display:grid;grid-template-columns:1fr 1.2fr 2fr .9fr;gap:14px;padding:15px 18px;border-bottom:1px solid var(--line);font-size:.92rem;align-items:center}
 .irow:last-child{border-bottom:none}
 .irow.h{background:var(--bg2);font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft)}
-.setcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;max-width:620px}
+.setcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;max-width:620px}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
 @keyframes fade{from{opacity:0}to{opacity:1}}
@@ -953,6 +963,8 @@ function pageFromHash() {
 
 export default function App() {
   const [lang, setLang] = useState("tr");
+  const [theme, setTheme] = useState(() => { try { return localStorage.getItem("savura:theme") || "light"; } catch { return "light"; } });
+  useEffect(() => { try { document.documentElement.setAttribute("data-theme", theme); localStorage.setItem("savura:theme", theme); } catch {} }, [theme]);
   const [page, setPage] = useState(pageFromHash());
   const [menu, setMenu] = useState(false);
   const [langPop, setLangPop] = useState(false);
@@ -1041,6 +1053,9 @@ export default function App() {
             <span className="brand-name">Savura <b>EDU</b></span>
           </button>
           <div className="nav-right">
+            <button className="theme-btn" onClick={() => setTheme(th => th === "dark" ? "light" : "dark")} aria-label="theme">
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
             <div ref={langRef} style={{ position: "relative" }}>
               <button className="lang-btn" onClick={() => setLangPop(v => !v)}>
                 <span style={{ fontSize: "1.1rem" }}>{LANGS.find(l => l.code === lang).flag}</span><Globe size={16} />
@@ -1813,7 +1828,7 @@ function WithdrawModal({ t, me, max, onClose, onDone }) {
           <div className="field" style={{ marginBottom: 12 }}><label>{P.wMethod}</label>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               {methods.map(([k, lbl]) => (
-                <button key={k} onClick={() => setMethod(k)} style={{ padding: "8px 14px", borderRadius: 10, border: "1px solid var(--line)", background: method === k ? "var(--teal)" : "#fff", color: method === k ? "#fff" : "var(--ink)", cursor: "pointer", fontWeight: 600 }}>{lbl}</button>
+                <button key={k} onClick={() => setMethod(k)} style={{ padding: "8px 14px", borderRadius: 10, border: "1px solid var(--line)", background: method === k ? "var(--teal)" : "var(--card)", color: method === k ? "#fff" : "var(--ink)", cursor: "pointer", fontWeight: 600 }}>{lbl}</button>
               ))}
             </div>
           </div>
@@ -2260,7 +2275,7 @@ function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
                 const on = fStatus === st; const col = st === "all" ? "#0B8A8C" : stColorA(st);
                 return (
                   <button key={st} onClick={() => setFStatus(st)}
-                    style={{ padding: "6px 13px", borderRadius: 20, border: "1px solid " + (on ? col : "var(--line)"), background: on ? col : "#fff", color: on ? "#fff" : "var(--ink-soft)", cursor: "pointer", fontSize: ".82rem", fontWeight: 700 }}>
+                    style={{ padding: "6px 13px", borderRadius: 20, border: "1px solid " + (on ? col : "var(--line)"), background: on ? col : "var(--card)", color: on ? "#fff" : "var(--ink-soft)", cursor: "pointer", fontSize: ".82rem", fontWeight: 700 }}>
                     {st === "all" ? t.admin.fAll : stLabelA(st)}
                   </button>
                 );
@@ -2301,7 +2316,7 @@ function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
                           <span style={{ fontSize: ".82rem", color: "var(--ink-soft)" }}>{t.partner.tStatus}:</span>
                           {STATUS_OPTS.map(st => (
                             <button key={st} onClick={() => setLeadStatus(l.id, st)}
-                              style={{ padding: "6px 12px", borderRadius: 20, border: "1px solid " + (l.status === st ? stColorA(st) : "var(--line)"), background: l.status === st ? stColorA(st) : "#fff", color: l.status === st ? "#fff" : "var(--ink-soft)", cursor: "pointer", fontSize: ".8rem", fontWeight: 700 }}>
+                              style={{ padding: "6px 12px", borderRadius: 20, border: "1px solid " + (l.status === st ? stColorA(st) : "var(--line)"), background: l.status === st ? stColorA(st) : "var(--card)", color: l.status === st ? "#fff" : "var(--ink-soft)", cursor: "pointer", fontSize: ".8rem", fontWeight: 700 }}>
                               {stLabelA(st)}
                             </button>
                           ))}
@@ -2371,7 +2386,7 @@ function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
               <h3 style={{ display: "flex", alignItems: "center", gap: 8, fontSize: "1.15rem", marginBottom: 16 }}><Send size={18} color="#0B8A8C" />{t.admin.tabM}</h3>
               <div className="field" style={{ marginBottom: 12 }}>
                 <label>{t.admin.mTo}</label>
-                <select value={msgTo} onChange={e => setMsgTo(e.target.value)} style={{ width: "100%", padding: "11px 12px", border: "1px solid var(--line)", borderRadius: 12, background: "#fff" }}>
+                <select value={msgTo} onChange={e => setMsgTo(e.target.value)} style={{ width: "100%", padding: "11px 12px", border: "1px solid var(--line)", borderRadius: 12, background: "var(--card)", color: "var(--ink)" }}>
                   <option value="">{t.admin.mAll}</option>
                   {partners.map(p => <option key={p.id} value={p.id}>{p.name} · {p.code}</option>)}
                 </select>
@@ -2490,7 +2505,7 @@ function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
               <button className="btn btn-out" type="button" style={{ marginTop: 6 }} onClick={addFac}><Plus size={15} />{t.admin.addFac}</button>
             </div>
 
-            <label className="checkitem" style={{ marginBottom: 18, width: "fit-content", background: editing.featured ? "var(--amber)" : "#fff", borderColor: editing.featured ? "var(--amber)" : "var(--line)", color: editing.featured ? "#3a2a00" : "var(--ink)" }} onClick={() => setEditing({ ...editing, featured: !editing.featured })}>
+            <label className="checkitem" style={{ marginBottom: 18, width: "fit-content", background: editing.featured ? "var(--amber)" : "var(--card)", borderColor: editing.featured ? "var(--amber)" : "var(--line)", color: editing.featured ? "#3a2a00" : "var(--ink)" }} onClick={() => setEditing({ ...editing, featured: !editing.featured })}>
               <Star size={15} fill={editing.featured ? "#3a2a00" : "none"} />{t.admin.fFeatured}
             </label>
             <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>

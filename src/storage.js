@@ -198,6 +198,22 @@ export const partner = usingSupabase ? {
       return !error;
     } catch { return false; }
   },
+  async checkCode(code) {
+    try { const { data } = await sb.rpc("code_available", { p_code: code }); return data === true; }
+    catch { return false; }
+  },
+  async setCode(code) {
+    try {
+      const uid = (await sb.auth.getUser()).data.user.id;
+      const { error } = await sb.from("partners").update({ code }).eq("auth_id", uid);
+      if (error) return { ok: false, error: error.code === "23505" ? "taken" : error.message };
+      return { ok: true };
+    } catch (e) { return { ok: false, error: String(e) }; }
+  },
+  async messages() {
+    try { const { data } = await sb.from("partner_messages").select("*").order("created_at", { ascending: false }); return data || []; }
+    catch { return []; }
+  },
 } : {
   async register() { return { ok: false, error: "offline" }; },
   async signIn() { return { ok: false }; },
@@ -207,6 +223,9 @@ export const partner = usingSupabase ? {
   async referrals() { return []; },
   async payouts() { return []; },
   async requestPayout() { return false; },
+  async checkCode() { return false; },
+  async setCode() { return { ok: false }; },
+  async messages() { return []; },
 };
 
 /* ---------- admin CRM ---------- */
@@ -227,9 +246,24 @@ export const admin = usingSupabase ? {
     try { const { error } = await sb.from("payouts").update({ status: "paid", paid_at: new Date().toISOString() }).eq("id", id); return !error; }
     catch { return false; }
   },
+  async messages() {
+    try { const { data } = await sb.from("partner_messages").select("*, partners(name,code)").order("created_at", { ascending: false }); return data || []; }
+    catch { return []; }
+  },
+  async sendMessage({ partner_id, title, body }) {
+    try { const { error } = await sb.from("partner_messages").insert({ partner_id: partner_id || null, title: title || "", body: body || "" }); return !error; }
+    catch { return false; }
+  },
+  async deleteMessage(id) {
+    try { const { error } = await sb.from("partner_messages").delete().eq("id", id); return !error; }
+    catch { return false; }
+  },
 } : {
   async partners() { return []; },
   async updateLeadStatus() { return false; },
   async payouts() { return []; },
   async markPayoutPaid() { return false; },
+  async messages() { return []; },
+  async sendMessage() { return false; },
+  async deleteMessage() { return false; },
 };

@@ -669,6 +669,7 @@ body{background:var(--bg)}
 .theme-btn{display:flex;align-items:center;justify-content:center;width:42px;height:42px;background:var(--card);border:1px solid var(--line);border-radius:999px;color:var(--ink)}
 .theme-btn:hover{border-color:var(--teal);color:var(--teal)}
 :root[data-theme="dark"] .footer{background:#070D0C}
+:root[data-theme="dark"] .nav{background:rgba(11,19,18,.82)}
 :root[data-theme="dark"] .burger{background:#1B2D2B}
 :root[data-theme="dark"] .pcell.schol{background:rgba(245,166,35,.12);border-color:rgba(245,166,35,.32)}
 :root[data-theme="dark"] .pcell.schol .pv{color:var(--amber)}

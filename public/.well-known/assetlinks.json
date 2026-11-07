@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.savuraedu.twa",
+        "sha256_cert_fingerprints": ["DE:ED:13:4B:50:92:AA:5C:89:42:47:AC:EB:80:3D:BE:B4:42:0C:E0:42:09:73:56:B6:3E:2D:F2:55:8F:FE:19"]
+      }
+    }]

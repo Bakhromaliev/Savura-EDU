@@ -87,12 +87,17 @@ export const auth = usingSupabase ? {
   async signOut() { try { await sb.auth.signOut(); } catch {} },
   async session() { try { const { data } = await sb.auth.getSession(); return (data && data.session) || null; } catch { return null; } },
   async isAdmin() { try { const { data } = await sb.rpc("is_admin"); return data === true; } catch { return false; } },
+  onChange(cb) {
+    try { const { data } = sb.auth.onAuthStateChange(() => cb()); return () => { try { data.subscription.unsubscribe(); } catch {} }; }
+    catch { return () => {}; }
+  },
 } : {
   // offline/demo fallback only (Supabase is normally configured)
   async signIn() { return { ok: true }; },
   async signOut() {},
   async session() { return null; },
-  async isAdmin() { return true; },
+  async isAdmin() { return false; },
+  onChange() { return () => {}; },
 };
 
 /* ---------- referral capture (?ref=CODE) ---------- */

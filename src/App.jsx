@@ -6,7 +6,7 @@ import {
   Wrench, Award, Wallet, ShieldCheck, Plane, FileText, Sparkles,
   Building2, ChevronRight, Send, Lock, Heart, Upload, Settings,
   Layers, Image as ImageIcon, Save, Clock, Eye, EyeOff,
-  CheckCircle2, XCircle, Link2, Copy, TrendingUp, UserPlus, Sun
+  CheckCircle2, XCircle, Link2, Copy, TrendingUp, UserPlus, Sun, RefreshCw, Home as HomeIcon, MessageCircle
 } from "lucide-react";
 import { store, auth, addLead, getLeads, partner, captureRef, getRef, admin } from "./storage";
 import * as XLSX from "xlsx";
@@ -219,6 +219,7 @@ const UNI_DB = [
 /* ------------------------------------------------------------------ */
 const T = {
   uz: {
+    app: { install: "Ilovani o‘rnatish", installShort: "O‘rnatish", coApk: "Android APK fayl manzili (masalan /savura-edu.apk)", installSub: "Telefoningizga 1 bosishda — tez, qulay, bepul", iosTitle: "iPhone’ga o‘rnatish", iosStep1: "Pastdagi «Ulashish» tugmasini bosing", iosStep2: "«Bosh ekranga qo‘shish» ni tanlang", iosStep3: "Yuqoridagi «Qo‘shish» ni bosing — tayyor!", iosSafari: "Bu faqat Safari brauzerida ishlaydi. Boshqa brauzerda bo‘lsangiz, saytni Safari’da oching.", apk: "Android ilova (APK) yuklab olish", apkNote: "O‘rnatishda telefon «noma’lum manba» deb so‘rasa — «Ruxsat berish» ni bosing.", installed: "Ilova o‘rnatildi", gotIt: "Tushunarli", later: "Keyinroq", apply: "Ariza", write: "Yozish" },
     nav: { home: "Bosh sahifa", universities: "Universitetlar", about: "Biz haqimizda", contact: "Bog‘lanish", admin: "Admin panel" },
     cta: { consult: "Bepul konsultatsiya", browse: "Universitetlarni ko‘rish", apply: "Ariza qoldirish", details: "Batafsil", viewAll: "Barchasini ko‘rish", contactUs: "Biz bilan bog‘laning" },
     hero: { badge: "Yillik kontraktlar 800$ dan boshlanadi", title1: "Turkiyada o‘qish", title2: "orzuyingizni ro‘yobga chiqaramiz", subtitle: "Savura EDU bilan Turkiyaning 10 lab yetakchi universitetiga barcha hujjatlaringizni biz tayyorlaymiz va qabul qildiramiz. Siz yo‘nalishni tanlang — qolganini bizga qoldiring.", s1: "Hamkor universitet", s2: "Joylashtirilgan talaba", s3: "Qabul muvaffaqiyati" },
@@ -295,6 +296,7 @@ const T = {
   },
 
   tr: {
+    app: { install: "Uygulamayı yükle", installShort: "Yükle", coApk: "Android APK dosya adresi (örn. /savura-edu.apk)", installSub: "Telefonunuza tek dokunuşla — hızlı, kolay, ücretsiz", iosTitle: "iPhone’a yükleme", iosStep1: "Alttaki «Paylaş» düğmesine dokunun", iosStep2: "«Ana Ekrana Ekle» yi seçin", iosStep3: "Sağ üstteki «Ekle» ye dokunun — hazır!", iosSafari: "Bu yalnızca Safari’de çalışır. Başka bir tarayıcıdaysanız siteyi Safari’de açın.", apk: "Android uygulamasını (APK) indir", apkNote: "Yüklerken telefon «bilinmeyen kaynak» uyarısı verirse «İzin ver» e dokunun.", installed: "Uygulama yüklendi", gotIt: "Anladım", later: "Sonra", apply: "Başvuru", write: "Yaz" },
     nav: { home: "Ana sayfa", universities: "Üniversiteler", about: "Hakkımızda", contact: "İletişim", admin: "Yönetim paneli" },
     cta: { consult: "Ücretsiz danışmanlık", browse: "Üniversiteleri gör", apply: "Başvuru bırak", details: "Detaylar", viewAll: "Tümünü gör", contactUs: "Bize ulaşın" },
     hero: { badge: "Yıllık kontratlar 800$'dan başlar", title1: "Türkiye'de okuma", title2: "hayalinizi gerçekleştiriyoruz", subtitle: "Savura EDU ile Türkiye'nin onlarca önde gelen üniversitesi için tüm belgelerinizi hazırlıyor ve kabulünüzü sağlıyoruz. Siz bölümü seçin — gerisini bize bırakın.", s1: "Partner üniversite", s2: "Yerleştirilen öğrenci", s3: "Kabul başarısı" },
@@ -368,6 +370,7 @@ const T = {
   },
 
   en: {
+    app: { install: "Install the app", installShort: "Install", coApk: "Android APK file URL (e.g. /savura-edu.apk)", installSub: "One tap on your phone — fast, easy, free", iosTitle: "Install on iPhone", iosStep1: "Tap the «Share» button below", iosStep2: "Choose «Add to Home Screen»", iosStep3: "Tap «Add» at the top — done!", iosSafari: "This works only in Safari. If you are in another browser, open the site in Safari.", apk: "Download Android app (APK)", apkNote: "If your phone warns about an «unknown source», tap «Allow».", installed: "App installed", gotIt: "Got it", later: "Later", apply: "Apply", write: "Chat" },
     nav: { home: "Home", universities: "Universities", about: "About us", contact: "Contact", admin: "Admin panel" },
     cta: { consult: "Free consultation", browse: "Browse universities", apply: "Apply now", details: "Details", viewAll: "View all", contactUs: "Contact us" },
     hero: { badge: "Annual contracts from $800", title1: "We make your dream of", title2: "studying in Turkey come true", subtitle: "With Savura EDU we prepare all your documents and secure admission to dozens of leading Turkish universities. You choose the program — we handle the rest.", s1: "Partner universities", s2: "Students placed", s3: "Admission success" },
@@ -441,6 +444,7 @@ const T = {
   },
 
   ru: {
+    app: { install: "Установить приложение", installShort: "Установить", coApk: "Адрес APK-файла (напр. /savura-edu.apk)", installSub: "В одно касание на ваш телефон — быстро, удобно, бесплатно", iosTitle: "Установка на iPhone", iosStep1: "Нажмите кнопку «Поделиться» внизу", iosStep2: "Выберите «На экран “Домой”»", iosStep3: "Нажмите «Добавить» вверху — готово!", iosSafari: "Работает только в Safari. Если вы в другом браузере, откройте сайт в Safari.", apk: "Скачать Android-приложение (APK)", apkNote: "Если телефон предупредит о «неизвестном источнике», нажмите «Разрешить».", installed: "Приложение установлено", gotIt: "Понятно", later: "Позже", apply: "Заявка", write: "Написать" },
     nav: { home: "Главная", universities: "Университеты", about: "О нас", contact: "Контакты", admin: "Админ-панель" },
     cta: { consult: "Бесплатная консультация", browse: "Смотреть университеты", apply: "Оставить заявку", details: "Подробнее", viewAll: "Смотреть все", contactUs: "Связаться с нами" },
     hero: { badge: "Годовые контракты от 800$", title1: "Осуществим вашу мечту", title2: "учиться в Турции", subtitle: "С Savura EDU мы готовим все ваши документы и обеспечиваем поступление в десятки ведущих университетов Турции. Вы выбираете направление — остальное берём на себя.", s1: "Университетов-партнёров", s2: "Поступивших студентов", s3: "Успех поступления" },
@@ -514,6 +518,7 @@ const T = {
   },
 
   ar: {
+    app: { install: "تثبيت التطبيق", installShort: "تثبيت", coApk: "رابط ملف APK (مثلاً /savura-edu.apk)", installSub: "بلمسة واحدة على هاتفك — سريع وسهل ومجاني", iosTitle: "التثبيت على iPhone", iosStep1: "اضغط زر «مشاركة» في الأسفل", iosStep2: "اختر «إضافة إلى الشاشة الرئيسية»", iosStep3: "اضغط «إضافة» في الأعلى — تم!", iosSafari: "يعمل هذا في Safari فقط. إذا كنت في متصفح آخر، افتح الموقع في Safari.", apk: "تنزيل تطبيق Android (APK)", apkNote: "إذا حذّرك الهاتف من «مصدر غير معروف»، اضغط «سماح».", installed: "تم تثبيت التطبيق", gotIt: "فهمت", later: "لاحقاً", apply: "تقديم", write: "مراسلة" },
     nav: { home: "الرئيسية", universities: "الجامعات", about: "من نحن", contact: "تواصل معنا", admin: "لوحة التحكم" },
     cta: { consult: "استشارة مجانية", browse: "تصفّح الجامعات", apply: "قدّم طلبًا", details: "التفاصيل", viewAll: "عرض الكل", contactUs: "تواصل معنا" },
     hero: { badge: "عقود سنوية تبدأ من 800$", title1: "نحقّق حلمك", title2: "بالدراسة في تركيا", subtitle: "مع سفورة للتعليم نجهّز جميع أوراقك ونضمن قبولك في عشرات الجامعات التركية الرائدة. اختر تخصّصك فقط ودع الباقي علينا.", s1: "جامعة شريكة", s2: "طالب تم قبوله", s3: "نسبة نجاح القبول" },
@@ -618,6 +623,7 @@ const SEED = [
 ];
 
 const DEFAULT_COMPANY = {
+  apkUrl: "",
   phone: "+998 90 123 45 67",
   email: "info@savura.edu",
   address: "İstanbul · Toshkent",
@@ -717,6 +723,48 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 .ov-link{background:none;border:none;color:#fff;font-size:clamp(1.8rem,7vw,3rem);font-weight:800;letter-spacing:-.02em;text-align:start;padding:8px 0;opacity:.92;display:flex;align-items:center;gap:16px;transition:transform .2s,opacity .2s}
 .ov-link:hover{transform:translateX(8px);opacity:1}.sv-root[dir="rtl"] .ov-link:hover{transform:translateX(-8px)}
 .ov-link .num{font-size:1rem;font-weight:700;opacity:.55;width:34px}
+.ov-links{overflow-y:auto;padding-block:8px}
+.ov-admin{color:var(--amber)}
+.ins-back{align-items:flex-end}
+.ins-sheet{max-width:460px;border-radius:22px 22px 0 0;padding-bottom:env(safe-area-inset-bottom);position:relative}
+@media(min-width:701px){.ins-back{align-items:center}.ins-sheet{border-radius:var(--r)}}
+.ins-step{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:.95rem}
+.ins-step:last-of-type{border-bottom:none}
+.ins-n{flex:none;width:24px;height:24px;border-radius:50%;background:var(--teal);color:#fff;font-size:.8rem;font-weight:800;display:grid;place-items:center}
+.ins-ic{flex:none;width:36px;height:36px;border-radius:10px;background:var(--bg2);color:#0A84FF;display:grid;place-items:center}
+.ins-arrow{display:none}
+.app-banner{position:fixed;left:12px;right:12px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:70;display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 14px;box-shadow:var(--sh);animation:fade .3s}
+.app-banner img{flex:none;border-radius:11px}
+.app-banner b{display:block;font-size:.95rem}
+.app-banner small{display:block;color:var(--ink-soft);font-size:.78rem}
+.app-banner .ab-go{flex:none;margin-inline-start:auto;padding:9px 14px;border:none;border-radius:999px;background:var(--teal);color:#fff;font-weight:800;font-size:.85rem}
+.app-banner .ab-x{flex:none;background:none;border:none;color:var(--ink-soft);padding:4px;display:flex}
+.bnav{display:none}
+.fab{display:none}
+@media(max-width:700px){
+input,select,textarea{font-size:16px!important}
+.sv-root{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+.bnav{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:65;background:var(--card);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom));box-shadow:0 -10px 30px -20px rgba(0,0,0,.35)}
+:root[data-theme="dark"] .bnav{background:rgba(21,33,31,.96)}
+.bnav button{background:none;border:none;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 2px;color:var(--ink-soft);font-size:.7rem;font-weight:700;min-height:50px;justify-content:center}
+.bnav button.on{color:var(--teal)}
+.bnav button.cta span.bic{background:var(--coral);color:#fff;border-radius:12px;width:40px;height:30px;display:grid;place-items:center}
+.bnav button.on.cta{color:var(--coral)}
+.fab{display:grid;place-items:center;position:fixed;right:16px;bottom:calc(78px + env(safe-area-inset-bottom));z-index:64;width:54px;height:54px;border-radius:50%;background:#229ED9;color:#fff;box-shadow:0 10px 24px -8px rgba(34,158,217,.7)}
+[dir="rtl"] .fab{right:auto;left:16px}
+.toast{bottom:calc(84px + env(safe-area-inset-bottom))}
+.dmodal{padding:12px 12px calc(80px + env(safe-area-inset-bottom))}
+}
+.nav{padding-top:env(safe-area-inset-top)}
+.ov-top{margin-top:env(safe-area-inset-top)}
+.ov-foot{padding-bottom:calc(30px + env(safe-area-inset-bottom))}
+button,a{touch-action:manipulation}
+.ov-admin .num{opacity:1;display:flex}
+.ov-install{margin-top:14px;display:flex;align-items:center;gap:14px;text-align:start;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);border-radius:18px;padding:14px 16px;color:#fff;cursor:pointer;max-width:420px}
+.ov-install b{display:block;font-size:1.05rem}
+.ov-install small{display:block;opacity:.8;font-size:.82rem;margin-top:2px}
+.ov-install-ic{flex:none;width:44px;height:44px;border-radius:12px;background:var(--amber);color:#3a2a00;display:grid;place-items:center}
+@media(max-height:700px){.ov-link{font-size:1.55rem;padding:5px 0}}
 .ov-foot{position:relative;padding-bottom:30px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;color:rgba(255,255,255,.85)}
 .ov-soc{display:flex;gap:10px}
 .soc{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.34);color:#fff}
@@ -909,6 +957,16 @@ h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 .irow:last-child{border-bottom:none}
 .irow.h{background:var(--bg2);font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft)}
 .setcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;max-width:620px}
+@media(max-width:700px){
+.admin-wrap{padding:16px 0 calc(90px + env(safe-area-inset-bottom))}
+.atop{flex-direction:column;align-items:stretch!important;gap:12px}
+.atop > div:last-child{display:grid!important;grid-template-columns:1fr auto auto;gap:8px!important}
+.atop .tabs{grid-column:1 / -1;flex-wrap:nowrap;overflow-x:auto;border-radius:14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.atop .tabs::-webkit-scrollbar{display:none}
+.atop .tab{flex:none;padding:10px 14px}
+.setcard{padding:18px}
+.ptable th,.ptable td{padding:10px 12px}
+}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
 @keyframes fade{from{opacity:0}to{opacity:1}}
@@ -980,6 +1038,53 @@ export default function App() {
   const rtl = lang === "ar";
   const langRef = useRef(null);
   const tap = useRef({ n: 0, t: 0 });
+
+  // admin huquqi (bazadagi is_admin) — menyuda "Admin panel" ko'rinishi uchun
+  const [isAdminUser, setIsAdminUser] = useState(false);
+  useEffect(() => {
+    let alive = true;
+    const check = async () => { const s = await auth.session(); const ok = s ? await auth.isAdmin() : false; if (alive) setIsAdminUser(ok); };
+    check();
+    const off = auth.onChange(check);
+    return () => { alive = false; off(); };
+  }, []);
+
+  // ilova o'rnatish: Android/Chrome taklifi, iOS aniqlash, o'rnatilganmi
+  const [installEvt, setInstallEvt] = useState(null);
+  const [iosHelp, setIosHelp] = useState(false);
+  const isStandalone = (() => { try { return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true; } catch { return false; } })();
+  const ua = (typeof navigator !== "undefined" && navigator.userAgent) || "";
+  const isIOS = /iphone|ipad|ipod/i.test(ua) || (/macintosh/i.test(ua) && typeof navigator !== "undefined" && navigator.maxTouchPoints > 1);
+  const isAndroid = /android/i.test(ua);
+  useEffect(() => {
+    const h = (e) => { e.preventDefault(); setInstallEvt(e); };
+    const done = () => setInstallEvt(null);
+    window.addEventListener("beforeinstallprompt", h);
+    window.addEventListener("appinstalled", done);
+    return () => { window.removeEventListener("beforeinstallprompt", h); window.removeEventListener("appinstalled", done); };
+  }, []);
+  const canInstall = !isStandalone && (isIOS || isAndroid || !!installEvt);
+  const doInstall = async () => {
+    setMenu(false);
+    if (installEvt) { installEvt.prompt(); try { await installEvt.userChoice; } catch {} setInstallEvt(null); return; }
+    if (isIOS) { setIosHelp(true); return; }
+    if (isAndroid && company.apkUrl) { window.location.href = company.apkUrl; return; }
+    setIosHelp(true);
+  };
+
+  const [banner, setBanner] = useState(false);
+  useEffect(() => {
+    if (isStandalone || !(isIOS || isAndroid)) return;
+    let last = 0; try { last = Number(localStorage.getItem("savura:abx") || 0); } catch {}
+    if (Date.now() - last < 7 * 864e5) return;
+    const id = setTimeout(() => setBanner(true), 12000);
+    return () => clearTimeout(id);
+  }, []);
+  const closeBanner = () => { setBanner(false); try { localStorage.setItem("savura:abx", String(Date.now())); } catch {} };
+
+  // til tanlovini eslab qolish
+  useEffect(() => { try { const l = localStorage.getItem("savura:lang"); if (l && T[l]) setLang(l); } catch {} }, []);
+  useEffect(() => { try { localStorage.setItem("savura:lang", lang); document.documentElement.lang = lang; } catch {} }, [lang]);
 
   useReveal(page + "|" + filter + "|" + query + "|" + (loaded ? 1 : 0) + "|" + unis.length);
 
@@ -1089,6 +1194,15 @@ export default function App() {
             {[["home", t.nav.home], ["universities", t.nav.universities], ["documents", t.proc.nav], ["partner", t.partner.nav], ["about", t.nav.about], ["contact", t.nav.contact]].map(([p, label], i) => (
               <button key={p} className="ov-link" onClick={() => go(p)}><span className="num">0{i + 1}</span>{label}</button>
             ))}
+            {isAdminUser && (
+              <button className="ov-link ov-admin" onClick={() => go("admin")}><span className="num"><ShieldCheck size={18} /></span>{t.nav.admin}</button>
+            )}
+            {canInstall && (
+              <button className="ov-install" onClick={doInstall}>
+                <span className="ov-install-ic"><Upload size={20} style={{ transform: "rotate(180deg)" }} /></span>
+                <span><b>{t.app.install}</b><small>{t.app.installSub}</small></span>
+              </button>
+            )}
           </div>
           <div className="wrap ov-foot">
             <div className="ov-soc">
@@ -1111,6 +1225,77 @@ export default function App() {
       {detail && <Detail u={detail} t={t} lang={lang} fieldName={fieldName} onClose={() => setDetail(null)} onApply={(facName) => { setApplyCtx({ uni: detail.name, faculty: facName || "" }); setDetail(null); go("contact"); }} />}
 
       {page !== "admin" && <Footer t={t} go={go} company={company} secretTap={secretTap} />}
+
+      {/* telefon: pastki navigatsiya */}
+      {!menu && (
+        <nav className="bnav">
+          {[["home", t.nav.home, HomeIcon, ""], ["universities", t.nav.universities, GraduationCap, ""], ["contact", t.app.apply, Send, "cta"], ["partner", t.partner.nav, Wallet, ""]].map(([p, label, Ic, cls]) => (
+            <button key={p} className={(page === p ? "on " : "") + cls} onClick={() => go(p)}>
+              <span className="bic"><Ic size={20} /></span>{label}
+            </button>
+          ))}
+        </nav>
+      )}
+
+      {/* telefon: suzuvchi Telegram tugmasi */}
+      {!menu && !banner && page !== "admin" && company.telegram && (
+        <a className="fab" href={company.telegram} target="_blank" rel="noreferrer" aria-label={t.app.write}><TelegramIcon size={24} /></a>
+      )}
+
+      {/* telefon: "ilovani o'rnating" banneri (bir marta, yopilsa 7 kun ko'rinmaydi) */}
+      {banner && !menu && page !== "admin" && (
+        <div className="app-banner">
+          <img src="/icons/icon-192.png" alt="" width="40" height="40" />
+          <div style={{ minWidth: 0 }}><b>{t.app.install}</b><small>{t.app.installSub}</small></div>
+          <button className="ab-go" onClick={() => { closeBanner(); doInstall(); }}>{t.app.installShort}</button>
+          <button className="ab-x" onClick={closeBanner} aria-label="close"><X size={18} /></button>
+        </div>
+      )}
+
+      {iosHelp && <InstallSheet t={t} isIOS={isIOS} isAndroid={isAndroid} apkUrl={company.apkUrl} onClose={() => setIosHelp(false)} />}
+    </div>
+  );
+}
+
+/* ---------------- ILOVA O'RNATISH ---------------- */
+function InstallSheet({ t, isIOS, isAndroid, apkUrl, onClose }) {
+  const A = t.app;
+  const step = (n, icon, text) => (
+    <div className="ins-step">
+      <span className="ins-n">{n}</span>
+      <span className="ins-ic">{icon}</span>
+      <span>{text}</span>
+    </div>
+  );
+  return (
+    <div className="pmodal-back ins-back" onClick={onClose}>
+      <div className="pmodal ins-sheet" onClick={e => e.stopPropagation()}>
+        <div className="pmodal-head">
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <img src="/icons/icon-192.png" alt="" width="44" height="44" style={{ borderRadius: 12 }} />
+            <div><h3 style={{ margin: 0 }}>Savura EDU</h3><div style={{ fontSize: ".82rem", color: "var(--ink-soft)" }}>{A.installSub}</div></div>
+          </div>
+          <button className="x" onClick={onClose}><X size={20} /></button>
+        </div>
+        <div style={{ padding: 20 }}>
+          {isIOS || !isAndroid ? (
+            <>
+              <div style={{ fontWeight: 800, marginBottom: 12 }}>{A.iosTitle}</div>
+              {step(1, <Upload size={18} />, A.iosStep1)}
+              {step(2, <Plus size={18} />, A.iosStep2)}
+              {step(3, <Check size={18} />, A.iosStep3)}
+              <p style={{ fontSize: ".8rem", color: "var(--ink-soft)", marginTop: 12, lineHeight: 1.5 }}>{A.iosSafari}</p>
+            </>
+          ) : (
+            <>
+              {apkUrl && <a className="btn btn-primary" href={apkUrl} style={{ width: "100%", justifyContent: "center" }}><Upload size={17} style={{ transform: "rotate(180deg)" }} />{A.apk}</a>}
+              <p style={{ fontSize: ".82rem", color: "var(--ink-soft)", marginTop: 12, lineHeight: 1.5 }}>{A.apkNote}</p>
+            </>
+          )}
+          <button className="btn btn-out" style={{ width: "100%", justifyContent: "center", marginTop: 14 }} onClick={onClose}>{A.gotIt}</button>
+        </div>
+        {isIOS && <div className="ins-arrow" aria-hidden="true">▼</div>}
+      </div>
     </div>
   );
 }
@@ -1591,7 +1776,7 @@ function Footer({ t, go, company, secretTap }) {
           </div>
           <div>
             <h4>{t.nav.contact}</h4>
-            <p dir="ltr" style={{ margin: "6px 0" }}>{company.phone}</p>
+            <p dir="ltr" style={{ margin: "6px 0" }}><a href={`tel:${(company.phone || "").replace(/\s/g, "")}`} style={{ color: "inherit" }}>{company.phone}</a></p>
             <p dir="ltr" style={{ margin: "6px 0" }}>{company.email}</p>
             <p style={{ margin: "6px 0" }}>{company.address}</p>
           </div>
@@ -2072,7 +2257,7 @@ function PartnerPage({ t, company }) {
 
 function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
   const [authed, setAuthed] = useState(false);
-  const [email, setEmail] = useState("admin@savura.edu");
+  const [email, setEmail] = useState("bahromaliyevmuhammadyusuf@gmail.com");
   const [pw, setPw] = useState("");
   const [err, setErr] = useState(false);
   const [tab, setTab] = useState("u");
@@ -2236,6 +2421,7 @@ function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
               <button className={"tab" + (tab === "m" ? " on" : "")} onClick={() => setTab("m")}>{t.admin.tabM}</button>
               <button className={"tab" + (tab === "s" ? " on" : "")} onClick={() => setTab("s")}>{t.admin.tabS}</button>
             </div>
+            <button className="btn btn-out adm-refresh" onClick={async () => { await reloadCRM(); flash(t.admin.saved); }} aria-label="refresh"><RefreshCw size={16} /></button>
             <button className="btn btn-out" onClick={doLogout}><LogOut size={16} />{t.admin.logout}</button>
           </div>
         </div>
@@ -2437,6 +2623,7 @@ function Admin({ t, unis, setUnis, company, setCompany, fieldName, go }) {
               <div className="field" style={{ flex: 1, minWidth: 200 }}><label>{t.admin.coPrice}</label><input value={co.priceFrom || ""} onChange={e => setCo({ ...co, priceFrom: e.target.value.replace(/[^0-9]/g, "") })} placeholder="800" inputMode="numeric" /></div>
               <div className="field" style={{ flex: 1, minWidth: 200 }}><label>{t.admin.coReward}</label><input value={co.partnerReward || ""} onChange={e => setCo({ ...co, partnerReward: e.target.value.replace(/[^0-9]/g, "") })} placeholder="50" inputMode="numeric" /></div>
             </div>
+            <div className="field" style={{ marginBottom: 18 }}><label>{t.app.coApk}</label><input dir="ltr" value={co.apkUrl || ""} onChange={e => setCo({ ...co, apkUrl: e.target.value.trim() })} placeholder="/savura-edu.apk" /></div>
             <button className="btn btn-teal" onClick={saveCompany}><Save size={17} />{t.admin.saveCo}</button>
           </div>
         )}

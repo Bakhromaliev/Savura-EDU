@@ -1,0 +1,27 @@
+{
+  "id": "/",
+  "name": "Savura EDU — Türkiye'de okuma",
+  "short_name": "Savura EDU",
+  "description": "Türkiye üniversitelerine kabul, belge hazırlığı ve ortaklık programı.",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#0B8A8C",
+  "theme_color": "#0B8A8C",
+  "lang": "tr",
+  "dir": "auto",
+  "categories": ["education"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Üniversiteler", "short_name": "Üniversiteler", "url": "/#universities", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Başvuru", "short_name": "Başvuru", "url": "/#contact", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Ortaklık", "short_name": "Ortaklık", "url": "/#partner", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
